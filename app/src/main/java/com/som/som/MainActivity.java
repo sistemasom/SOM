@@ -61,11 +61,9 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
         File file = new File("Ofertas.json");
         if(!file.exists())
         {
-            File archivo = new File("Ofertas.json");
-
             try
             {
-                archivo.createNewFile();
+                file.createNewFile();
             }
             catch (IOException e)
             {
@@ -109,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
                 {
                     if(Token != "") {
                         fragEnviar.startUpload();
+                        GuardarOferta();
                     }
                     else
                     {
