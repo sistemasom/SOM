@@ -1,13 +1,11 @@
 package com.som.som;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -46,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
     private Operacion fragOperacion;
     private String Token;
 
+    private JSONObject jsonOferta;
+
     private ViewPager mViewPager;
 
     @Override
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
 
                 Token = getToken();
 
-                JSONObject jsonOferta = fragProducto.obtenerValores();
+                jsonOferta = fragProducto.obtenerValores();
                 fragUbicacion.obtenerValores(jsonOferta);
                 fragOperacion.obtenerValores(jsonOferta);
                 fragFotos.obtenerValores(jsonOferta);
@@ -290,6 +290,22 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
     public void EnviarFoto(Bitmap foto)
     {
         //
+    }
+
+    //Guarda un archivo JSON para cada oferta enviada.
+
+    public void GuardarOferta(String nombreArchivo) {
+        try {
+            OutputStreamWriter fout = new OutputStreamWriter(openFileOutput(nombreArchivo + ".txt", this.MODE_PRIVATE));
+            String archivo = jsonOferta.toString();
+            fout.write(archivo);
+            fout.close();
+            Toast.makeText(this, "Oferta guardada correctamente.", Toast.LENGTH_SHORT).show();
+        }
+        catch (Exception ex)
+        {
+            Toast.makeText(this, "No se ha podido guardar la oferta. Intente nuevamente.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     // Configuración de TOKEN
