@@ -30,6 +30,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
@@ -292,12 +294,39 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
         //
     }
 
-    //Guarda un archivo JSON para cada oferta enviada.
-
-    public void GuardarOferta(String nombreArchivo) {
+    public String abrirArchivoOfertas() {
+        String json = null;
         try {
-            OutputStreamWriter fout = new OutputStreamWriter(openFileOutput(nombreArchivo + ".txt", this.MODE_PRIVATE));
-            String archivo = jsonOferta.toString();
+
+            InputStream is = getAssets().open("Ofertas.json");
+
+            int size = is.available();
+
+            byte[] buffer = new byte[size];
+
+            is.read(buffer);
+
+            is.close();
+
+            json = new String(buffer, "UTF-8");
+
+
+        } catch (IOException ex) {
+            return null;
+        }
+        return json;
+    }
+
+    //Guarda en un archivo JSON cada oferta enviada.
+
+    public void GuardarOferta() {
+        try {
+            JSONObject obj = new JSONObject(abrirArchivoOfertas());
+
+            obj.put(fragUbicacion.obtenerNombreJSON(),jsonOferta);
+
+            String archivo = obj.toString();
+            OutputStreamWriter fout = new OutputStreamWriter(openFileOutput("Ofertas.json", this.MODE_PRIVATE));
             fout.write(archivo);
             fout.close();
             Toast.makeText(this, "Oferta guardada correctamente.", Toast.LENGTH_SHORT).show();
