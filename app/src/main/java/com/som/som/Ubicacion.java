@@ -157,6 +157,20 @@ public class Ubicacion extends Fragment implements LocationListener{
         }
     }
 
+    public String obtenerNombreJSON() {
+        String nombre = "";
+
+        EditText txtCalle = (EditText) vistaUbicacion.findViewById(R.id.etCalle);
+        String calle = txtCalle.getText().toString();
+
+        EditText txtAltura = (EditText) vistaUbicacion.findViewById(R.id.etAltura);
+        String altura = txtAltura.getText().toString();
+
+        nombre = calle + " " + altura;
+
+        return nombre;
+    }
+
     public void obtenerValores(JSONObject json) {
 
         Spinner spPiso = (Spinner) vistaUbicacion.findViewById(R.id.cbPiso);
