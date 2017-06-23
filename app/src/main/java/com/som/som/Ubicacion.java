@@ -161,12 +161,9 @@ public class Ubicacion extends Fragment implements LocationListener{
         String nombre = "";
 
         EditText txtCalle = (EditText) vistaUbicacion.findViewById(R.id.etCalle);
-        String calle = txtCalle.getText().toString();
-
         EditText txtAltura = (EditText) vistaUbicacion.findViewById(R.id.etAltura);
-        String altura = txtAltura.getText().toString();
 
-        nombre = calle + " " + altura;
+        nombre = txtCalle.getText().toString() + " " + txtAltura.getText().toString();
 
         return nombre;
     }
