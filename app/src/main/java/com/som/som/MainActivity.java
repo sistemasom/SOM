@@ -290,7 +290,7 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
 
     public void EnviarFoto(Bitmap foto)
     {
-        
+        //
     }
 
     // Configuración de TOKEN
