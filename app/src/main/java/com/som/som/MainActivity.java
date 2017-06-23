@@ -276,7 +276,6 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
     @Override
     public void onProgressUpdate(int progressCode, int percentComplete) {
         switch(progressCode) {
-            // You can add UI behavior for progress updates here.
             case Progress.ERROR:
                 break;
             case Progress.CONNECT_SUCCESS:
