@@ -31,6 +31,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -55,20 +56,6 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-        //Crea archivo de ofertas si no existe
-        File file = new File("Ofertas.json");
-        if(!file.exists())
-        {
-            try
-            {
-                file.createNewFile();
-            }
-            catch (IOException e)
-            {
-            }
-        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
