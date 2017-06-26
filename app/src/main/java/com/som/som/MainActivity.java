@@ -325,11 +325,17 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
     public void GuardarOferta() {
         try {
             JSONObject obj = new JSONObject(abrirArchivoOfertas());
-
-            //Agrego la oferta al archivo
-            obj.put(fragUbicacion.obtenerNombreJSON(),jsonOferta);
-
-            String archivo = obj.toString();
+            String archivo = "";
+            if (obj != null)
+            {
+                //Agrego la oferta al archivo
+                obj.put(fragUbicacion.obtenerNombreJSON(), jsonOferta);
+                archivo = obj.toString();
+            }
+            else {
+                //El archivo no existe
+                archivo = jsonOferta.toString();
+            }
             OutputStreamWriter fout = new OutputStreamWriter(openFileOutput("Ofertas.json", this.MODE_PRIVATE));
             fout.write(archivo);
             fout.close();
