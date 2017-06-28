@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
                 {
                     if(Token != "") {
                         fragEnviar.startUpload();
-                        GuardarOferta();
+                        //GuardarOferta();
                     }
                     else
                     {
