@@ -104,6 +104,8 @@ public class Fotos extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {
 
+            pictureImagePath = data.getData().toString().replace("file://",""); //Url de la imagen creada en la SD
+            //pictureImagePath.replace("file://","");
             File imgFile = new  File(pictureImagePath);
             if(imgFile.exists()){
                 Foto foto = new Foto();

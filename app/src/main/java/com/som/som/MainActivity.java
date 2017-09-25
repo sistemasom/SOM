@@ -37,6 +37,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
+import android.content.ComponentCallbacks2;
+
 public class MainActivity extends AppCompatActivity implements DownloadCallback, Fotos.OnFragmentInteractionListener {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -51,6 +53,49 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
     private JSONObject jsonOferta;
 
     private ViewPager mViewPager;
+
+    public void onTrimMemory(int level)
+    {
+        switch (level) {
+            case ComponentCallbacks2.TRIM_MEMORY_UI_HIDDEN:
+            break;
+        }
+    }
+
+   /* public static boolean deleteDir(File dir)
+    {
+        if (dir != null && dir.isDirectory()) {
+        String[] children = dir.list();
+        for (int i = 0; i < children.length; i++) {
+            boolean success = deleteDir(new File(dir, children[i]));
+            if (!success) {
+                return false;
+            }
+        }
+    }
+        return dir.delete();
+    }
+
+    public void trimCache() {
+        try {
+            File dir = getCacheDir();
+            if (dir != null && dir.isDirectory()) {
+                deleteDir(dir);
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        try {
+            trimCache(getBaseContext()); //if trimCache is static
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

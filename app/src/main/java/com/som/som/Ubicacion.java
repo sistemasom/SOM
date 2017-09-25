@@ -143,10 +143,10 @@ public class Ubicacion extends Fragment implements LocationListener{
             List<Address> addresses = geocoder.getFromLocation(LATITUDE, LONGITUDE, 1);
             if (addresses != null) {
                 if(addresses.get(0).getSubLocality() != null) {
-                    strAdd = addresses.get(0).getSubLocality();
+                    strAdd = addresses.get(0).getSubLocality() + ", ";
                 }
+                strAdd = strAdd + addresses.get(0).getPostalCode() + ", ";
                 strAdd = strAdd + addresses.get(0).getLocality() + ", ";
-                strAdd = strAdd + addresses.get(0).getAdminArea() + ", ";
                 strAdd = strAdd + addresses.get(0).getCountryName();
 
                 TextView ubicacion = (TextView) vistaUbicacion.findViewById(R.id.tvUbicacion);
