@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -13,6 +14,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,15 +28,21 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import static android.app.Activity.RESULT_OK;
 
 public class Fotos extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    private static int RESULT_LOAD_IMG = 1;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -92,7 +100,7 @@ public class Fotos extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openBackCamera();
+                openGallery();
             }
         });
 
@@ -100,19 +108,31 @@ public class Fotos extends Fragment {
 
         return vistaFotos;
     }
+    private static final int PICK_IMAGE = 1;
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1) {
+    private void openGallery(){
+        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        startActivityForResult(gallery, PICK_IMAGE);
+    }
 
-            pictureImagePath = data.getData().toString().replace("file://",""); //Url de la imagen creada en la SD
-            //pictureImagePath.replace("file://","");
-            File imgFile = new  File(pictureImagePath);
-            if(imgFile.exists()){
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+
+        if(resultCode == RESULT_OK && requestCode == PICK_IMAGE){
+            Uri imageUri = data.getData();
+
+            try {
+                InputStream image_stream = getContext().getContentResolver().openInputStream(imageUri);
+                Bitmap fullImage = BitmapFactory.decodeStream(image_stream);
+
                 Foto foto = new Foto();
 
-                Bitmap fullImage = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-                foto.fullImage = redimensionarImagen(fullImage,800,600);
-                foto.thumbnail = redimensionarImagen(fullImage,240,180);
+                int ancho = fullImage.getWidth();
+                int alto = fullImage.getHeight();
+                float proporcion = (float)calcularProporcion(ancho,alto);
+
+                foto.fullImage = redimensionarImagen(fullImage,ancho*proporcion,alto*proporcion);
+                foto.thumbnail = redimensionarImagen(fullImage,ancho*(float)0.15,alto*(float)0.15);
                 foto.id = idFoto;
                 aFotos.add(foto);
                 //Agrego la foto a la vista actual
@@ -120,35 +140,36 @@ public class Fotos extends Fragment {
 
                 idFoto++; //Incremento el ID
             }
+            catch (FileNotFoundException ex) {
+            }
         }
     }
 
-    private void openBackCamera() {
+    private double calcularProporcion(int ancho, int alto) {
 
-        if(aFotos.size() < 10) {
-            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            String imageFileName = timeStamp + ".jpg";
-            File storageDir = Environment.getExternalStoragePublicDirectory(
-                    Environment.DIRECTORY_PICTURES);
-            pictureImagePath = storageDir.getAbsolutePath() + "/" + imageFileName;
-            File file = new File(pictureImagePath);
-            Uri outputFileUri = Uri.fromFile(file);
-            Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
-            startActivityForResult(cameraIntent, 1);
+        double proporcion = 0.0;
+        int maxAncho = 800;
+        int maxAlto = 600;
+
+        if(ancho > alto) {
+            //La imagen es horizontal
+            proporcion = ((double)maxAncho/ancho);
         }
-        else {
-            Toast.makeText(getContext(), "Ha alcanzado el límite máximo de imagenes.", Toast.LENGTH_SHORT).show();
+        else
+        {
+            //La imagen es vertical
+            proporcion = ((double)maxAlto/alto);
         }
+        return proporcion;
     }
 
     public void obtenerFotos()
     {
         //Recorro el arraylist con las fotos
         for(int i = 0;i < aFotos.size(); i++) {
-            Bitmap bitmap = redimensionarImagen(aFotos.get(i).fullImage,800,600);
+            Bitmap bitmap = aFotos.get(i).fullImage;
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, baos);
             byte[] imageInByte = baos.toByteArray();
             fotos = fotos + "Foto" + Base64.encodeToString(imageInByte, Base64.NO_WRAP);
         }
@@ -157,8 +178,8 @@ public class Fotos extends Fragment {
     public Bitmap redimensionarImagen(Bitmap bm, float ancho, float alto) {
         int width = bm.getWidth();
         int height = bm.getHeight();
-        float scaleWidth = ((float) ancho) / width;
-        float scaleHeight = ((float) alto) / height;
+        float scaleWidth = (ancho) / width;
+        float scaleHeight = (alto) / height;
         Matrix matrix = new Matrix();
         matrix.postScale(scaleWidth, scaleHeight);
 

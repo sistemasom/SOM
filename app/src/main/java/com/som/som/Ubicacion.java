@@ -104,7 +104,7 @@ public class Ubicacion extends Fragment implements LocationListener{
 
     public void obtenerCoordenadas() {
 
-        Location location = new Location("network");
+        Location location;
 
         try {
             locationManager = (LocationManager) getActivity().getSystemService(getContext().LOCATION_SERVICE);
@@ -112,6 +112,7 @@ public class Ubicacion extends Fragment implements LocationListener{
             boolean isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
             if (isNetworkEnabled) {
+                location = new Location("network");
                 if (locationManager != null) {
                     if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                             || ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -130,7 +131,7 @@ public class Ubicacion extends Fragment implements LocationListener{
             }
             else
             {
-                Toast.makeText(getContext(), "Se requiere conexión a internet, revise su conexión y reintente por favor.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Se requiere acceso a internet y servicios de ubicación activado para continuar.", Toast.LENGTH_SHORT).show();
             }
         } catch (Exception e) {
         }

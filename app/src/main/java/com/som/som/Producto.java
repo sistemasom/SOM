@@ -28,7 +28,6 @@ public class Producto extends Fragment {
     private String mParam1;
     private String mParam2;
     private View vistaProducto;
-
     public Producto() {
         // Required empty public constructor
     }

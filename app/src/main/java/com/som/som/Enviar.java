@@ -7,29 +7,12 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringDef;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
-import android.view.Gravity;
 import android.widget.Toast;
-
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.io.PrintStream;
-import java.io.Reader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
-
-import javax.net.ssl.HttpsURLConnection;
-
 public class Enviar extends Fragment {
     public static final String TAG = "Enviar";
 
@@ -92,6 +75,16 @@ public class Enviar extends Fragment {
         super.onDestroy();
     }
 
+    public void mostrarProgress()
+    {
+        progress.show();
+    }
+
+    public void ocultarProgress()
+    {
+        progress.dismiss();
+    }
+
     public void startUpload() {
         cancelUpload();
         mUploadTask = new UploadTask();
@@ -128,7 +121,7 @@ public class Enviar extends Fragment {
                     mUploadCallback.updateFromUpload(null);
                     cancel(true);
                 }
-                progress.show();
+                //progress.show();
             }
         }
 
@@ -150,10 +143,11 @@ public class Enviar extends Fragment {
                     mUploadCallback.updateFromUpload(result.mResultValue);
                 }
                 mUploadCallback.finishUploading();
+                ocultarProgress();
+                Toast.makeText(getActivity(),"Oferta enviada!",Toast.LENGTH_LONG).show();
             }
             //Termina el proceso
-            progress.dismiss();
-            Toast.makeText(getActivity(),"Oferta enviada!",Toast.LENGTH_LONG).show();
+            //progress.dismiss();
         }
 
         @Override

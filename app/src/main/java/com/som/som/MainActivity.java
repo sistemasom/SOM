@@ -1,5 +1,6 @@
 package com.som.som;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
@@ -37,8 +38,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
-import android.content.ComponentCallbacks2;
-
 public class MainActivity extends AppCompatActivity implements DownloadCallback, Fotos.OnFragmentInteractionListener {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -53,49 +52,6 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
     private JSONObject jsonOferta;
 
     private ViewPager mViewPager;
-
-    public void onTrimMemory(int level)
-    {
-        switch (level) {
-            case ComponentCallbacks2.TRIM_MEMORY_UI_HIDDEN:
-            break;
-        }
-    }
-
-   /* public static boolean deleteDir(File dir)
-    {
-        if (dir != null && dir.isDirectory()) {
-        String[] children = dir.list();
-        for (int i = 0; i < children.length; i++) {
-            boolean success = deleteDir(new File(dir, children[i]));
-            if (!success) {
-                return false;
-            }
-        }
-    }
-        return dir.delete();
-    }
-
-    public void trimCache() {
-        try {
-            File dir = getCacheDir();
-            if (dir != null && dir.isDirectory()) {
-                deleteDir(dir);
-            }
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        try {
-            trimCache(getBaseContext()); //if trimCache is static
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +76,8 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
             public void onClick(View view) {
                 //Traigo valores de la propiedad
 
+                fragEnviar.mostrarProgress();
+
                 Token = getToken();
 
                 jsonOferta = fragProducto.obtenerValores();
@@ -135,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
                 //Seteo el texto a enviar
                 fragEnviar.dataSend = jsonOferta.toString();
 
-                if(fragUbicacion.puedePublicar())
+                //if(fragUbicacion.puedePublicar())
                 {
                     if(Token != "") {
                         fragEnviar.startUpload();
@@ -143,14 +101,56 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
                     }
                     else
                     {
+                        //fragEnviar.ocultarProgress();
                         Toast.makeText(getBaseContext(),"Debe ingresar un código de autorización para continuar.",Toast.LENGTH_LONG).show();
                     }
                 }
-                else {
+                /*else {
+                    fragEnviar.ocultarProgress();
                     Toast.makeText(getBaseContext(),"Debe obtener su ubicación actual antes de continuar. Dirijase a la solapa 3 y presione el icono de ubicación.",Toast.LENGTH_LONG).show();
-                }
+                }*/
             }
         });
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        try {
+            trimCache(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void trimCache(Context context) {
+        try {
+            File dir = context.getCacheDir();
+            if (dir != null && dir.isDirectory()) {
+                deleteDir(dir);
+            }
+        } catch (Exception e) {
+        }
+    }
+
+    public static boolean deleteDir(File dir) {
+        if (dir != null && dir.isDirectory()) {
+            String[] children = dir.list();
+            for (int i = 0; i < children.length; i++) {
+                boolean success = deleteDir(new File(dir, children[i]));
+                if (!success) {
+                    return false;
+                }
+            }
+        }
+
+        // The directory is now empty so delete it
+        return dir.delete();
     }
 
     @Override
