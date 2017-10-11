@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
                 //Seteo el texto a enviar
                 fragEnviar.dataSend = jsonOferta.toString();
 
-                //if(fragUbicacion.puedePublicar())
+                if(fragUbicacion.puedePublicar())
                 {
                     if(Token != "") {
                         fragEnviar.startUpload();
@@ -101,14 +101,14 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
                     }
                     else
                     {
-                        //fragEnviar.ocultarProgress();
+                        fragEnviar.ocultarProgress();
                         Toast.makeText(getBaseContext(),"Debe ingresar un código de autorización para continuar.",Toast.LENGTH_LONG).show();
                     }
                 }
-                /*else {
+                else {
                     fragEnviar.ocultarProgress();
                     Toast.makeText(getBaseContext(),"Debe obtener su ubicación actual antes de continuar. Dirijase a la solapa 3 y presione el icono de ubicación.",Toast.LENGTH_LONG).show();
-                }*/
+                }
             }
         });
     }
