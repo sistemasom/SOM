@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
         final Enviar fragEnviar = Enviar.getInstance(getSupportFragmentManager(),"https://google.com.ar");
 
         mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setOffscreenPageLimit(5);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         InstanciarFragmentos();
