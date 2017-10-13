@@ -131,7 +131,7 @@ public class Ubicacion extends Fragment implements LocationListener{
             }
             else
             {
-                Toast.makeText(getContext(), "Se requiere acceso a internet y servicios de ubicación activado para continuar.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Debe activar servicios de ubicación y conexión a internet para continuar.", Toast.LENGTH_SHORT).show();
             }
         } catch (Exception e) {
         }
