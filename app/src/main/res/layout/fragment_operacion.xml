@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_weight="0.50"
+            android:fontFamily="casual"
             android:text="Operación:" />
 
         <Spinner
@@ -35,6 +36,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="-5dp"
+            android:fontFamily="casual"
             android:backgroundTint="@color/colorPrimaryDark"
             android:padding="2dp" />
     </LinearLayout>
@@ -52,6 +54,7 @@
             android:id="@+id/tvSubOperacion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="casual"
             android:layout_marginLeft="5dp"
             android:layout_weight="0.5"
             android:text="Subtipo: " />
@@ -62,6 +65,7 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:fontFamily="casual"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="-5dp"
             android:backgroundTint="@color/colorPrimaryDark"
@@ -82,6 +86,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
+            android:fontFamily="casual"
             android:layout_weight="0.5"
             android:text="Moneda: " />
 
@@ -92,6 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
+            android:fontFamily="casual"
             android:layout_marginTop="-5dp"
             android:backgroundTint="@color/colorPrimaryDark"
             android:padding="2dp" />
@@ -107,6 +113,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Precio:"
+            android:fontFamily="casual"
             android:layout_marginLeft="5dp"
             android:layout_weight="0.5" />
 
@@ -115,8 +122,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
+            android:fontFamily="casual"
             android:ems="5"
-            android:inputType="textPersonName"
+            android:inputType="numberDecimal"
             android:background="@drawable/border"
             android:text="" />
     </LinearLayout>

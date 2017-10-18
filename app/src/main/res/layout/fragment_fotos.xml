@@ -18,7 +18,8 @@
         android:id="@+id/btnFoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorPrimary"
+        android:background="@drawable/border"
+        android:padding="5dp"
         android:onClick="takePhoto"
         app:srcCompat="@android:drawable/ic_menu_camera" />
 

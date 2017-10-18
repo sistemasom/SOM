@@ -22,7 +22,10 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="150dp"
-        android:text="Club de Inmobiliarias S.A.\n         v1.0 - © 2017" />
+        android:fontFamily="casual"
+        android:text="Club de Inmobiliarias S.A.\n           v1.0 - © 2017"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/slide"
@@ -31,4 +34,13 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="300dp"
         app:srcCompat="@drawable/slide" />
+
+    <TextView
+        android:id="@+id/mensaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="270dp"
+        android:fontFamily="casual"
+        android:text="Deslizar la pantalla para continuar." />
 </RelativeLayout>

@@ -174,27 +174,9 @@ public class Enviar extends Fragment {
                     outStream.print(dataSend);
                     outStream.close();
 
-                    //Create JSONObject here
-                    //
-                    // JSONObject jsonParam = new JSONObject();
-                    // jsonParam.put("ID", "25");
-                    // jsonParam.put("description", "Real");
-                    // jsonParam.put("enable", "true");
-                    // OutputStreamWriter out = new   OutputStreamWriter(urlConnection.getOutputStream());
-                    // out.write(jsonParam.toString());
-                    // out.close();
-
                     int HttpResult = urlConnection.getResponseCode();
                     if(HttpResult == HttpURLConnection.HTTP_OK)
                     {
-                        // BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(),"utf-8"));
-                        // String line = null;
-                        // while ((line = br.readLine()) != null)
-                        // {
-                        //     sb.append(line + "\n");
-                        // }
-                        // br.close();
-
                         sb.append("OK");
                         result = new UploadTask.Result(sb.toString());
                     }
@@ -214,6 +196,4 @@ public class Enviar extends Fragment {
 
 
     }
-
-
 }

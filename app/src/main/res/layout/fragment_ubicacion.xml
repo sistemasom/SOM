@@ -28,6 +28,7 @@
                     android:id="@+id/tvCalle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="casual"
                     android:text="Calle"
                     android:layout_weight="0.10" />
 
@@ -38,6 +39,7 @@
                     android:layout_weight="0.75"
                     android:ems="5"
                     android:inputType="textPersonName"
+                    android:fontFamily="casual"
                     android:background="@drawable/border"
                     android:text="" />
             </LinearLayout>
@@ -54,6 +56,7 @@
                     android:id="@+id/tvAltura"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="casual"
                     android:text="Altura"
                     android:layout_weight="0.1" />
 
@@ -61,16 +64,18 @@
                     android:id="@+id/etAltura"
                     android:layout_width="60dp"
                     android:layout_height="wrap_content"
-                    android:ems="5"
+                    android:fontFamily="casual"
                     android:layout_marginLeft="5dp"
-                    android:inputType="textPersonName"
                     android:background="@drawable/border"
+                    android:ems="5"
+                    android:inputType="numberDecimal"
                     android:text="" />
 
                 <TextView
                     android:id="@+id/tvPiso"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="casual"
                     android:layout_marginLeft="5dp"
                     android:text="Piso"
                     android:layout_weight="0" />
@@ -82,6 +87,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="-5dp"
+                    android:fontFamily="casual"
                     android:layout_weight="0.9"
                     android:layout_centerHorizontal="true"
                     android:backgroundTint="@color/colorPrimaryDark"
@@ -91,6 +97,7 @@
                     android:id="@+id/tvUnidad"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="casual"
                     android:layout_marginLeft="5dp"
                     android:text="Unidad"
                     android:layout_weight="0.1" />
@@ -101,6 +108,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
+                    android:fontFamily="casual"
                     android:layout_marginTop="-5dp"
                     android:layout_weight="0.9"
                     android:layout_centerHorizontal="true"
@@ -112,6 +120,7 @@
         <TextView
             android:id="@+id/tvEntreCalles"
             android:layout_width="wrap_content"
+            android:fontFamily="casual"
             android:layout_height="wrap_content"
             android:text="Entre calles / Referencia:"
             android:layout_below="@id/layoutSup"
@@ -126,6 +135,7 @@
             android:layout_below="@id/tvEntreCalles"
             android:ems="20"
             android:layout_gravity="end|bottom"
+            android:fontFamily="casual"
             android:layout_marginTop="10dp"
             android:background="@drawable/border"
             android:scrollbarStyle="insideInset"
@@ -135,6 +145,7 @@
             android:id="@+id/tvUbicacion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="casual"
             android:text=""
             android:layout_below="@id/layoutSup"
             android:layout_marginLeft="5dp"
@@ -145,15 +156,17 @@
             android:id="@+id/webMapa"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:layout_marginTop="220dp">
-
-        </WebView>
+            android:background="@drawable/border"
+            android:layout_marginTop="220dp"></WebView>
 
         <ImageButton
             android:id="@+id/btnMapa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="220dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="225dp"
+            android:background="@drawable/border"
+            android:padding="5dp"
             app:srcCompat="@android:drawable/ic_menu_mylocation" />
 
     </RelativeLayout>
