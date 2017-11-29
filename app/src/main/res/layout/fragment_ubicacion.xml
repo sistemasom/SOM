@@ -11,6 +11,7 @@
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
+        android:id="@+id/relativo"
         android:paddingTop="@dimen/activity_vertical_margin">
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -117,13 +118,66 @@
             </LinearLayout>
         </RelativeLayout>
 
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/provincia"
+            android:orientation="horizontal"
+            android:layout_marginTop="120dp">
+
+            <TextView
+                android:id="@+id/tvProvincia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:text="Provincia    " />
+
+            <Spinner
+                android:id="@+id/cbProvincia"
+                style="@android:style/Widget.Holo.Light.Spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:fontFamily="casual"
+                android:padding="2dp" />
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/localidad"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/provincia"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvLocalidad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:text="Localidad"
+                android:layout_weight="0.10" />
+
+            <EditText
+                android:id="@+id/etLocalidad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75"
+                android:ems="5"
+                android:inputType="textPersonName"
+                android:fontFamily="casual"
+                android:background="@drawable/border"
+                android:text="" />
+        </LinearLayout>
+
         <TextView
             android:id="@+id/tvEntreCalles"
             android:layout_width="wrap_content"
             android:fontFamily="casual"
             android:layout_height="wrap_content"
             android:text="Entre calles / Referencia:"
-            android:layout_below="@id/layoutSup"
+            android:layout_below="@id/localidad"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="20dp"
             android:layout_weight="0.93" />
@@ -147,24 +201,26 @@
             android:layout_height="wrap_content"
             android:fontFamily="casual"
             android:text=""
-            android:layout_below="@id/layoutSup"
+            android:layout_below="@id/etEntreCalles"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="20dp"
             android:layout_weight="0.93" />
 
         <WebView
             android:id="@+id/webMapa"
             android:layout_width="match_parent"
             android:layout_height="250dp"
+            android:layout_below="@id/tvUbicacion"
             android:background="@drawable/border"
-            android:layout_marginTop="220dp"></WebView>
+            android:layout_marginTop="10dp"></WebView>
 
         <ImageButton
             android:id="@+id/btnMapa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="225dp"
+            android:layout_below="@id/tvUbicacion"
+            android:layout_marginTop="20dp"
             android:background="@drawable/border"
             android:padding="5dp"
             app:srcCompat="@android:drawable/ic_menu_mylocation" />
