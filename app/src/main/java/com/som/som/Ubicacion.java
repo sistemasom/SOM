@@ -24,18 +24,11 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.List;
 import java.util.Locale;
 
 
 public class Ubicacion extends Fragment implements LocationListener{
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -54,7 +47,6 @@ public class Ubicacion extends Fragment implements LocationListener{
 
 
     public Ubicacion() {
-        // Required empty public constructor
     }
 
     // TODO: Rename and change types and number of parameters
@@ -85,6 +77,8 @@ public class Ubicacion extends Fragment implements LocationListener{
         cargarPiso(vistaUbicacion);
         cargarUnidad(vistaUbicacion);
 
+        cargarProvincias(vistaUbicacion);
+
         ImageButton btnMapa = (ImageButton) vistaUbicacion.findViewById(R.id.btnMapa);
 
         btnMapa.setOnClickListener(new View.OnClickListener() {
@@ -92,12 +86,6 @@ public class Ubicacion extends Fragment implements LocationListener{
             public void onClick(View v) {
                 Toast.makeText(getContext(),"Obteniendo ubicación, aguarde un instante por favor...",Toast.LENGTH_SHORT).show();
                 obtenerCoordenadas();
-                /*try {
-                    obtenerCoordenadasDireccion();
-                    obtenerDatosDireccion(infoLocation);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }*/
             }
         });
         return vistaUbicacion;
@@ -106,7 +94,6 @@ public class Ubicacion extends Fragment implements LocationListener{
     public Boolean puedePublicar()
     {
         if(longitud != 0.0 && latitud != 0.0) {
-        //if(latitud != "" && longitud != ""){
             return true;
         }
         else
@@ -114,57 +101,6 @@ public class Ubicacion extends Fragment implements LocationListener{
             return false;
         }
     }
-
-    /*public void obtenerCoordenadasDireccion() throws IOException {
-        new Thread() {
-            @Override
-            public void run() {
-                try {
-                    String add = obtenerDireccion().replace(" ","+");
-                    String lat = "";
-                    String lng = "";
-                    String dataLocation = "";
-                    String url = "https://maps.googleapis.com/maps/api/geocode/xml?address=" + add + "&key=AIzaSyBGtClDdDlC_-ITTM_JXTw5JiFJgyN_ehY&callback";
-
-                        BufferedReader br = null;
-                        try {
-                            HttpURLConnection conn = (HttpURLConnection)(new URL(url)).openConnection();
-                            br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-
-                            String line;
-                            while ((line = br.readLine()) != null) {
-                                String a = line;
-                                if(line.contains("<lat>")){
-                                    lat = a.replace("<lat>","").replace("</lat>","");
-                                }
-                                if(line.contains("<lng>")) {
-                                    lng = a.replace("<lng>","").replace("</lng>","");
-                                }
-                                if(line.contains("<formatted_address>")) {
-                                    dataLocation = a.replace("<formatted_address>","").replace("</formatted_address>","");
-                                }
-                            }
-                            latitud = lat;
-                            longitud = lng;
-                            infoLocation = dataLocation;
-
-                            cargarMapa(lat,lng);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        } finally {
-                            try {
-                                if (br != null) br.close();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }.start();
-    }*/
 
     public void obtenerCoordenadas() {
 
@@ -222,18 +158,6 @@ public class Ubicacion extends Fragment implements LocationListener{
         }
     }
 
-    /*public String obtenerDireccion() {
-        String nombre = "";
-
-        EditText txtCalle = (EditText) vistaUbicacion.findViewById(R.id.etCalle);
-        EditText txtAltura = (EditText) vistaUbicacion.findViewById(R.id.etAltura);
-        EditText txtRef = (EditText) vistaUbicacion.findViewById(R.id.etEntreCalles);
-
-        nombre = txtCalle.getText().toString() + " " + txtAltura.getText().toString() + " " + txtRef.getText().toString();
-
-        return nombre;
-    }*/
-
     public void obtenerValores(JSONObject json) {
 
         Spinner spPiso = (Spinner) vistaUbicacion.findViewById(R.id.cbPiso);
@@ -254,11 +178,19 @@ public class Ubicacion extends Fragment implements LocationListener{
         TextView tvUbicacion = (TextView) vistaUbicacion.findViewById(R.id.tvUbicacion);
         String ubicacion = tvUbicacion.getText().toString();
 
+        TextView tvLocalidad = (TextView) vistaUbicacion.findViewById(R.id.tvLocalidad);
+        String localidad = tvLocalidad.getText().toString();
+
+        Spinner cbProvincia = (Spinner) vistaUbicacion.findViewById(R.id.cbProvincia);
+        String provincia = cbProvincia.getSelectedItem().toString();
+
         try {
             json.put("Piso",pisoSel);
             json.put("Unidad",unidadSel);
             json.put("Referencia",entreCalles);
             json.put("Calle",calle);
+            json.put("Provincia",provincia);
+            json.put("Localidad",localidad);
             json.put("Altura",altura);
             json.put("Ubicacion",ubicacion);
             json.put("latitud",latitud);
@@ -302,7 +234,23 @@ public class Ubicacion extends Fragment implements LocationListener{
         spPiso.setAdapter(adapterPiso);
     }
 
-    //public void cargarMapa(String lat, String lng) {
+    public void cargarProvincias(final View vista) {
+
+        //Combo producto
+        final String[] provincias =
+                new String[]{"Ciudad de Buenos Aires","Prov. Buenos Aires","Prov. Catamarca","Prov. Chaco","Prov. Chubut","Prov. Córdoba",
+                        "Prov. Corrientes","Prov. Entre Ríos","Prov. Formosa","Prov. Jujuy","Prov. La Pampa","Prov. La Rioja", "Prov. Mendoza",
+                        "Prov. Misiones","Prov. Neuquén","Prov. Río Negro","Prov. Salta","Prov. San Juan","Prov. San Luis","Prov. Santa Cruz",
+                        "Prov. Santa Fé","Prov. Santiago del Estero","Tierra del Fuego","Prov. Tucumán"
+                };
+
+        ArrayAdapter<String> adapterProv = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, provincias);
+        Spinner spProvincias = (Spinner)vista.findViewById(R.id.cbProvincia);
+
+        adapterProv.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        spProvincias.setAdapter(adapterProv);
+    }
+
     public void cargarMapa() {
 
         WebView webMapa = (WebView) vistaUbicacion.findViewById(R.id.webMapa);
@@ -313,7 +261,6 @@ public class Ubicacion extends Fragment implements LocationListener{
 
         String url = "";
 
-        //url = "http://sistema.som.com.ar/MapaApp.html?latitud=" + latitud.toString() + "&longitud=" + longitud.toString();
         url = "http://sistema.som.com.ar/MapaApp.html?latitud=" + latitud.toString() + "&longitud=" + longitud.toString();
 
         webMapa.loadUrl(url);
