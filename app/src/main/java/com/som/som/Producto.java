@@ -1,7 +1,5 @@
 package com.som.som;
 
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,7 +12,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 

@@ -90,10 +90,28 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
+                //GUID de oferta
+                String ID = java.util.UUID.randomUUID().toString();
+                try {
+                    jsonOferta.put("Id",ID);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 //Seteo el texto a enviar
                 fragEnviar.dataSend = jsonOferta.toString();
 
-                if(fragUbicacion.puedePublicar())
+                if(Token != "") {
+                    fragEnviar.startUpload();
+                    //GuardarOferta();
+                }
+                else
+                {
+                    fragEnviar.ocultarProgress();
+                    Toast.makeText(getBaseContext(),"Debe ingresar un código de autorización para continuar.",Toast.LENGTH_LONG).show();
+                }
+
+                /*if(fragUbicacion.puedePublicar())
                 {
                     if(Token != "") {
                         fragEnviar.startUpload();
@@ -108,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
                 else {
                     fragEnviar.ocultarProgress();
                     Toast.makeText(getBaseContext(),"Debe obtener su ubicación actual antes de continuar. Dirijase a la solapa 3 y presione el icono de ubicación.",Toast.LENGTH_LONG).show();
-                }
+                }*/
             }
         });
     }
@@ -367,14 +385,14 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
 
     //Guarda en un archivo JSON cada oferta enviada.
 
-    public void GuardarOferta() {
+    /*public void GuardarOferta() {
         try {
             JSONObject obj = new JSONObject(abrirArchivoOfertas());
             String archivo = "";
             if (obj != null)
             {
                 //Agrego la oferta al archivo
-                obj.put(fragUbicacion.obtenerNombreJSON(), jsonOferta);
+                //obj.put(fragUbicacion.obtenerNombreJSON(), jsonOferta);
                 archivo = obj.toString();
             }
             else {
@@ -390,7 +408,7 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
         {
             Toast.makeText(this, "No se ha podido guardar la oferta. Intente nuevamente.", Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
 
     // Configuración de TOKEN
     public void guardarToken(String token) {

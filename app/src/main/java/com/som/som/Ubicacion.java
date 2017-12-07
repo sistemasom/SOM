@@ -27,7 +27,6 @@ import org.json.JSONObject;
 import java.util.List;
 import java.util.Locale;
 
-
 public class Ubicacion extends Fragment implements LocationListener{
 
     private static final String ARG_PARAM1 = "param1";
