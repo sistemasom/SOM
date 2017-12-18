@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     private Inicio fragInicio;
+    private Inventario fragInventario;
     private Producto fragProducto;
     private Ubicacion fragUbicacion;
     private Fotos fragFotos;
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
 
         mViewPager = (ViewPager) findViewById(R.id.container);
         //Cantidad de pantallas.
-        mViewPager.setOffscreenPageLimit(5);
+        mViewPager.setOffscreenPageLimit(6);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         InstanciarFragmentos();
@@ -110,23 +111,6 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
                     fragEnviar.ocultarProgress();
                     Toast.makeText(getBaseContext(),"Debe ingresar un código de autorización para continuar.",Toast.LENGTH_LONG).show();
                 }
-
-                /*if(fragUbicacion.puedePublicar())
-                {
-                    if(Token != "") {
-                        fragEnviar.startUpload();
-                        //GuardarOferta();
-                    }
-                    else
-                    {
-                        fragEnviar.ocultarProgress();
-                        Toast.makeText(getBaseContext(),"Debe ingresar un código de autorización para continuar.",Toast.LENGTH_LONG).show();
-                    }
-                }
-                else {
-                    fragEnviar.ocultarProgress();
-                    Toast.makeText(getBaseContext(),"Debe obtener su ubicación actual antes de continuar. Dirijase a la solapa 3 y presione el icono de ubicación.",Toast.LENGTH_LONG).show();
-                }*/
             }
         });
     }
@@ -239,14 +223,13 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
         }
     }
 
     private void InstanciarFragmentos() {
         fragInicio = Inicio.newInstance(null,null);
+        fragInventario = Inventario.newInstance(null,null);
         fragProducto = Producto.newInstance(null,null);
         fragUbicacion = Ubicacion.newInstance(null, null);
         fragOperacion = Operacion.newInstance(null, null);
@@ -267,15 +250,18 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
                     return fragInicio;
                 }
                 case 1: {
-                    return fragProducto;
+                    return fragInventario;
                 }
                 case 2: {
-                    return fragOperacion;
+                    return fragProducto;
                 }
                 case 3: {
-                    return fragUbicacion;
+                    return fragOperacion;
                 }
                 case 4: {
+                    return fragUbicacion;
+                }
+                case 5: {
                     return fragFotos;
                 }
                 default:
@@ -285,7 +271,7 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
 
         @Override
         public int getCount() {
-            return 5;
+            return 6;
         }
 
         @Override
@@ -294,12 +280,14 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
                 case 0:
                     return "INICIO";
                 case 1:
-                    return "PRODUCTO";
+                    return "INVENTARIO";
                 case 2:
-                    return "UBICACION";
+                    return "PRODUCTO";
                 case 3:
-                    return "OPERACION";
+                    return "UBICACION";
                 case 4:
+                    return "OPERACION";
+                case 5:
                     return "FOTOS";
             }
             return null;

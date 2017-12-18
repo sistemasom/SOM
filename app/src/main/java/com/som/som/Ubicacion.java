@@ -1,5 +1,6 @@
 package com.som.som;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -200,7 +201,7 @@ public class Ubicacion extends Fragment implements LocationListener{
     }
 
     public void cargarUnidad(final View vista) {
-        //Combo producto
+        //Combo unidades
         final String[] unidades =
                 new String[]{"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",
                         "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24",
@@ -218,7 +219,7 @@ public class Ubicacion extends Fragment implements LocationListener{
 
     public void cargarPiso(final View vista) {
 
-        //Combo producto
+        //Combo pisos
         final String[] pisos =
                 new String[]{"PB","EP","1SS","2SS","3SS","1","2","3","4","5","6","7","8","9","10",
                         "11","12","13","14","15","16","17","18","19","20","21","22","23","24","25",
@@ -235,7 +236,7 @@ public class Ubicacion extends Fragment implements LocationListener{
 
     public void cargarProvincias(final View vista) {
 
-        //Combo producto
+        //Combo provincias
         final String[] provincias =
                 new String[]{"Ciudad de Buenos Aires","Prov. Buenos Aires","Prov. Catamarca","Prov. Chaco","Prov. Chubut","Prov. Córdoba",
                         "Prov. Corrientes","Prov. Entre Ríos","Prov. Formosa","Prov. Jujuy","Prov. La Pampa","Prov. La Rioja", "Prov. Mendoza",
