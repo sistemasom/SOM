@@ -31,6 +31,15 @@ public class Inventario extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    final String namespace = "http://tempuri.org/";
+    final String url = "http://wsdatos.som.com.ar/swsincronizador.asmx";
+
+    private class itemInventario
+    {
+        String codigo;
+        String Calle;
+    }
+
     private class Propiedad
     {
         String codigo;
@@ -55,7 +64,7 @@ public class Inventario extends Fragment {
         String Coordenadas;
     }
 
-    ArrayList<Propiedad> propiedades = new ArrayList<Propiedad>();
+    ArrayList<itemInventario> propiedades = new ArrayList<itemInventario>();
 
     View vistaInventario;
 
@@ -140,7 +149,7 @@ public class Inventario extends Fragment {
 
     private void cargarFormulario(int pos)
     {
-        Propiedad prop = propiedades.get(pos);
+        itemInventario prop = propiedades.get(pos);
         String dato = prop.Calle;
 
         TextView supCub = (TextView) getActivity().findViewById(R.id.etSupCub);
@@ -166,9 +175,7 @@ public class Inventario extends Fragment {
         StrictMode.setThreadPolicy(policy);
 
         final String Metodo = "BuscarInventario";
-        final String namespace = "http://tempuri.org/";
         final String accionSoap = "http://tempuri.org/BuscarInventario";
-        final String url = "http://wsdatos.som.com.ar/swsincronizador.asmx";
 
         final ListView tabla = (ListView) vistaInventario.findViewById(R.id.listaInventario);
 
@@ -198,7 +205,7 @@ public class Inventario extends Fragment {
             for(int i=0; i<resultado.getPropertyCount(); i++) {
 
                 SoapObject oferta =  (SoapObject) resultado.getProperty(i);
-                Propiedad prop = new Propiedad();
+                itemInventario prop = new itemInventario();
 
                 prop.codigo = oferta.getPropertyAsString(5);
                 prop.Calle = oferta.getPropertyAsString(0);
