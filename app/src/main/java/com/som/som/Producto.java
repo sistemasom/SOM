@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -105,13 +106,18 @@ public class Producto extends Fragment {
 
         RadioGroup radio = (RadioGroup) vistaProducto.findViewById(R.id.grupoRbSup);
         int selectedId = radio.getCheckedRadioButtonId();
+
         RadioButton boton = (RadioButton) vistaProducto.findViewById(selectedId);
         String valorRB = boton.getText().toString();
 
         EditText txtDestacable = (EditText) vistaProducto.findViewById(R.id.etDestacable);
         String destacable = txtDestacable.getText().toString();
 
+        TextView txtCodigo = (TextView) vistaProducto.findViewById(R.id.codigoOferta);
+        String cod = txtCodigo.getText().toString();
+
         try {
+            json.put("Codigo",cod);
             json.put("Tipo",prodSel);
             json.put("Subtipo",subProdSel);
             json.put("SupCub",supCub);

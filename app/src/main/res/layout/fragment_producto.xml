@@ -17,7 +17,6 @@
         style="@android:style/Widget.Holo.Light.Spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="casual"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
@@ -30,7 +29,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/colorPrimaryDark"
-        android:fontFamily="casual"
         android:layout_marginTop="10dp"
         android:padding="2dp"
         android:layout_below="@+id/cbTipoProd"/>
@@ -51,7 +49,6 @@
                 android:id="@+id/tvSupCub"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="casual"
                 android:text="Sup. Cubierta"
                 android:layout_marginLeft="5dp"
                 android:layout_weight="0.93" />
@@ -63,7 +60,9 @@
                 android:layout_weight="0.75"
                 android:background="@drawable/border"
                 android:ems="5"
-                android:fontFamily="casual"
+                android:padding="2dp"
+                android:paddingLeft="7dp"
+                android:textColor="@color/letra"
                 android:inputType="numberDecimal"
                 android:text="" />
         </LinearLayout>
@@ -81,7 +80,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:fontFamily="casual"
                 android:text="Sup. Total"
                 android:layout_weight="0.18" />
 
@@ -109,7 +107,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.12"
                 android:background="@drawable/border"
-                android:fontFamily="casual"
+                android:padding="2dp"
+                android:paddingLeft="7dp"
+                android:textColor="@color/letra"
                 android:ems="5"
                 android:inputType="numberDecimal"
                 android:text="" />
@@ -117,28 +117,50 @@
     </RelativeLayout>
 
     <TextView
-            android:id="@+id/tvDestacable"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Destacable"
-            android:fontFamily="casual"
-            android:layout_below="@id/layoutSup"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="25dp"
-            android:layout_weight="0.93" />
+        android:id="@+id/tvCodigo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutSup"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:text="Codigo: "/>
 
-        <EditText
-            android:id="@+id/etDestacable"
-            android:layout_width="wrap_content"
-            android:layout_height="150dp"
-            android:layout_below="@id/tvDestacable"
-            android:ems="20"
-            android:fontFamily="casual"
-            android:layout_gravity="end|bottom"
-            android:inputType="textMultiLine"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/border"
-            android:scrollbarStyle="insideInset"
-            android:scrollbars="vertical"/>
+
+    <TextView
+        android:id="@+id/codigoOferta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutSup"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="60dp"
+        android:text="000"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvDestacable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutSup"
+        android:layout_marginTop="35dp"
+        android:layout_weight="0.93"
+        android:padding="5dp"
+        android:text="Destacable" />
+
+    <EditText
+        android:id="@+id/etDestacable"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_below="@id/tvDestacable"
+        android:layout_gravity="end|bottom"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border"
+        android:ems="20"
+        android:padding="2dp"
+        android:paddingLeft="10dp"
+        android:textColor="@color/letra"
+        android:inputType="textMultiLine"
+        android:scrollbarStyle="insideInset"
+        android:scrollbars="vertical" />
+
 </RelativeLayout>
 </ScrollView>

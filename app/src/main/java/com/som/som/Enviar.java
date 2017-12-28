@@ -49,7 +49,7 @@ public class Enviar extends Fragment {
         setRetainInstance(true);
         mUrlString = getArguments().getString(URL_KEY);
 
-        progress = new ProgressDialog(getContext());
+        progress = new ProgressDialog(getActivity());
         progress.setMessage("Enviando la oferta, por favor espere...");
     }
 
@@ -144,7 +144,7 @@ public class Enviar extends Fragment {
                 }
                 mUploadCallback.finishUploading();
                 ocultarProgress();
-                Toast.makeText(getActivity(),"Oferta enviada!",Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(),"Oferta enviada!",Toast.LENGTH_SHORT).show();
             }
             //Termina el proceso
             //progress.dismiss();

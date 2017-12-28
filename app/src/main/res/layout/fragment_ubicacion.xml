@@ -40,7 +40,7 @@
                     android:layout_weight="0.75"
                     android:ems="5"
                     android:inputType="textPersonName"
-                    android:fontFamily="casual"
+                    android:textColor="@color/letra"
                     android:background="@drawable/border"
                     android:text="" />
             </LinearLayout>
@@ -67,6 +67,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="casual"
                     android:layout_marginLeft="5dp"
+                    android:textColor="@color/letra"
                     android:background="@drawable/border"
                     android:ems="5"
                     android:inputType="numberDecimal"
@@ -166,7 +167,7 @@
                 android:layout_weight="0.75"
                 android:ems="5"
                 android:inputType="textPersonName"
-                android:fontFamily="casual"
+                android:textColor="@color/letra"
                 android:background="@drawable/border"
                 android:text="" />
         </LinearLayout>
@@ -189,7 +190,7 @@
             android:layout_below="@id/tvEntreCalles"
             android:ems="20"
             android:layout_gravity="end|bottom"
-            android:fontFamily="casual"
+            android:textColor="@color/letra"
             android:layout_marginTop="10dp"
             android:background="@drawable/border"
             android:scrollbarStyle="insideInset"
@@ -224,6 +225,20 @@
             android:background="@drawable/border"
             android:padding="5dp"
             app:srcCompat="@android:drawable/ic_menu_mylocation" />
+
+        <TextView
+            android:id="@+id/latitud"
+            android:layout_width="wrap_content"
+            android:visibility="invisible"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/longitud"
+            android:layout_width="wrap_content"
+            android:visibility="invisible"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
 
     </RelativeLayout>
 </ScrollView>

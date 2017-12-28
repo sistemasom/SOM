@@ -122,7 +122,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:fontFamily="casual"
+            android:textColor="@color/letra"
             android:ems="5"
             android:inputType="numberDecimal"
             android:background="@drawable/border"

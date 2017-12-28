@@ -1,6 +1,5 @@
 package com.som.som;
 
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -8,6 +7,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
@@ -44,7 +44,6 @@ public class Ubicacion extends Fragment implements LocationListener{
 
     private Double latitud = 0.0;
     private Double longitud = 0.0;
-
 
     public Ubicacion() {
     }
@@ -85,7 +84,15 @@ public class Ubicacion extends Fragment implements LocationListener{
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(),"Obteniendo ubicación, aguarde un instante por favor...",Toast.LENGTH_SHORT).show();
-                obtenerCoordenadas();
+                new CountDownTimer(500, 1000) {
+                    public void onFinish()
+                    {
+                        obtenerCoordenadas();
+                    }
+
+                    public void onTick(long millisUntilFinished) {
+                    }
+                }.start();
             }
         });
         return vistaUbicacion;
@@ -123,6 +130,12 @@ public class Ubicacion extends Fragment implements LocationListener{
                         latitud = location.getLatitude();
                         longitud = location.getLongitude();
                         cargarMapa();
+
+                        TextView lat = (TextView) vistaUbicacion.findViewById(R.id.latitud);
+                        TextView longi = (TextView) vistaUbicacion.findViewById(R.id.longitud);
+                        lat.setText(latitud.toString());
+                        longi.setText(longitud.toString());
+
                         obtenerDatosDireccion(latitud,longitud);
                     }
                 } else {
@@ -184,6 +197,9 @@ public class Ubicacion extends Fragment implements LocationListener{
         Spinner cbProvincia = (Spinner) vistaUbicacion.findViewById(R.id.cbProvincia);
         String provincia = cbProvincia.getSelectedItem().toString();
 
+        TextView lat = (TextView) vistaUbicacion.findViewById(R.id.latitud);
+        TextView longi = (TextView) vistaUbicacion.findViewById(R.id.longitud);
+
         try {
             json.put("Piso",pisoSel);
             json.put("Unidad",unidadSel);
@@ -193,8 +209,8 @@ public class Ubicacion extends Fragment implements LocationListener{
             json.put("Localidad",localidad);
             json.put("Altura",altura);
             json.put("Ubicacion",ubicacion);
-            json.put("latitud",latitud);
-            json.put("longitud",longitud);
+            json.put("latitud",lat.getText());
+            json.put("longitud",longi.getText());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -203,7 +219,7 @@ public class Ubicacion extends Fragment implements LocationListener{
     public void cargarUnidad(final View vista) {
         //Combo unidades
         final String[] unidades =
-                new String[]{"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",
+                new String[]{" ","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",
                         "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24",
                         "25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46",
                         "47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68",
@@ -221,7 +237,7 @@ public class Ubicacion extends Fragment implements LocationListener{
 
         //Combo pisos
         final String[] pisos =
-                new String[]{"PB","EP","1SS","2SS","3SS","1","2","3","4","5","6","7","8","9","10",
+                new String[]{" ","PB","EP","1SS","2SS","3SS","1","2","3","4","5","6","7","8","9","10",
                         "11","12","13","14","15","16","17","18","19","20","21","22","23","24","25",
                         "26","27","28","29","30","31","32","33","34","35","36","37","38","39","40",
                         "41","42","43","44","45","46","47","48","49","50","51","52","53","54","55",
@@ -238,10 +254,8 @@ public class Ubicacion extends Fragment implements LocationListener{
 
         //Combo provincias
         final String[] provincias =
-                new String[]{"Ciudad de Buenos Aires","Prov. Buenos Aires","Prov. Catamarca","Prov. Chaco","Prov. Chubut","Prov. Córdoba",
-                        "Prov. Corrientes","Prov. Entre Ríos","Prov. Formosa","Prov. Jujuy","Prov. La Pampa","Prov. La Rioja", "Prov. Mendoza",
-                        "Prov. Misiones","Prov. Neuquén","Prov. Río Negro","Prov. Salta","Prov. San Juan","Prov. San Luis","Prov. Santa Cruz",
-                        "Prov. Santa Fé","Prov. Santiago del Estero","Tierra del Fuego","Prov. Tucumán"
+                new String[]{"CAPITAL FEDERAL","BUENOS AIRES","CATAMARCA","CHACO","CHUBUT","CORDOBA","CORRIENTES","ENTRE RIOS","FORMOSA","JUJUY","LA PAMPA","LA RIOJA", "MENDOZA",
+                        "MISIONES","NEUQUEN","RIO NEGRO","SALTA","SAN JUAN","SAN LUIS","SANTA CRUZ","SANTA FE","SANTIAGO DE ESTERO","TIERRA DEL FUEGO","TUCUMAN"
                 };
 
         ArrayAdapter<String> adapterProv = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, provincias);

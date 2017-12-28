@@ -414,7 +414,7 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
         }
     }
 
-    public String getToken()
+    final String getToken()
     {
         String texto = "";
         try{
