@@ -23,7 +23,6 @@ import android.view.ViewGroup;
 
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;

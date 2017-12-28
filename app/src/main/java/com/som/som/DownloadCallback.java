@@ -1,7 +1,6 @@
 package com.som.som;
 
 import android.net.NetworkInfo;
-import android.support.annotation.IntDef;
 
 
 public interface DownloadCallback {

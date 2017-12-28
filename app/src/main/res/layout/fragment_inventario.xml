@@ -28,10 +28,10 @@
             android:id="@+id/btnAlta"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:background="@drawable/boton"
             android:layout_weight="1"
-            android:textColor="@color/blanco"
-            android:text="Alta" />
+            android:background="@drawable/boton"
+            android:text="Alta"
+            android:textColor="@color/blanco" />
     </LinearLayout>
 
     <LinearLayout
