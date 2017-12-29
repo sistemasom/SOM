@@ -136,6 +136,7 @@ public class Inventario extends Fragment {
 
             @Override
             public void onClick(View v) {
+
                 mostrarCampos(true,0);
             }
         });
@@ -333,7 +334,7 @@ public class Inventario extends Fragment {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
+        
         final String Metodo = "BuscarInventarioMovil";
         final String accionSoap = "http://tempuri.org/BuscarInventarioMovil";
 
@@ -346,7 +347,7 @@ public class Inventario extends Fragment {
             // Modelo el request
             SoapObject request = new SoapObject(namespace, Metodo);
 
-            request.addProperty("idSucursal", token);
+            request.addProperty("token", token);
 
             // Modelo el Sobre
             SoapSerializationEnvelope sobre = new SoapSerializationEnvelope(SoapEnvelope.VER11);
