@@ -125,7 +125,6 @@
         android:layout_marginTop="10dp"
         android:text="Codigo: "/>
 
-
     <TextView
         android:id="@+id/codigoOferta"
         android:layout_width="wrap_content"
