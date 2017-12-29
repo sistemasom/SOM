@@ -121,7 +121,6 @@ public class Enviar extends Fragment {
                     mUploadCallback.updateFromUpload(null);
                     cancel(true);
                 }
-                //progress.show();
             }
         }
 
@@ -146,8 +145,6 @@ public class Enviar extends Fragment {
                 ocultarProgress();
                 Toast.makeText(getActivity(),"Oferta enviada!",Toast.LENGTH_SHORT).show();
             }
-            //Termina el proceso
-            //progress.dismiss();
         }
 
         @Override
