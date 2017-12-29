@@ -334,7 +334,7 @@ public class Inventario extends Fragment {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        
+
         final String Metodo = "BuscarInventarioMovil";
         final String accionSoap = "http://tempuri.org/BuscarInventarioMovil";
 
@@ -407,15 +407,9 @@ public class Inventario extends Fragment {
 
                                     final Enviar fragEnviar = Enviar.getInstance(getActivity().getSupportFragmentManager(),"https://google.com.ar");
 
-                                    /*String toRemove = array.getItem(position);
-                                    array.remove(toRemove);
-
-                                    tabla.setAdapter(array);*/
-
                                     array.remove(array.getItem(position));
                                     propiedades.remove(position);
                                     array.notifyDataSetChanged();
-
 
                                     Toast.makeText(getContext(), "Enviando baja de la oferta " + cod + "...", Toast.LENGTH_SHORT).show();
                                     fragEnviar.dataSend = jsonOferta.toString();
