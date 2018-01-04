@@ -45,7 +45,6 @@ public class Inventario extends Fragment {
     private String mParam2;
 
     final String namespace = "http://tempuri.org/";
-    //final String url = "http://wsdatos.som.com.ar/swsincronizador.asmx";
     final String url = "http://wss3.som.com.ar/swsincronizador.asmx";
 
     private class itemInventario
