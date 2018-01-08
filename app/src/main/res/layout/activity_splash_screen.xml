@@ -13,17 +13,27 @@
         android:id="@+id/splash"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         app:srcCompat="@drawable/som" />
+
+    <TextView
+        android:id="@+id/som"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="-45dp"
+        android:text="Servicio de Ofertas Múltiples"
+        android:textStyle="bold"
+        android:textColor="@color/blanco"
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/web"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="80dp"
         android:gravity="center"
         android:text="www.som.com.ar"
         android:textColor="@color/blanco"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textSize="24sp"/>
 </LinearLayout>

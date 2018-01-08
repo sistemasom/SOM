@@ -21,21 +21,22 @@ public class SplashScreen extends AppCompatActivity {
     }
 
     private void StartAnimations() {
-        Animation anim = AnimationUtils.loadAnimation(this, R.anim.alpha);
-        anim.reset();
-        LinearLayout l=(LinearLayout) findViewById(R.id.linearLayout);
-        l.clearAnimation();
-        l.startAnimation(anim);
+        Animation anim;
+        ImageView iv = (ImageView) findViewById(R.id.splash);
+        TextView tv = (TextView) findViewById(R.id.web);
+        TextView tv2 = (TextView) findViewById(R.id.som);
 
         anim = AnimationUtils.loadAnimation(this, R.anim.translate);
         anim.reset();
-        ImageView iv = (ImageView) findViewById(R.id.splash);
-        iv.clearAnimation();
-        iv.startAnimation(anim);
-
-        TextView tv = (TextView) findViewById(R.id.web);
         tv.clearAnimation();
         tv.startAnimation(anim);
+        tv2.clearAnimation();
+        tv2.startAnimation(anim);
+
+        anim = AnimationUtils.loadAnimation(this, R.anim.alpha);
+        anim.reset();
+        iv.clearAnimation();
+        iv.startAnimation(anim);
 
         splashTread = new Thread() {
             @Override
