@@ -25,17 +25,14 @@ public class SplashScreen extends AppCompatActivity {
         TextView tv = (TextView) findViewById(R.id.web);
         TextView tv2 = (TextView) findViewById(R.id.som);
 
-        anim = AnimationUtils.loadAnimation(this, R.anim.translate);
-        anim.reset();
-        tv.clearAnimation();
-        tv.startAnimation(anim);
-        tv2.clearAnimation();
-        tv2.startAnimation(anim);
-
         anim = AnimationUtils.loadAnimation(this, R.anim.alpha);
         anim.reset();
         iv.clearAnimation();
         iv.startAnimation(anim);
+        tv.clearAnimation();
+        tv.startAnimation(anim);
+        tv2.clearAnimation();
+        tv2.startAnimation(anim);
 
         splashTread = new Thread() {
             @Override
@@ -43,7 +40,7 @@ public class SplashScreen extends AppCompatActivity {
                 try {
                     int waited = 0;
                     // Splash screen pause time
-                    while (waited < 1500) {
+                    while (waited < 2000) {
                         sleep(100);
                         waited += 100;
                     }
