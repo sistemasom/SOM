@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class SplashScreen extends AppCompatActivity {
@@ -44,7 +43,7 @@ public class SplashScreen extends AppCompatActivity {
                 try {
                     int waited = 0;
                     // Splash screen pause time
-                    while (waited < 3500) {
+                    while (waited < 2000) {
                         sleep(100);
                         waited += 100;
                     }
