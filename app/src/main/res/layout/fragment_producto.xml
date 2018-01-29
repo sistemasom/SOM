@@ -140,8 +140,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/layoutSup"
-        android:layout_marginTop="35dp"
-        android:layout_weight="0.93"
+        android:layout_marginTop="45dp"
         android:padding="5dp"
         android:text="Destacable" />
 
@@ -151,7 +150,7 @@
         android:layout_height="150dp"
         android:layout_below="@id/tvDestacable"
         android:layout_gravity="end|bottom"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/border"
         android:ems="20"
         android:padding="2dp"
