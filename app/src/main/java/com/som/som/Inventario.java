@@ -231,7 +231,6 @@ public class Inventario extends Fragment {
             propie.longitud = resultado.getPropertyAsString(20);
             propie.Ref = resultado.getPropertyAsString(21);
 
-
             TextView codigo = (TextView) getActivity().findViewById(R.id.codigoOferta);
             codigo.setText(propie.codCompleto);
             EditText supCub = (EditText) getActivity().findViewById(R.id.etSupCub);
