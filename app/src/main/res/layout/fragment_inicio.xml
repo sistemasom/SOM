@@ -24,7 +24,7 @@
         android:layout_marginTop="150dp"
         android:fontFamily="casual"
         android:text="Club de Inmobiliarias S.A.\n           v1.0 - © 2017"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/letra"
         android:textStyle="bold" />
 
     <ImageView
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="300dp"
-        app:srcCompat="@drawable/slide" />
+        app:srcCompat="@drawable/sli" />
 
     <TextView
         android:id="@+id/mensaje"

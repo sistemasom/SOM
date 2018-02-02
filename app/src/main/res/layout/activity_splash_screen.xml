@@ -6,7 +6,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:id="@+id/linearLayout"
-    android:background="@color/colorPrimary"
+    android:background="@color/letra"
     android:orientation="vertical" >
 
     <ImageView

@@ -191,7 +191,7 @@ public class Ubicacion extends Fragment implements LocationListener{
         TextView tvUbicacion = (TextView) vistaUbicacion.findViewById(R.id.tvUbicacion);
         String ubicacion = tvUbicacion.getText().toString();
 
-        TextView tvLocalidad = (TextView) vistaUbicacion.findViewById(R.id.tvLocalidad);
+        TextView tvLocalidad = (TextView) vistaUbicacion.findViewById(R.id.etLocalidad);
         String localidad = tvLocalidad.getText().toString();
 
         Spinner cbProvincia = (Spinner) vistaUbicacion.findViewById(R.id.cbProvincia);

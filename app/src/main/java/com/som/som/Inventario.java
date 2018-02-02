@@ -208,28 +208,28 @@ public class Inventario extends Fragment {
 
             //Armo los datos de la oferta
             propie.codCompleto = prop.codigoCompleto;
-            propie.Calle = resultado.getPropertyAsString(0);
-            propie.Altura = resultado.getPropertyAsString(1);
-            propie.Piso = resultado.getPropertyAsString(2);
-            propie.Unidad = resultado.getPropertyAsString(3);
-            propie.tipoProd = resultado.getPropertyAsString(4);
-            propie.SubtipoProd = resultado.getPropertyAsString(5);
-            propie.Operacion = resultado.getPropertyAsString(6);
-            propie.SubtipoOp = resultado.getPropertyAsString(7);
-            propie.Moneda = resultado.getPropertyAsString(8);
-            propie.Precio = resultado.getPropertyAsString(9);
-            propie.codigo = resultado.getPropertyAsString(10);
-            propie.SupCub = resultado.getPropertyAsString(11);
-            propie.SupTot = resultado.getPropertyAsString(12);
-            propie.Destacable = resultado.getPropertyAsString(13);
-            propie.unidadMedida = resultado.getPropertyAsString(14);
-            propie.Publica = resultado.getPropertyAsString(15);
-            propie.AceptaPermutar = resultado.getPropertyAsString(16);
-            propie.Provincia = resultado.getPropertyAsString(17);
-            propie.Localidad = resultado.getPropertyAsString(18);
-            propie.latitud = resultado.getPropertyAsString(19);
-            propie.longitud = resultado.getPropertyAsString(20);
-            propie.Ref = resultado.getPropertyAsString(21);
+            propie.Calle = resultado.getPropertyAsString(0).replace("anyType{}","");
+            propie.Altura = resultado.getPropertyAsString(1).replace("anyType{}","");
+            propie.Piso = resultado.getPropertyAsString(2).replace("anyType{}","");
+            propie.Unidad = resultado.getPropertyAsString(3).replace("anyType{}","");
+            propie.tipoProd = resultado.getPropertyAsString(4).replace("anyType{}","");
+            propie.SubtipoProd = resultado.getPropertyAsString(5).replace("anyType{}","");
+            propie.Operacion = resultado.getPropertyAsString(6).replace("anyType{}","");
+            propie.SubtipoOp = resultado.getPropertyAsString(7).replace("anyType{}","");
+            propie.Moneda = resultado.getPropertyAsString(8).replace("anyType{}","");
+            propie.Precio = resultado.getPropertyAsString(9).replace("anyType{}","");
+            propie.codigo = resultado.getPropertyAsString(10).replace("anyType{}","");
+            propie.SupCub = resultado.getPropertyAsString(11).replace("anyType{}","");
+            propie.SupTot = resultado.getPropertyAsString(12).replace("anyType{}","");
+            propie.Destacable = resultado.getPropertyAsString(13).replace("anyType{}","");
+            propie.unidadMedida = resultado.getPropertyAsString(14).replace("anyType{}","");
+            propie.Publica = resultado.getPropertyAsString(15).replace("anyType{}","");
+            propie.AceptaPermutar = resultado.getPropertyAsString(16).replace("anyType{}","");
+            propie.Provincia = resultado.getPropertyAsString(17).replace("anyType{}","");
+            propie.Localidad = resultado.getPropertyAsString(18).replace("anyType{}","");
+            propie.latitud = resultado.getPropertyAsString(19).replace("anyType{}","");
+            propie.longitud = resultado.getPropertyAsString(20).replace("anyType{}","");
+            propie.Ref = resultado.getPropertyAsString(21).replace("anyType{}","");
 
             TextView codigo = (TextView) getActivity().findViewById(R.id.codigoOferta);
             codigo.setText(propie.codCompleto);
@@ -302,6 +302,10 @@ public class Inventario extends Fragment {
 
             if(propie.latitud != null) {
 
+                TextView lat = (TextView) getActivity().findViewById(R.id.latitud);
+                lat.setText(propie.latitud);
+                TextView longi = (TextView) getActivity().findViewById(R.id.longitud);
+                longi.setText(propie.longitud);
                 WebView mapa = (WebView) getActivity().findViewById(R.id.webMapa);
                 mapa.setWebViewClient(new WebViewClient());
                 mapa.getSettings().setJavaScriptEnabled(true);
