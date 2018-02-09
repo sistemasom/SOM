@@ -29,7 +29,6 @@
                     android:id="@+id/tvCalle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="casual"
                     android:text="Calle"
                     android:layout_weight="0.10" />
 
@@ -40,6 +39,7 @@
                     android:layout_weight="0.75"
                     android:ems="5"
                     android:inputType="textPersonName"
+                    android:padding="3dp"
                     android:textColor="@color/letra"
                     android:background="@drawable/border"
                     android:text="" />
@@ -57,7 +57,6 @@
                     android:id="@+id/tvAltura"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="casual"
                     android:text="Altura"
                     android:layout_weight="0.1" />
 
@@ -65,8 +64,8 @@
                     android:id="@+id/etAltura"
                     android:layout_width="60dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="casual"
                     android:layout_marginLeft="5dp"
+                    android:padding="3dp"
                     android:textColor="@color/letra"
                     android:background="@drawable/border"
                     android:ems="5"
@@ -77,7 +76,6 @@
                     android:id="@+id/tvPiso"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="casual"
                     android:layout_marginLeft="5dp"
                     android:text="Piso"
                     android:layout_weight="0" />
@@ -89,7 +87,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="-5dp"
-                    android:fontFamily="casual"
                     android:layout_weight="0.9"
                     android:layout_centerHorizontal="true"
                     android:backgroundTint="@color/colorPrimaryDark"
@@ -99,7 +96,6 @@
                     android:id="@+id/tvUnidad"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="casual"
                     android:layout_marginLeft="5dp"
                     android:text="Unidad"
                     android:layout_weight="0.1" />
@@ -110,7 +106,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:fontFamily="casual"
                     android:layout_marginTop="-5dp"
                     android:layout_weight="0.9"
                     android:layout_centerHorizontal="true"
@@ -119,90 +114,123 @@
             </LinearLayout>
         </RelativeLayout>
 
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/pais"
+            android:orientation="horizontal"
+            android:layout_marginTop="120dp">
+
+            <TextView
+                android:id="@+id/tvPais"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="País      " />
+
+            <AutoCompleteTextView
+                android:id="@+id/etPais"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75"
+                android:ems="5"
+                android:padding="3dp"
+                android:inputType="textPersonName"
+                android:textColor="@color/letra"
+                android:background="@drawable/border"
+                android:text="Argentina" />
+        </LinearLayout>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/provincia"
             android:orientation="horizontal"
-            android:layout_marginTop="120dp">
+            android:layout_below="@id/pais"
+            android:layout_marginTop="20dp">
 
             <TextView
                 android:id="@+id/tvProvincia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="casual"
-                android:text="Provincia    " />
+                android:text="Provincia      " />
 
-            <Spinner
-                android:id="@+id/cbProvincia"
-                style="@android:style/Widget.Holo.Light.Spinner"
+            <AutoCompleteTextView
+                android:id="@+id/etProvincia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorPrimaryDark"
-                android:fontFamily="casual"
-                android:padding="2dp" />
+                android:layout_weight="0.75"
+                android:ems="5"
+                android:padding="3dp"
+                android:inputType="textPersonName"
+                android:textColor="@color/letra"
+                android:background="@drawable/border"
+                android:text="CAPITAL FEDERAL" />
         </LinearLayout>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/localidad"
+            android:id="@+id/barrio"
             android:layout_marginTop="20dp"
             android:layout_below="@id/provincia"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvLocalidad"
+                android:id="@+id/tvBarrio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="casual"
-                android:text="Localidad"
+                android:text="Barrio / Localidad"
                 android:layout_weight="0.10" />
 
-            <EditText
-                android:id="@+id/etLocalidad"
-                android:layout_width="wrap_content"
+            <AutoCompleteTextView
+                android:id="@+id/etBarrio"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.75"
                 android:ems="5"
                 android:inputType="textPersonName"
+                android:padding="3dp"
                 android:textColor="@color/letra"
                 android:background="@drawable/border"
                 android:text="" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvEntreCalles"
-            android:layout_width="wrap_content"
-            android:fontFamily="casual"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Entre calles / Referencia:"
-            android:layout_below="@id/localidad"
-            android:layout_marginLeft="5dp"
+            android:id="@+id/entreCalles"
             android:layout_marginTop="20dp"
-            android:layout_weight="0.93" />
+            android:layout_below="@id/barrio"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/etEntreCalles"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tvEntreCalles"
-            android:ems="20"
-            android:layout_gravity="end|bottom"
-            android:textColor="@color/letra"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/border"
-            android:scrollbarStyle="insideInset"
-            android:scrollbars="vertical"/>
+            <TextView
+                android:id="@+id/tvEntreCalles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Entre calles / Referencia:"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="0.93" />
+
+            <EditText
+                android:id="@+id/etEntreCalles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvEntreCalles"
+                android:ems="20"
+                android:layout_gravity="end|bottom"
+                android:textColor="@color/letra"
+                android:background="@drawable/border"
+                android:scrollbarStyle="insideInset"
+                android:padding="3dp"
+                android:scrollbars="vertical"/>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tvUbicacion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="casual"
             android:text=""
-            android:layout_below="@id/etEntreCalles"
+            android:layout_below="@id/entreCalles"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="20dp"
             android:layout_weight="0.93" />

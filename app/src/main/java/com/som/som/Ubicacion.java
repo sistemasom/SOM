@@ -1,5 +1,6 @@
 package com.som.som;
 
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -15,7 +16,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -24,7 +27,13 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.StringBufferInputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -35,8 +44,8 @@ public class Ubicacion extends Fragment implements LocationListener{
 
     private View vistaUbicacion;
 
+    ArrayList<Barrio> aBarrios = new ArrayList<Barrio>();
     LocationManager locationManager ;
-    String provider;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -44,6 +53,12 @@ public class Ubicacion extends Fragment implements LocationListener{
 
     private Double latitud = 0.0;
     private Double longitud = 0.0;
+
+    private class Barrio
+    {
+        String nombre;
+        String provincia;
+    }
 
     public Ubicacion() {
     }
@@ -76,7 +91,11 @@ public class Ubicacion extends Fragment implements LocationListener{
         cargarPiso(vistaUbicacion);
         cargarUnidad(vistaUbicacion);
 
+        cargarPaises(vistaUbicacion);
+
         cargarProvincias(vistaUbicacion);
+
+        cargarBarrios();
 
         ImageButton btnMapa = (ImageButton) vistaUbicacion.findViewById(R.id.btnMapa);
 
@@ -191,11 +210,11 @@ public class Ubicacion extends Fragment implements LocationListener{
         TextView tvUbicacion = (TextView) vistaUbicacion.findViewById(R.id.tvUbicacion);
         String ubicacion = tvUbicacion.getText().toString();
 
-        TextView tvLocalidad = (TextView) vistaUbicacion.findViewById(R.id.etLocalidad);
-        String localidad = tvLocalidad.getText().toString();
+        TextView etBarrio = (EditText) vistaUbicacion.findViewById(R.id.etBarrio);
+        String barrio = etBarrio.getText().toString();
 
-        Spinner cbProvincia = (Spinner) vistaUbicacion.findViewById(R.id.cbProvincia);
-        String provincia = cbProvincia.getSelectedItem().toString();
+        TextView tvProvincia = (TextView) vistaUbicacion.findViewById(R.id.etProvincia);
+        String provincia = tvProvincia.getText().toString();
 
         TextView lat = (TextView) vistaUbicacion.findViewById(R.id.latitud);
         TextView longi = (TextView) vistaUbicacion.findViewById(R.id.longitud);
@@ -206,7 +225,7 @@ public class Ubicacion extends Fragment implements LocationListener{
             json.put("Referencia",entreCalles);
             json.put("Calle",calle);
             json.put("Provincia",provincia);
-            json.put("Localidad",localidad);
+            json.put("Barrio",barrio);
             json.put("Altura",altura);
             json.put("Ubicacion",ubicacion);
             json.put("latitud",lat.getText());
@@ -252,17 +271,85 @@ public class Ubicacion extends Fragment implements LocationListener{
 
     public void cargarProvincias(final View vista) {
 
-        //Combo provincias
         final String[] provincias =
-                new String[]{"CAPITAL FEDERAL","BUENOS AIRES","CATAMARCA","CHACO","CHUBUT","CORDOBA","CORRIENTES","ENTRE RIOS","FORMOSA","JUJUY","LA PAMPA","LA RIOJA", "MENDOZA",
-                        "MISIONES","NEUQUEN","RIO NEGRO","SALTA","SAN JUAN","SAN LUIS","SANTA CRUZ","SANTA FE","SANTIAGO DE ESTERO","TIERRA DEL FUEGO","TUCUMAN"
-                };
+            new String[]{
+                    "Barcelona", "CAPITAL FEDERAL", "Distrito Federal", "BUENOS AIRES", "Gerona", "CATAMARCA", "CHACO", "CHUBUT", "CORDOBA", "CORRIENTES", "ENTRE RIOS", "FORMOSA",
+                    "Artigas", "Distrito Capital", "Florida", "JUJUY", "LA PAMPA", "LA RIOJA", "MENDOZA", "MISIONES", "NEUQUEN", "RIO NEGRO", "SALTA", "SAN JUAN", "Acre", "Alto Paraguay",
+                    "Canelones", "SAN LUIS", "SANTA CRUZ", "SANTA FE", "SANTIAGO DEL ESTERO", "TIERRA DEL FUEGO", "TUCUMAN", "Alagoas", "Alto Paraná", "Cerro Largo", "Amambay", "Amapa",
+                    "Colonia", "Amazonas", "Bahia", "Boquerón", "Durazno", "Caaguazú", "Ceará", "Flores", "Caazapá", "Espíritu Santo", "Florida", "Canindeyu", "Goias", "Lavalleja", "Central",
+                    "Maldonado", "Maranhao", "Concepción", "Mato Grosso", "Montevideo", "Cordillera", "Mato Grosso do Sul", "Paysandú", "Guaira", "Minas Geráis", "Río Negro", "Itapuá",
+                    "Rivera", "Misiones", "Paraiba", "Rocha", "Ñeembucu", "Paraná", "Salto", "Paraguari", "Pernambuco", "San José", "Piauí", "Presidente Hayes", "Soriano", "Río de Janeiro",
+                    "San Pedro", "Tacuarembó", "Río Grande do Norte", "Treinta y Tres", "Río Grande do Sul", "Rondonia", "Roraima", "Santa Catarina", "Sao Paulo", "Sergipe", "Tocantins"
+            };
 
         ArrayAdapter<String> adapterProv = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, provincias);
-        Spinner spProvincias = (Spinner)vista.findViewById(R.id.cbProvincia);
 
-        adapterProv.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-        spProvincias.setAdapter(adapterProv);
+        AutoCompleteTextView etProvincia = (AutoCompleteTextView) vistaUbicacion.findViewById(R.id.etProvincia);
+
+        etProvincia.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View arg1, int pos, long id) {
+                EditText etBarrios = (EditText) vistaUbicacion.findViewById(R.id.etBarrio);
+                etBarrios.setText("");
+                cargarBarrios();
+            }
+        });
+
+        etProvincia.setAdapter(adapterProv);
+    }
+
+    public void cargarBarrios()
+    {
+        EditText etProvincia = (EditText) vistaUbicacion.findViewById(R.id.etProvincia);
+        String prov = etProvincia.getText().toString();
+
+        Ubicaciones ubicaciones = new Ubicaciones();
+        ArrayList<String> sBarrios = ubicaciones.initBarrios(prov);
+
+        ArrayList<String> barrios = new ArrayList<String>();
+
+        for(String barr: sBarrios)
+        {
+            String[] parts = barr.split("_");
+            barrios.add(parts[0]);
+        }
+
+        ArrayAdapter<String> adapterBar = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, barrios);
+
+        AutoCompleteTextView etBarrios = (AutoCompleteTextView) vistaUbicacion.findViewById(R.id.etBarrio);
+        etBarrios.setAdapter(adapterBar);
+    }
+
+    /*public void cargarLocalidades(final View vista) {
+
+        Ubicaciones localidades = new Ubicaciones();
+
+        final String[] locs = localidades.initLocalidades();
+
+        ArrayAdapter<String> adapterLoc = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, locs);
+
+        AutoCompleteTextView etLocalidad = (AutoCompleteTextView) vistaUbicacion.findViewById(R.id.etLocalidad);
+        etLocalidad.setAdapter(adapterLoc);
+
+        etLocalidad.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View arg1, int pos, long id) {
+                cargarBarrios();
+            }
+        });
+    }*/
+
+    public void cargarPaises(final View vista) {
+
+        final String[] paises =
+                new String[]{"Argentina","Uruguay","Paraguay","Estados Unidos","Brasil","España"};
+
+        ArrayAdapter<String> adapterPais = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, paises);
+
+        AutoCompleteTextView etProvincia = (AutoCompleteTextView) vistaUbicacion.findViewById(R.id.etPais);
+        etProvincia.setAdapter(adapterPais);
     }
 
     public void cargarMapa() {

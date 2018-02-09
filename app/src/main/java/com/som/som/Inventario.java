@@ -78,10 +78,11 @@ public class Inventario extends Fragment {
         String Piso;
         String Unidad;
         String Provincia;
-        String Localidad;
+        String Barrio;
         String Ref;
         String latitud;
         String longitud;
+        String Pais;
     }
 
     ArrayList<itemInventario> propiedades = new ArrayList<itemInventario>();
@@ -169,8 +170,8 @@ public class Inventario extends Fragment {
         calle.setText("");
         TextView altura = (TextView) getActivity().findViewById(R.id.etAltura);
         altura.setText("");
-        TextView localidad = (TextView) getActivity().findViewById(R.id.etLocalidad);
-        localidad.setText("");
+        //TextView localidad = (TextView) getActivity().findViewById(R.id.etLocalidad);
+        //localidad.setText("");
         TextView ref = (TextView) getActivity().findViewById(R.id.etEntreCalles);
         ref.setText("");
     }
@@ -226,10 +227,11 @@ public class Inventario extends Fragment {
             propie.Publica = resultado.getPropertyAsString(15).replace("anyType{}","");
             propie.AceptaPermutar = resultado.getPropertyAsString(16).replace("anyType{}","");
             propie.Provincia = resultado.getPropertyAsString(17).replace("anyType{}","");
-            propie.Localidad = resultado.getPropertyAsString(18).replace("anyType{}","");
+            propie.Barrio = resultado.getPropertyAsString(18).replace("anyType{}","");
             propie.latitud = resultado.getPropertyAsString(19).replace("anyType{}","");
             propie.longitud = resultado.getPropertyAsString(20).replace("anyType{}","");
             propie.Ref = resultado.getPropertyAsString(21).replace("anyType{}","");
+            propie.Pais = resultado.getPropertyAsString(22).replace("anyType{}","");
 
             TextView codigo = (TextView) getActivity().findViewById(R.id.codigoOferta);
             codigo.setText(propie.codCompleto);
@@ -245,13 +247,13 @@ public class Inventario extends Fragment {
             calle.setText(propie.Calle);
             EditText altura = (EditText) getActivity().findViewById(R.id.etAltura);
             altura.setText(propie.Altura);
-            EditText localidad = (EditText) getActivity().findViewById(R.id.etLocalidad);
-            localidad.setText(propie.Localidad);
+            EditText barrio = (EditText) getActivity().findViewById(R.id.etBarrio);
+            barrio.setText(propie.Barrio);
             EditText ref = (EditText) getActivity().findViewById(R.id.etEntreCalles);
             ref.setText(propie.Ref);
 
-            Spinner provincia = (Spinner) getActivity().findViewById(R.id.cbProvincia);
-            provincia.setSelection(obtenerElementosSpinner(provincia,propie.Provincia),true);
+            TextView provincia = (TextView) getActivity().findViewById(R.id.etProvincia);
+            provincia.setText(propie.Provincia);
 
             Spinner operacion = (Spinner) getActivity().findViewById(R.id.cbOperacion);
             operacion.setSelection(obtenerElementosSpinner(operacion,propie.Operacion),true);

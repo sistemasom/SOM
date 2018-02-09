@@ -30,8 +30,6 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
@@ -50,6 +48,9 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
     private JSONObject jsonOferta;
 
     private ViewPager mViewPager;
+
+    final String namespace = "http://tempuri.org/";
+    final String url = "http://wss3.som.com.ar/swsincronizador.asmx";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -344,29 +345,6 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
     public void EnviarFoto(Bitmap foto)
     {
         //
-    }
-
-    public String abrirArchivoOfertas() {
-        String json = null;
-        try {
-
-            InputStream is = getAssets().open("Ofertas.json");
-
-            int size = is.available();
-
-            byte[] buffer = new byte[size];
-
-            is.read(buffer);
-
-            is.close();
-
-            json = new String(buffer, "UTF-8");
-
-
-        } catch (IOException ex) {
-            return null;
-        }
-        return json;
     }
 
     // Configuración de TOKEN
