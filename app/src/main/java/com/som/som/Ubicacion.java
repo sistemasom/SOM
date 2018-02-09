@@ -352,6 +352,33 @@ public class Ubicacion extends Fragment implements LocationListener{
         etProvincia.setAdapter(adapterPais);
     }
 
+    public boolean validarCampos()
+    {
+        boolean valido = false;
+
+        EditText txtCalle = (EditText) vistaUbicacion.findViewById(R.id.etCalle);
+        String calle = txtCalle.getText().toString();
+
+        EditText txtPais = (EditText) vistaUbicacion.findViewById(R.id.etPais);
+        String pais = txtCalle.getText().toString();
+
+        EditText txtAltura = (EditText) vistaUbicacion.findViewById(R.id.etAltura);
+        String altura = txtAltura.getText().toString();
+
+        TextView etBarrio = (EditText) vistaUbicacion.findViewById(R.id.etBarrio);
+        String barrio = etBarrio.getText().toString();
+
+        TextView tvProvincia = (TextView) vistaUbicacion.findViewById(R.id.etProvincia);
+        String provincia = tvProvincia.getText().toString();
+
+        if(calle != "" && pais != "" && altura != "" && barrio != "" && provincia != "")
+        {
+            valido = true;
+        }
+
+        return valido;
+    }
+
     public void cargarMapa() {
 
         WebView webMapa = (WebView) vistaUbicacion.findViewById(R.id.webMapa);

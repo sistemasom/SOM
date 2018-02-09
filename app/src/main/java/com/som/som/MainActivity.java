@@ -79,8 +79,6 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
 
                 fragEnviar.mostrarProgress();
 
-                Token = getToken();
-
                 jsonOferta = fragProducto.obtenerValores();
                 fragUbicacion.obtenerValores(jsonOferta);
                 fragOperacion.obtenerValores(jsonOferta);
@@ -102,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
                 //Seteo el texto a enviar
                 fragEnviar.dataSend = jsonOferta.toString();
 
-                if(Token != "") {
+                if(validarEnvio()) {
                     fragEnviar.startUpload();
                 }
                 else
@@ -137,6 +135,31 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
             }
         } catch (Exception e) {
         }
+    }
+
+    public boolean validarEnvio()
+    {
+        boolean permitido = false;
+
+        Token = getToken();
+
+        if(Token != "")
+        {
+            if(fragUbicacion.validarCampos() && fragProducto.validarCampos())
+            {
+                permitido = true;
+            }
+            else
+            {
+                Toast.makeText(getBaseContext(),"Error al enviar. Hay campos obligatorios sin completar.",Toast.LENGTH_LONG).show();
+            }
+        }
+        else
+        {
+            Toast.makeText(getBaseContext(),"Debe ingresar un código de autorización para continuar.",Toast.LENGTH_LONG).show();
+        }
+
+        return permitido;
     }
 
     public static boolean deleteDir(File dir) {

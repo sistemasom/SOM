@@ -131,6 +131,30 @@ public class Producto extends Fragment {
         return json;
     }
 
+    public boolean validarCampos()
+    {
+        boolean valido = false;
+
+        Spinner spProducto = (Spinner) vistaProducto.findViewById(R.id.cbTipoProd);
+        String prodSel = spProducto.getSelectedItem().toString();
+
+        Spinner spSubProducto = (Spinner) vistaProducto.findViewById(R.id.cbSubTipoProd);
+        String subProdSel = spSubProducto.getSelectedItem().toString();
+
+        EditText txtSupCub = (EditText) vistaProducto.findViewById(R.id.etSupCub);
+        String supCub = txtSupCub.getText().toString();
+
+        EditText txtSupTot = (EditText) vistaProducto.findViewById(R.id.etSupTot);
+        String supTot = txtSupTot.getText().toString();
+
+        if(prodSel != "" && subProdSel != "" && supCub != "" && supTot != "")
+        {
+            valido = true;
+        }
+
+        return valido;
+    }
+
     public interface OnFragmentInteractionListener {
         void EnviarJSON(JSONObject json);
     }
