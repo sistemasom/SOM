@@ -321,26 +321,6 @@ public class Ubicacion extends Fragment implements LocationListener{
         etBarrios.setAdapter(adapterBar);
     }
 
-    /*public void cargarLocalidades(final View vista) {
-
-        Ubicaciones localidades = new Ubicaciones();
-
-        final String[] locs = localidades.initLocalidades();
-
-        ArrayAdapter<String> adapterLoc = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, locs);
-
-        AutoCompleteTextView etLocalidad = (AutoCompleteTextView) vistaUbicacion.findViewById(R.id.etLocalidad);
-        etLocalidad.setAdapter(adapterLoc);
-
-        etLocalidad.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View arg1, int pos, long id) {
-                cargarBarrios();
-            }
-        });
-    }*/
-
     public void cargarPaises(final View vista) {
 
         final String[] paises =
