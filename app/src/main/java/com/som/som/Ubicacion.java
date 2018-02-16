@@ -340,7 +340,7 @@ public class Ubicacion extends Fragment implements LocationListener{
         String calle = txtCalle.getText().toString();
 
         EditText txtPais = (EditText) vistaUbicacion.findViewById(R.id.etPais);
-        String pais = txtCalle.getText().toString();
+        String pais = txtPais.getText().toString();
 
         EditText txtAltura = (EditText) vistaUbicacion.findViewById(R.id.etAltura);
         String altura = txtAltura.getText().toString();
@@ -351,7 +351,7 @@ public class Ubicacion extends Fragment implements LocationListener{
         TextView tvProvincia = (TextView) vistaUbicacion.findViewById(R.id.etProvincia);
         String provincia = tvProvincia.getText().toString();
 
-        if(calle != "" && pais != "" && altura != "" && barrio != "" && provincia != "")
+        if(!calle.isEmpty() && !pais.isEmpty() && !altura.isEmpty() && !barrio.isEmpty() && !provincia.isEmpty())
         {
             valido = true;
         }

@@ -25,6 +25,8 @@ public class Enviar extends Fragment {
     private DownloadCallback mUploadCallback;
     private UploadTask mUploadTask;
 
+    public boolean envioValido = false;
+
     public String dataSend = "";
 
     private String mUrlString;
@@ -85,7 +87,10 @@ public class Enviar extends Fragment {
         progress.dismiss();
     }
 
-    public void startUpload() {
+    public void startUpload(boolean valido) {
+
+        envioValido = valido;
+
         cancelUpload();
         mUploadTask = new UploadTask();
         mUploadTask.execute(mUrlString);
@@ -140,10 +145,11 @@ public class Enviar extends Fragment {
                     mUploadCallback.updateFromUpload(result.mException.getMessage());
                     Toast.makeText(getActivity(),"Ha ocurrido un error! Intente nuevamente.",Toast.LENGTH_SHORT).show();
                 } else if (result.mResultValue != null) {
-                    mUploadCallback.updateFromUpload(result.mResultValue);
-                    mUploadCallback.finishUploading();
-                    ocultarProgress();
-                    Toast.makeText(getActivity(),"Oferta enviada!",Toast.LENGTH_SHORT).show();
+                    if(envioValido) {
+                        mUploadCallback.updateFromUpload(result.mResultValue);
+                        mUploadCallback.finishUploading();
+                        Toast.makeText(getActivity(), "Oferta enviada!", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         }

@@ -147,7 +147,7 @@ public class Producto extends Fragment {
         EditText txtSupTot = (EditText) vistaProducto.findViewById(R.id.etSupTot);
         String supTot = txtSupTot.getText().toString();
 
-        if(prodSel != "" && subProdSel != "" && supCub != "" && supTot != "")
+        if(!prodSel.isEmpty() && !subProdSel.isEmpty() && !supCub.isEmpty() && !supTot.isEmpty())
         {
             valido = true;
         }

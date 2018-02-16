@@ -170,8 +170,6 @@ public class Inventario extends Fragment {
         calle.setText("");
         TextView altura = (TextView) getActivity().findViewById(R.id.etAltura);
         altura.setText("");
-        //TextView localidad = (TextView) getActivity().findViewById(R.id.etLocalidad);
-        //localidad.setText("");
         TextView ref = (TextView) getActivity().findViewById(R.id.etEntreCalles);
         ref.setText("");
     }
@@ -367,21 +365,27 @@ public class Inventario extends Fragment {
             // Resultado
             final SoapObject resultado = (SoapObject)sobre.getResponse();
 
-            for(int i=0; i<resultado.getPropertyCount(); i++) {
+            if(resultado.getPropertyCount() != 0) {
+                for (int i = 0; i < resultado.getPropertyCount(); i++) {
 
-                SoapObject oferta =  (SoapObject) resultado.getProperty(i);
+                    SoapObject oferta = (SoapObject) resultado.getProperty(i);
 
-                itemInventario prop = new itemInventario();
+                    itemInventario prop = new itemInventario();
 
-                prop.Calle = oferta.getPropertyAsString(0);
-                prop.operacion = oferta.getPropertyAsString(1);
-                prop.moneda = oferta.getPropertyAsString(2);
-                prop.importe = oferta.getPropertyAsString(3);
-                prop.codigo = oferta.getPropertyAsString(4);
-                prop.codigoCompleto = oferta.getPropertyAsString(5);
-                propiedades.add(prop);
+                    prop.Calle = oferta.getPropertyAsString(0);
+                    prop.operacion = oferta.getPropertyAsString(1);
+                    prop.moneda = oferta.getPropertyAsString(2);
+                    prop.importe = oferta.getPropertyAsString(3);
+                    prop.codigo = oferta.getPropertyAsString(4);
+                    prop.codigoCompleto = oferta.getPropertyAsString(5);
+                    propiedades.add(prop);
 
-                items.add(prop.codigo + " - " + prop.operacion + " " + prop.moneda + " " + prop.importe + "\n" + prop.Calle);
+                    items.add(prop.codigo + " - " + prop.operacion + " " + prop.moneda + " " + prop.importe + "\n" + prop.Calle);
+                }
+            }
+            else
+            {
+                items.add("No hay ofertas.");
             }
 
             final ArrayAdapter<String> array = new ArrayAdapter<String>(getActivity(), R.layout.itemlista,R.id.item,items);
@@ -418,7 +422,7 @@ public class Inventario extends Fragment {
                                     Toast.makeText(getContext(), "Enviando baja de la oferta " + cod + "...", Toast.LENGTH_SHORT).show();
                                     fragEnviar.dataSend = jsonOferta.toString();
 
-                                    fragEnviar.startUpload();
+                                    fragEnviar.startUpload(true);
                                 }
                             });
                     builder.create().show();

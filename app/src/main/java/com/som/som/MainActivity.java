@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
 
     private JSONObject jsonOferta;
 
+    public boolean valido;
+
     private ViewPager mViewPager;
 
     final String namespace = "http://tempuri.org/";
@@ -100,9 +102,12 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
                 //Seteo el texto a enviar
                 fragEnviar.dataSend = jsonOferta.toString();
 
-                if(validarEnvio()) {
-                    fragEnviar.startUpload();
+                valido = validarEnvio();
+
+                if(valido) {
+                    fragEnviar.startUpload(valido);
                 }
+                fragEnviar.ocultarProgress();
             }
         });
     }
@@ -320,7 +325,7 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
     private void startUpload() {
         if (!mUploading && mNetworkFragment != null) {
             // Execute the async upload.
-            mNetworkFragment.startUpload();
+            mNetworkFragment.startUpload(valido);
             mUploading = true;
         }
     }
