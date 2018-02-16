@@ -138,12 +138,13 @@ public class Enviar extends Fragment {
             if (result != null && mUploadCallback != null) {
                 if (result.mException != null) {
                     mUploadCallback.updateFromUpload(result.mException.getMessage());
+                    Toast.makeText(getActivity(),"Ha ocurrido un error! Intente nuevamente.",Toast.LENGTH_SHORT).show();
                 } else if (result.mResultValue != null) {
                     mUploadCallback.updateFromUpload(result.mResultValue);
+                    mUploadCallback.finishUploading();
+                    ocultarProgress();
+                    Toast.makeText(getActivity(),"Oferta enviada!",Toast.LENGTH_SHORT).show();
                 }
-                mUploadCallback.finishUploading();
-                ocultarProgress();
-                Toast.makeText(getActivity(),"Oferta enviada!",Toast.LENGTH_SHORT).show();
             }
         }
 
