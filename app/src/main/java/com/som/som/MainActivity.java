@@ -3,6 +3,9 @@ package com.som.som;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.design.widget.FloatingActionButton;
@@ -61,6 +64,13 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.icon);
+        getSupportActionBar().setTitle("   SOM");
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        toolbar.setTitleMarginStart(10);
+        Drawable d = getResources().getDrawable(R.drawable.abback);
+        getSupportActionBar().setBackgroundDrawable(d);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 

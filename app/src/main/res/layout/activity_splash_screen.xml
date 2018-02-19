@@ -6,7 +6,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:id="@+id/linearLayout"
-    android:background="@color/letra"
+    android:background="@drawable/splash"
     android:orientation="vertical" >
 
     <ImageView
@@ -36,4 +36,11 @@
         android:text="www.som.com.ar"
         android:textColor="@color/blanco"
         android:textSize="24sp"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_height="wrap_content" />
 </LinearLayout>
