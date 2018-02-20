@@ -22,7 +22,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="150dp"
             android:fontFamily="casual"
-            android:text="Club de Inmobiliarias S.A.\n           v1.0 - © 2017"
+            android:text="Club de Inmobiliarias S.A.\n           v1.0 - © 2018"
             android:textColor="@color/letra"
             android:textStyle="bold" />
 

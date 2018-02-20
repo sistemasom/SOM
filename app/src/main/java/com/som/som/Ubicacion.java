@@ -37,7 +37,6 @@ public class Ubicacion extends Fragment implements LocationListener{
 
     private View vistaUbicacion;
 
-    ArrayList<Barrio> aBarrios = new ArrayList<Barrio>();
     LocationManager locationManager ;
 
     // TODO: Rename and change types of parameters
@@ -46,12 +45,6 @@ public class Ubicacion extends Fragment implements LocationListener{
 
     private Double latitud = 0.0;
     private Double longitud = 0.0;
-
-    private class Barrio
-    {
-        String nombre;
-        String provincia;
-    }
 
     public Ubicacion() {
     }
