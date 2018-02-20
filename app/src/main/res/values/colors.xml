@@ -3,6 +3,7 @@
     <color name="colorPrimary">#f49054</color>
     <color name="colorPrimaryDark">#e2f9ed</color>
     <color name="colorAccent">#f49054</color>
+    <color name="actionbar">#80f49054</color>
     <color name="blanco">#FFFFFF</color>
     <color name="letra">#6c6c6c</color>
 </resources>

@@ -68,9 +68,6 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
         getSupportActionBar().setLogo(R.drawable.icon);
         getSupportActionBar().setTitle("   SOM");
         getSupportActionBar().setDisplayUseLogoEnabled(true);
-        toolbar.setTitleMarginStart(10);
-        Drawable d = getResources().getDrawable(R.drawable.abback);
-        getSupportActionBar().setBackgroundDrawable(d);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 

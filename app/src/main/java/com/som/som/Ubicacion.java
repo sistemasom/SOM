@@ -1,6 +1,5 @@
 package com.som.som;
 
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -27,12 +26,6 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.StringBufferInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -106,7 +99,7 @@ public class Ubicacion extends Fragment implements LocationListener{
                 new CountDownTimer(500, 1000) {
                     public void onFinish()
                     {
-                        obtenerCoordenadas();
+                        obtenerDatosDireccion();
                     }
 
                     public void onTick(long millisUntilFinished) {
@@ -115,17 +108,6 @@ public class Ubicacion extends Fragment implements LocationListener{
             }
         });
         return vistaUbicacion;
-    }
-
-    public Boolean puedePublicar()
-    {
-        if(longitud != 0.0 && latitud != 0.0) {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
     }
 
     public void obtenerCoordenadas() {
@@ -155,7 +137,7 @@ public class Ubicacion extends Fragment implements LocationListener{
                         lat.setText(latitud.toString());
                         longi.setText(longitud.toString());
 
-                        obtenerDatosDireccion(latitud,longitud);
+                        //obtenerDatosDireccion(latitud,longitud);
                     }
                 } else {
                     Toast.makeText(getContext(), "No se ha podido obtener la ubicación, reintente por favor.", Toast.LENGTH_SHORT).show();
@@ -169,21 +151,33 @@ public class Ubicacion extends Fragment implements LocationListener{
         }
     }
 
-    private void obtenerDatosDireccion(double LATITUDE, double LONGITUDE) {
+    private void obtenerDatosDireccion() {
         String strAdd = "";
         Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
-        try {
-            List<Address> addresses = geocoder.getFromLocation(LATITUDE, LONGITUDE, 1);
-            if (addresses != null) {
-                if(addresses.get(0).getSubLocality() != null) {
-                    strAdd = addresses.get(0).getSubLocality() + ", ";
-                }
-                strAdd = strAdd + addresses.get(0).getPostalCode() + ", ";
-                strAdd = strAdd + addresses.get(0).getLocality() + ", ";
-                strAdd = strAdd + addresses.get(0).getCountryName();
 
-                TextView ubicacion = (TextView) vistaUbicacion.findViewById(R.id.tvUbicacion);
-                ubicacion.setText(strAdd);
+        EditText etPais = (EditText) vistaUbicacion.findViewById(R.id.etPais);
+        EditText etProvincia = (EditText) vistaUbicacion.findViewById(R.id.etProvincia);
+        EditText etBarrio = (EditText) vistaUbicacion.findViewById(R.id.etBarrio);
+        EditText etCalle = (EditText) vistaUbicacion.findViewById(R.id.etCalle);
+        EditText etAltura = (EditText) vistaUbicacion.findViewById(R.id.etAltura);
+
+        String ubicacion = etPais.getText() + ", " + etProvincia.getText() + ", " + etBarrio.getText() + ", " + etCalle.getText() + ", " + etAltura.getText();
+
+        try {
+            latitud = 0.0;
+            longitud = 0.0;
+
+            List<Address> addresses = geocoder.getFromLocationName(ubicacion, 1);
+            Address address = addresses.get(0);
+            longitud = address.getLongitude();
+            latitud = address.getLatitude();
+
+            if(latitud != 0.0 && longitud != 0.0) {
+                cargarMapa();
+            }
+            else
+            {
+                Toast.makeText(getContext(),"No se pudo obtener la ubicación. ", Toast.LENGTH_SHORT).show();
             }
         } catch (Exception e) {
             e.printStackTrace();
