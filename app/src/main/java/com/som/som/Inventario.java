@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
@@ -172,6 +173,12 @@ public class Inventario extends Fragment {
         altura.setText("");
         TextView ref = (TextView) getActivity().findViewById(R.id.etEntreCalles);
         ref.setText("");
+        TextView pais = (TextView) getActivity().findViewById(R.id.etPais);
+        pais.setText("Argentina");
+        TextView prov = (TextView) getActivity().findViewById(R.id.etProvincia);
+        prov.setText("CAPITAL FEDERAL");
+        TextView barrio = (TextView) getActivity().findViewById(R.id.etBarrio);
+        barrio.setText("");
     }
 
     private void cargarFormulario(int pos) {
@@ -365,6 +372,8 @@ public class Inventario extends Fragment {
             // Resultado
             final SoapObject resultado = (SoapObject)sobre.getResponse();
 
+            ImageView sinresultados = (ImageView) vistaInventario.findViewById(R.id.sinresultados);
+
             if(resultado.getPropertyCount() != 0) {
                 for (int i = 0; i < resultado.getPropertyCount(); i++) {
 
@@ -381,11 +390,13 @@ public class Inventario extends Fragment {
                     propiedades.add(prop);
 
                     items.add(prop.codigo + " - " + prop.operacion + " " + prop.moneda + " " + prop.importe + "\n" + prop.Calle);
+
+                    sinresultados.setVisibility(View.INVISIBLE);
                 }
             }
             else
             {
-                items.add("No hay ofertas.");
+                sinresultados.setVisibility(View.VISIBLE);
             }
 
             final ArrayAdapter<String> array = new ArrayAdapter<String>(getActivity(), R.layout.itemlista,R.id.item,items);
