@@ -55,9 +55,6 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
 
     private ViewPager mViewPager;
 
-    final String namespace = "http://tempuri.org/";
-    final String url = "http://wss3.som.com.ar/swsincronizador.asmx";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
