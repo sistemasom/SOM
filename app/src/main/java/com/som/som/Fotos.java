@@ -200,8 +200,6 @@ public class Fotos extends Fragment {
 
                 //Seteo el thumbnail rotado
                 ivFoto.setImageBitmap(fotoAux.thumbnail);
-
-                Toast.makeText(getContext(), "Imagen " + foto.id + " rotada.", Toast.LENGTH_SHORT).show();
             }
         });
         //Click largo
