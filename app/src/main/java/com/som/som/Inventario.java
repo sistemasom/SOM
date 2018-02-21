@@ -307,7 +307,7 @@ public class Inventario extends Fragment {
                 publica.setChecked(true);
             }
 
-            if(propie.latitud != null) {
+            if(propie.latitud != null && propie.latitud != "") {
 
                 TextView lat = (TextView) getActivity().findViewById(R.id.latitud);
                 lat.setText(propie.latitud);
