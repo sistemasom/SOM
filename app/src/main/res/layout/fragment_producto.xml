@@ -14,21 +14,20 @@
 
     <Spinner
         android:id="@+id/cbTipoProd"
-        style="@android:style/Widget.Holo.Light.Spinner"
+        style="@android:style/Theme.Black"
+        android:background="@drawable/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:backgroundTint="@color/colorPrimaryDark"
-        android:padding="2dp" />
+        android:layout_marginTop="15dp"/>
 
     <Spinner
         android:id="@+id/cbSubTipoProd"
-        style="@android:style/Widget.Holo.Light.Spinner"
+        style="@android:style/Theme.Black"
+        android:background="@drawable/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorPrimaryDark"
         android:layout_marginTop="10dp"
         android:padding="2dp"
         android:layout_below="@+id/cbTipoProd"/>

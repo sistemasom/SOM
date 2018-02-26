@@ -281,7 +281,6 @@ public class Inventario extends Fragment {
 
             final Spinner subprod = (Spinner) getActivity().findViewById(R.id.cbSubTipoProd);
             subprod.setSelection(obtenerElementosSpinner(subprod,propie.SubtipoProd),true);
-            subprod.setEnabled(false);
 
             RadioButton supm2 = (RadioButton) getActivity().findViewById(R.id.rbM2);
             supm2.setChecked(true);

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#f49054</color>
-    <color name="colorPrimaryDark">#e2f9ed</color>
+    <color name="colorPrimaryDark">#f7f7f7</color>
     <color name="colorAccent">#f49054</color>
-    <color name="actionbar">#80f49054</color>
+    <color name="actionbar">#B3f49054</color>
     <color name="blanco">#FFFFFF</color>
     <color name="letra">#6c6c6c</color>
 </resources>

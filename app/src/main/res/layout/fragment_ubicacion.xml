@@ -51,7 +51,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="70dp">
+                android:layout_marginTop="77dp">
 
                 <TextView
                     android:id="@+id/tvAltura"
@@ -82,15 +82,12 @@
 
                 <Spinner
                     android:id="@+id/cbPiso"
-                    style="@android:style/Widget.Holo.Light.Spinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/spinner"
                     android:layout_alignParentTop="true"
-                    android:layout_marginTop="-5dp"
                     android:layout_weight="0.9"
-                    android:layout_centerHorizontal="true"
-                    android:backgroundTint="@color/colorPrimaryDark"
-                    android:padding="2dp" />
+                    android:layout_centerHorizontal="true"/>
 
                 <TextView
                     android:id="@+id/tvUnidad"
@@ -102,15 +99,12 @@
 
                 <Spinner
                     android:id="@+id/cbUnidad"
-                    style="@android:style/Widget.Holo.Light.Spinner"
+                    android:background="@drawable/spinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:layout_marginTop="-5dp"
                     android:layout_weight="0.9"
-                    android:layout_centerHorizontal="true"
-                    android:backgroundTint="@color/colorPrimaryDark"
-                    android:padding="2dp" />
+                    android:layout_centerHorizontal="true"/>
             </LinearLayout>
         </RelativeLayout>
 
@@ -119,7 +113,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/pais"
             android:orientation="horizontal"
-            android:layout_marginTop="120dp">
+            android:layout_marginTop="130dp">
 
             <TextView
                 android:id="@+id/tvPais"
@@ -146,7 +140,7 @@
             android:id="@+id/provincia"
             android:orientation="horizontal"
             android:layout_below="@id/pais"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="25dp">
 
             <TextView
                 android:id="@+id/tvProvincia"
@@ -171,7 +165,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/barrio"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="25dp"
             android:layout_below="@id/provincia"
             android:orientation="vertical">
 
@@ -199,7 +193,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/entreCalles"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="25dp"
             android:layout_below="@id/barrio"
             android:orientation="vertical">
 
