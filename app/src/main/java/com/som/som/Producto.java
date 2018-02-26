@@ -85,7 +85,7 @@ public class Producto extends Fragment {
                     }
                 });
 
-        cargarSubproductos(vista,0); //Paso el tipo departamento
+        cargarSubproductos(vista,0);
     }
 
     public JSONObject obtenerValores() {
