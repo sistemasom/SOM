@@ -74,12 +74,12 @@ public class Ubicacion extends Fragment implements LocationListener{
 
         vistaUbicacion = inflater.inflate(R.layout.fragment_ubicacion, container, false);
 
-        cargarPiso(vistaUbicacion);
-        cargarUnidad(vistaUbicacion);
+        cargarPiso();
+        cargarUnidad();
 
-        cargarPaises(vistaUbicacion);
+        cargarPaises();
 
-        cargarProvincias(vistaUbicacion);
+        cargarProvincias();
 
         cargarBarrios();
 
@@ -101,47 +101,6 @@ public class Ubicacion extends Fragment implements LocationListener{
             }
         });
         return vistaUbicacion;
-    }
-
-    public void obtenerCoordenadas() {
-
-        Location location;
-
-        try {
-            locationManager = (LocationManager) getActivity().getSystemService(getContext().LOCATION_SERVICE);
-
-            boolean isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-
-            if (isNetworkEnabled) {
-                location = new Location("network");
-                if (locationManager != null) {
-                    if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                            || ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                        location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
-                    }
-                    if (location != null) {
-                        latitud = location.getLatitude();
-                        longitud = location.getLongitude();
-                        cargarMapa();
-
-                        TextView lat = (TextView) vistaUbicacion.findViewById(R.id.latitud);
-                        TextView longi = (TextView) vistaUbicacion.findViewById(R.id.longitud);
-                        lat.setText(latitud.toString());
-                        longi.setText(longitud.toString());
-
-                        //obtenerDatosDireccion(latitud,longitud);
-                    }
-                } else {
-                    Toast.makeText(getContext(), "No se ha podido obtener la ubicación, reintente por favor.", Toast.LENGTH_SHORT).show();
-                }
-            }
-            else
-            {
-                Toast.makeText(getContext(), "Debe activar servicios de ubicación y conexión a internet para continuar.", Toast.LENGTH_SHORT).show();
-            }
-        } catch (Exception e) {
-        }
     }
 
     private void obtenerDatosDireccion() {
@@ -222,7 +181,7 @@ public class Ubicacion extends Fragment implements LocationListener{
         }
     }
 
-    public void cargarUnidad(final View vista) {
+    public void cargarUnidad() {
         //Combo unidades
         final String[] unidades =
                 new String[]{" ","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",
@@ -233,13 +192,13 @@ public class Ubicacion extends Fragment implements LocationListener{
                         "91","92","93","94","95","96","97","98","99"};
 
         ArrayAdapter<String> adapterUnidad = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, unidades);
-        Spinner spUnidad = (Spinner)vista.findViewById(R.id.cbUnidad);
+        Spinner spUnidad = (Spinner)vistaUbicacion.findViewById(R.id.cbUnidad);
 
         adapterUnidad.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spUnidad.setAdapter(adapterUnidad);
     }
 
-    public void cargarPiso(final View vista) {
+    public void cargarPiso() {
 
         //Combo pisos
         final String[] pisos =
@@ -250,26 +209,44 @@ public class Ubicacion extends Fragment implements LocationListener{
                         "56","57","58","59","60","VS"};
 
         ArrayAdapter<String> adapterPiso = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, pisos);
-        Spinner spPiso = (Spinner)vista.findViewById(R.id.cbPiso);
+        Spinner spPiso = (Spinner) vistaUbicacion.findViewById(R.id.cbPiso);
 
         adapterPiso.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spPiso.setAdapter(adapterPiso);
     }
 
-    public void cargarProvincias(final View vista) {
+    public void cargarProvincias() {
 
         final String[] provincias =
             new String[]{
-                    "Barcelona", "CAPITAL FEDERAL", "Distrito Federal", "BUENOS AIRES", "Gerona", "CATAMARCA", "CHACO", "CHUBUT", "CORDOBA", "CORRIENTES", "ENTRE RIOS", "FORMOSA",
-                    "Artigas", "Distrito Capital", "Florida", "JUJUY", "LA PAMPA", "LA RIOJA", "MENDOZA", "MISIONES", "NEUQUEN", "RIO NEGRO", "SALTA", "SAN JUAN", "Acre", "Alto Paraguay",
-                    "Canelones", "SAN LUIS", "SANTA CRUZ", "SANTA FE", "SANTIAGO DEL ESTERO", "TIERRA DEL FUEGO", "TUCUMAN", "Alagoas", "Alto Paraná", "Cerro Largo", "Amambay", "Amapa",
-                    "Colonia", "Amazonas", "Bahia", "Boquerón", "Durazno", "Caaguazú", "Ceará", "Flores", "Caazapá", "Espíritu Santo", "Florida", "Canindeyu", "Goias", "Lavalleja", "Central",
-                    "Maldonado", "Maranhao", "Concepción", "Mato Grosso", "Montevideo", "Cordillera", "Mato Grosso do Sul", "Paysandú", "Guaira", "Minas Geráis", "Río Negro", "Itapuá",
-                    "Rivera", "Misiones", "Paraiba", "Rocha", "Ñeembucu", "Paraná", "Salto", "Paraguari", "Pernambuco", "San José", "Piauí", "Presidente Hayes", "Soriano", "Río de Janeiro",
-                    "San Pedro", "Tacuarembó", "Río Grande do Norte", "Treinta y Tres", "Río Grande do Sul", "Rondonia", "Roraima", "Santa Catarina", "Sao Paulo", "Sergipe", "Tocantins"
+                    "Barcelona_España","CAPITAL FEDERAL_Argentina","Distrito Federal_Brasil","BUENOS AIRES_Argentina","Gerona_España","CATAMARCA_Argentina","CHACO_Argentina","CHUBUT_Argentina",
+                    "CORDOBA_Argentina","CORRIENTES_Argentina","ENTRE RIOS_Argentina","FORMOSA_Argentina","Artigas_Uruguay","Distrito Capital_Paraguay","Florida_Estados Unidos","JUJUY_Argentina",
+                    "LA PAMPA_Argentina","LA RIOJA_Argentina","MENDOZA_Argentina","MISIONES_Argentina","NEUQUEN_Argentina","RIO NEGRO_Argentina","SALTA_Argentina","SAN JUAN_Argentina","Acre_Brasil",
+                    "Alto Paraguay_Paraguay","Canelones_Uruguay","SAN LUIS_Argentina","SANTA CRUZ_Argentina","SANTA FE_Argentina","SANTIAGO DEL ESTERO_Argentina","TIERRA DEL FUEGO_Argentina",
+                    "TUCUMAN_Argentina","Alagoas_Brasil","Alto Paraná_Paraguay","Cerro Largo_Uruguay","Amambay_Paraguay","Amapa_Brasil","Colonia_Uruguay","Amazonas_Brasil","Bahia_Brasil",
+                    "Boquerón_Paraguay","Durazno_Uruguay","Caaguazú_Paraguay","Ceará_Brasil","Flores_Uruguay","Caazapá_Paraguay","Espíritu Santo_Brasil","Florida_Uruguay","Canindeyu_Paraguay",
+                    "Goias_Brasil","Lavalleja_Uruguay","Central_Paraguay","Maldonado_Uruguay","Maranhao_Brasil","Concepción_Paraguay","Mato Grosso_Brasil","Montevideo_Uruguay","Cordillera_Paraguay",
+                    "Mato Grosso do Sul_Brasil","Paysandú_Uruguay","Guaira_Paraguay","Minas Geráis_Brasil","Río Negro_Uruguay","Itapuá_Paraguay","Rivera_Uruguay","Misiones_Paraguay","Paraiba_Brasil",
+                    "Rocha_Uruguay","Ñeembucu_Paraguay","Paraná_Brasil","Salto_Uruguay","Paraguari_Paraguay","Pernambuco_Brasil","San José_Uruguay","Piauí_Brasil","Presidente Hayes_Paraguay",
+                    "Soriano_Uruguay","Río de Janeiro_Brasil","San Pedro_Paraguay","Tacuarembó_Uruguay","Río Grande do Norte_Brasil","Treinta y Tres_Uruguay","Río Grande do Sul_Brasil",
+                    "Rondonia_Brasil","Roraima_Brasil","Santa Catarina_Brasil","Sao Paulo_Brasil","Sergipe_Brasil","Tocantins_Brasil"
             };
 
-        ArrayAdapter<String> adapterProv = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, provincias);
+        ArrayList<String> vProvincias = new ArrayList<String>();
+
+        EditText etPais = (EditText) vistaUbicacion.findViewById(R.id.etPais);
+        String pais = etPais.getText().toString();
+
+        for(String prov: provincias)
+        {
+            if(prov.contains(pais))
+            {
+                String[] parts = prov.split("_");
+                vProvincias.add(parts[0]);
+            }
+        }
+
+        ArrayAdapter<String> adapterProv = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, vProvincias);
 
         AutoCompleteTextView etProvincia = (AutoCompleteTextView) vistaUbicacion.findViewById(R.id.etProvincia);
 
@@ -308,12 +285,24 @@ public class Ubicacion extends Fragment implements LocationListener{
         etBarrios.setAdapter(adapterBar);
     }
 
-    public void cargarPaises(final View vista) {
+    public void cargarPaises() {
 
         final String[] paises =
                 new String[]{"Argentina","Uruguay","Paraguay","Estados Unidos","Brasil","España"};
 
         ArrayAdapter<String> adapterPais = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, paises);
+
+        AutoCompleteTextView etPais = (AutoCompleteTextView) vistaUbicacion.findViewById(R.id.etPais);
+
+        etPais.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View arg1, int pos, long id) {
+                EditText etProvincias = (EditText) vistaUbicacion.findViewById(R.id.etProvincia);
+                etProvincias.setText("");
+                cargarProvincias();
+            }
+        });
 
         AutoCompleteTextView etProvincia = (AutoCompleteTextView) vistaUbicacion.findViewById(R.id.etPais);
         etProvincia.setAdapter(adapterPais);
