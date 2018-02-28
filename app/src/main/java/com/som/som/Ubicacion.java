@@ -1,6 +1,5 @@
 package com.som.som;
 
-import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -9,7 +8,6 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class Ubicacion extends Fragment implements LocationListener{
+public class Ubicacion extends Fragment{
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -104,7 +102,6 @@ public class Ubicacion extends Fragment implements LocationListener{
     }
 
     private void obtenerDatosDireccion() {
-        String strAdd = "";
         Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
 
         EditText etPais = (EditText) vistaUbicacion.findViewById(R.id.etPais);
@@ -348,31 +345,5 @@ public class Ubicacion extends Fragment implements LocationListener{
         url = "http://sistema.som.com.ar/MapaApp.html?latitud=" + latitud.toString() + "&longitud=" + longitud.toString();
 
         webMapa.loadUrl(url);
-    }
-
-    /*
-    ---------------------------
-    IMPLEMENTACION DEL LISTENER
-    ---------------------------
-     */
-    @Override
-    public void onLocationChanged(Location location) {
-        //latitud = location.getLatitude();
-        //longitud = location.getLongitude();
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-        // TODO Auto-generated method stub
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-        // TODO Auto-generated method stub
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-        // TODO Auto-generated method stub
     }
 }
