@@ -107,7 +107,7 @@
             android:layout_weight="0.5"
             android:textColor="@color/letra"
             android:ems="5"
-            android:inputType="numberDecimal"
+            android:inputType="phone"
             android:background="@drawable/border"
             android:text="" />
     </LinearLayout>

@@ -69,7 +69,7 @@
                     android:textColor="@color/letra"
                     android:background="@drawable/border"
                     android:ems="5"
-                    android:inputType="numberDecimal"
+                    android:inputType="phone"
                     android:text="" />
 
                 <TextView

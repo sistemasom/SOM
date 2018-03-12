@@ -62,7 +62,7 @@
                 android:padding="2dp"
                 android:paddingLeft="7dp"
                 android:textColor="@color/letra"
-                android:inputType="numberDecimal"
+                android:inputType="phone"
                 android:text="" />
         </LinearLayout>
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -110,7 +110,7 @@
                 android:paddingLeft="7dp"
                 android:textColor="@color/letra"
                 android:ems="5"
-                android:inputType="numberDecimal"
+                android:inputType="phone"
                 android:text="" />
         </LinearLayout>
     </RelativeLayout>
