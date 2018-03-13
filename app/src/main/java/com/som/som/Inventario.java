@@ -72,7 +72,6 @@ public class Inventario extends Fragment {
         String Moneda;
         String Precio;
         String unidadMedida;
-        String AceptaPermutar;
         String Publica;
         String Calle;
         String Altura;
@@ -230,13 +229,12 @@ public class Inventario extends Fragment {
             propie.Destacable = resultado.getPropertyAsString(13).replace("anyType{}","");
             propie.unidadMedida = resultado.getPropertyAsString(14).replace("anyType{}","");
             propie.Publica = resultado.getPropertyAsString(15).replace("anyType{}","");
-            propie.AceptaPermutar = resultado.getPropertyAsString(16).replace("anyType{}","");
-            propie.Provincia = resultado.getPropertyAsString(17).replace("anyType{}","");
-            propie.Barrio = resultado.getPropertyAsString(18).replace("anyType{}","");
-            propie.latitud = resultado.getPropertyAsString(19).replace("anyType{}","");
-            propie.longitud = resultado.getPropertyAsString(20).replace("anyType{}","");
-            propie.Ref = resultado.getPropertyAsString(21).replace("anyType{}","");
-            propie.Pais = resultado.getPropertyAsString(22).replace("anyType{}","");
+            propie.Provincia = resultado.getPropertyAsString(16).replace("anyType{}","");
+            propie.Barrio = resultado.getPropertyAsString(17).replace("anyType{}","");
+            propie.latitud = resultado.getPropertyAsString(18).replace("anyType{}","");
+            propie.longitud = resultado.getPropertyAsString(19).replace("anyType{}","");
+            propie.Ref = resultado.getPropertyAsString(20).replace("anyType{}","");
+            propie.Pais = resultado.getPropertyAsString(21).replace("anyType{}","");
 
             TextView codigo = (TextView) getActivity().findViewById(R.id.codigoOferta);
             codigo.setText(propie.codCompleto);
@@ -292,18 +290,6 @@ public class Inventario extends Fragment {
             {
                 supm2.setChecked(false);
                 supHa.setChecked(true);
-            }
-
-            Switch permuta = (Switch) getActivity().findViewById(R.id.permuta);
-            permuta.setChecked(false);
-            if(propie.AceptaPermutar.equals("true")) {
-                permuta.setChecked(true);
-            }
-
-            Switch publica = (Switch) getActivity().findViewById(R.id.permuta);
-            publica.setChecked(false);
-            if(propie.Publica.equals("true")) {
-                publica.setChecked(true);
             }
 
             if(propie.latitud != null && propie.latitud != "") {

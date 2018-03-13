@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -84,35 +85,40 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
             public void onClick(View view) {
                 //Traigo valores de la propiedad
 
-                fragEnviar.mostrarProgress();
+                Toast.makeText(getApplicationContext(),"Enviando oferta...",Toast.LENGTH_SHORT).show();
+                new CountDownTimer(1000, 1000) {
+                    public void onFinish() {
+                        jsonOferta = fragProducto.obtenerValores();
+                        fragUbicacion.obtenerValores(jsonOferta);
+                        fragOperacion.obtenerValores(jsonOferta);
+                        fragFotos.obtenerValores(jsonOferta);
 
-                jsonOferta = fragProducto.obtenerValores();
-                fragUbicacion.obtenerValores(jsonOferta);
-                fragOperacion.obtenerValores(jsonOferta);
-                fragFotos.obtenerValores(jsonOferta);
+                        //GUID de oferta
+                        String ID = java.util.UUID.randomUUID().toString();
+                        try {
+                            jsonOferta.put("Id",ID);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
-                try {
-                    jsonOferta.put("Token",Token);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                        valido = validarEnvio();
 
-                //GUID de oferta
-                String ID = java.util.UUID.randomUUID().toString();
-                try {
-                    jsonOferta.put("Id",ID);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                //Seteo el texto a enviar
-                fragEnviar.dataSend = jsonOferta.toString();
+                        try {
+                            jsonOferta.put("Token",Token);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
-                valido = validarEnvio();
+                        if(valido) {
+                            //Seteo el texto a enviar
+                            fragEnviar.dataSend = jsonOferta.toString();
+                            fragEnviar.startUpload(valido);
+                        }
+                    }
 
-                if(valido) {
-                    fragEnviar.startUpload(valido);
-                }
-                fragEnviar.ocultarProgress();
+                    public void onTick(long millisUntilFinished) {
+                    }
+                }.start();
             }
         });
     }

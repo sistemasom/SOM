@@ -1,6 +1,5 @@
 package com.som.som;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -19,8 +18,6 @@ public class Enviar extends Fragment {
     private static final String URL_KEY = "UrlKey";
 
     private DownloadCallback mCallback;
-
-    private ProgressDialog progress;
 
     private DownloadCallback mUploadCallback;
     private UploadTask mUploadTask;
@@ -50,9 +47,6 @@ public class Enviar extends Fragment {
         // Retain this Fragment across configuration changes in the host Activity.
         setRetainInstance(true);
         mUrlString = getArguments().getString(URL_KEY);
-
-        progress = new ProgressDialog(getActivity());
-        progress.setMessage("Enviando la oferta, por favor espere...");
     }
 
     @Override
@@ -75,16 +69,6 @@ public class Enviar extends Fragment {
     public void onDestroy() {
         cancelUpload();
         super.onDestroy();
-    }
-
-    public void mostrarProgress()
-    {
-        progress.show();
-    }
-
-    public void ocultarProgress()
-    {
-        progress.dismiss();
     }
 
     public void startUpload(boolean valido) {
