@@ -9,6 +9,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -132,7 +136,18 @@ public class Enviar extends Fragment {
                     if(envioValido) {
                         mUploadCallback.updateFromUpload(result.mResultValue);
                         mUploadCallback.finishUploading();
-                        Toast.makeText(getActivity(), "Oferta enviada!", Toast.LENGTH_SHORT).show();
+
+                        String resultado = result.mResultValue.substring(0,2);
+
+                        String codigo = result.mResultValue.substring(2);
+
+                        if(resultado.equals("OK")) {
+                            String mensaje = "Oferta " + codigo + "\n grabada correctamente.";
+                            Toast.makeText(getActivity(), mensaje, Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            Toast.makeText(getActivity(),"No se ha podido grabar la oferta! Intente nuevamente.",Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             }
@@ -165,7 +180,19 @@ public class Enviar extends Fragment {
                     int HttpResult = urlConnection.getResponseCode();
                     if(HttpResult == HttpURLConnection.HTTP_OK)
                     {
-                        sb.append("OK");
+
+                        BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                        String inputLine;
+                        StringBuffer response = new StringBuffer();
+
+                        while ((inputLine = in.readLine()) != null) {
+                            response.append(inputLine);
+                        }
+                        in.close();
+
+                        String respuesta = "OK" + response.toString();
+
+                        sb.append(respuesta);
                         result = new UploadTask.Result(sb.toString());
                     }
                     else
