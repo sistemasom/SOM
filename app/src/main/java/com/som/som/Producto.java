@@ -65,7 +65,7 @@ public class Producto extends Fragment {
         //Combo producto
         final String[] productos =
                 new String[]{"Departamentos","Casas","Oficinas","Locales","Terrenos","Cocheras",
-                        "Countries / Barrios Privados","Depositos / Industrias","Edificios en block",
+                        "Countries / Barrios Privados","Depósitos / Industrias","Edificios en block",
                         "Fondos de comercio","Hoteles / Otros productos","Propiedades rurales"};
 
         ArrayAdapter<String> adapterProd = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, productos);
@@ -169,7 +169,7 @@ public class Producto extends Fragment {
                 {"1 ambiente","2 ambientes","2 dormitorios c/dep.","3 ambientes","3 dormitorios","3 dormitorios c/dep.", "4 o más dormitorios"};
 
         final String[] subTipoCasa = new String[]
-                {"Casa","Chalet","Duplex","En barrio privado / Country","Petit hotel","Prop. Horizontal", "Quinta"};
+                {"Casa","Chalet","Dúplex","En barrio privado / Country","Petit hotel","Prop. Horizontal", "Quinta"};
 
         final String[] subTipoOficina = new String[]
                 {"Planta dividida","Planta libre"};

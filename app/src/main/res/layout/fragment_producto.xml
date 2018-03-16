@@ -62,6 +62,7 @@
                 android:padding="2dp"
                 android:paddingLeft="7dp"
                 android:textColor="@color/letra"
+                android:digits="0123456789."
                 android:inputType="phone"
                 android:text="" />
         </LinearLayout>
@@ -110,6 +111,7 @@
                 android:paddingLeft="7dp"
                 android:textColor="@color/letra"
                 android:ems="5"
+                android:digits="0123456789."
                 android:inputType="phone"
                 android:text="" />
         </LinearLayout>

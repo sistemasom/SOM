@@ -44,6 +44,8 @@ public class Ubicacion extends Fragment{
     private Double latitud = 0.0;
     private Double longitud = 0.0;
 
+    private boolean barrioCerrado = false;
+
     public Ubicacion() {
     }
 
@@ -147,6 +149,9 @@ public class Ubicacion extends Fragment{
         EditText txtCalle = (EditText) vistaUbicacion.findViewById(R.id.etCalle);
         String calle = txtCalle.getText().toString();
 
+        EditText txtPais = (EditText) vistaUbicacion.findViewById(R.id.etPais);
+        String pais = txtPais.getText().toString();
+
         EditText txtAltura = (EditText) vistaUbicacion.findViewById(R.id.etAltura);
         String altura = txtAltura.getText().toString();
 
@@ -156,6 +161,11 @@ public class Ubicacion extends Fragment{
         TextView etBarrio = (EditText) vistaUbicacion.findViewById(R.id.etBarrio);
         String barrio = etBarrio.getText().toString();
 
+        if(barrio.contains("C.A.B.A."))
+        {
+            barrio = barrio.replace("C.A.B.A","CIUDAD AUTONOMA BUENOS AIRES");
+        }
+
         TextView tvProvincia = (TextView) vistaUbicacion.findViewById(R.id.etProvincia);
         String provincia = tvProvincia.getText().toString();
 
@@ -163,12 +173,24 @@ public class Ubicacion extends Fragment{
         TextView longi = (TextView) vistaUbicacion.findViewById(R.id.longitud);
 
         try {
+            json.put("Pais",pais);
             json.put("Piso",pisoSel);
             json.put("Unidad",unidadSel);
             json.put("Referencia",entreCalles);
             json.put("Calle",calle);
             json.put("Provincia",provincia);
-            json.put("Barrio",barrio);
+
+            if(barrioCerrado)
+            {
+                json.put("Country",barrio);
+                json.put("Barrio","");
+            }
+            else
+            {
+                json.put("Barrio",barrio);
+                json.put("Country","");
+            }
+
             json.put("Altura",altura);
             json.put("Ubicacion",ubicacion);
             json.put("latitud",lat.getText());
@@ -274,6 +296,10 @@ public class Ubicacion extends Fragment{
         {
             String[] parts = barr.split("_");
             barrios.add(parts[0]);
+
+            if(parts.length == 3) {
+                barrioCerrado = true;
+            }
         }
 
         ArrayAdapter<String> adapterBar = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, barrios);

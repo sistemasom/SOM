@@ -292,11 +292,13 @@ public class Inventario extends Fragment {
                 supHa.setChecked(true);
             }
 
-            if(propie.latitud != null && propie.latitud != "") {
+            TextView lat = (TextView) getActivity().findViewById(R.id.latitud);
+            lat.setText("");
+            TextView longi = (TextView) getActivity().findViewById(R.id.longitud);
+            longi.setText("");
 
-                TextView lat = (TextView) getActivity().findViewById(R.id.latitud);
+            if(propie.latitud != null && propie.latitud != "") {
                 lat.setText(propie.latitud);
-                TextView longi = (TextView) getActivity().findViewById(R.id.longitud);
                 longi.setText(propie.longitud);
                 WebView mapa = (WebView) getActivity().findViewById(R.id.webMapa);
                 mapa.setWebViewClient(new WebViewClient());
