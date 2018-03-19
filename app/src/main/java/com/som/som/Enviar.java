@@ -27,9 +27,8 @@ public class Enviar extends Fragment {
     private UploadTask mUploadTask;
 
     public boolean envioValido = false;
-
+    public boolean baja = false;
     public String dataSend = "";
-
     private String mUrlString;
 
     public static Enviar getInstance(FragmentManager fragmentManager, String url) {
@@ -48,7 +47,6 @@ public class Enviar extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Retain this Fragment across configuration changes in the host Activity.
         setRetainInstance(true);
         mUrlString = getArguments().getString(URL_KEY);
     }
@@ -75,7 +73,9 @@ public class Enviar extends Fragment {
         super.onDestroy();
     }
 
-    public void startUpload(boolean valido) {
+    public void startUpload(boolean valido, boolean esBaja) {
+
+        baja = esBaja;
 
         envioValido = valido;
 
@@ -142,8 +142,15 @@ public class Enviar extends Fragment {
                         String codigo = result.mResultValue.substring(2);
 
                         if(resultado.equals("OK")) {
-                            String mensaje = "Oferta " + codigo + "\n grabada correctamente.";
-                            Toast.makeText(getActivity(), mensaje, Toast.LENGTH_SHORT).show();
+                            if(baja) {
+                                String mensaje = "Oferta " + codigo + "\n grabada correctamente.";
+                                Toast.makeText(getActivity(), mensaje, Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                            {
+                                String mensaje = "Oferta " + codigo + "\n eliminada correctamente.";
+                                Toast.makeText(getActivity(), mensaje, Toast.LENGTH_SHORT).show();
+                            }
                         }
                         else {
                             Toast.makeText(getActivity(),"No se ha podido grabar la oferta! Intente nuevamente.",Toast.LENGTH_SHORT).show();

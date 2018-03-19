@@ -118,7 +118,16 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="250dp"
             android:layout_weight="1"
+            android:checked="true"
             android:text="Visible en sistema interconectado" />
+
+        <Switch
+            android:id="@+id/reservada"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="300dp"
+            android:layout_weight="1"
+            android:text="Reservada" />
 
 </RelativeLayout>
 </ScrollView>

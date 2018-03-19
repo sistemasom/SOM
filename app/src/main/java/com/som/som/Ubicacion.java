@@ -111,19 +111,23 @@ public class Ubicacion extends Fragment{
         EditText etBarrio = (EditText) vistaUbicacion.findViewById(R.id.etBarrio);
         EditText etCalle = (EditText) vistaUbicacion.findViewById(R.id.etCalle);
         EditText etAltura = (EditText) vistaUbicacion.findViewById(R.id.etAltura);
+        TextView lat = (TextView) vistaUbicacion.findViewById(R.id.latitud);
+        TextView longi = (TextView) vistaUbicacion.findViewById(R.id.longitud);
 
-        String ubicacion = etPais.getText() + ", " + etProvincia.getText() + ", " + etBarrio.getText() + ", " + etCalle.getText() + ", " + etAltura.getText();
+        String ubicacion = etPais.getText() + ", " + etProvincia.getText() + ", " + etBarrio.getText() + ", " + etCalle.getText() + " " + etAltura.getText();
 
         try {
             latitud = 0.0;
             longitud = 0.0;
 
             List<Address> addresses = geocoder.getFromLocationName(ubicacion, 1);
-            Address address = addresses.get(0);
-            longitud = address.getLongitude();
-            latitud = address.getLatitude();
 
-            if(latitud != 0.0 && longitud != 0.0) {
+            if(addresses.size() > 0) {
+                Address address = addresses.get(0);
+                longitud = address.getLongitude();
+                latitud = address.getLatitude();
+                lat.setText(latitud.toString());
+                longi.setText(longitud.toString());
                 cargarMapa();
             }
             else

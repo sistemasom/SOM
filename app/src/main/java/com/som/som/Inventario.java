@@ -2,6 +2,7 @@ package com.som.som;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.StrictMode;
@@ -326,7 +327,7 @@ public class Inventario extends Fragment {
         return posicion;
     }
 
-    private void cargarInventario(String token) {
+    private void cargarInventario(final String token) {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -405,7 +406,9 @@ public class Inventario extends Fragment {
 
                                     //Creo un JSON de baja de la oferta
                                     JSONObject jsonOferta = new JSONObject();
+
                                     try {
+                                        jsonOferta.put("Token", token);
                                         jsonOferta.put("Baja", codigo);
                                     }catch (JSONException e) {
                                         e.printStackTrace();
@@ -420,7 +423,7 @@ public class Inventario extends Fragment {
                                     Toast.makeText(getContext(), "Enviando baja de la oferta " + cod + "...", Toast.LENGTH_SHORT).show();
                                     fragEnviar.dataSend = jsonOferta.toString();
 
-                                    fragEnviar.startUpload(true);
+                                    fragEnviar.startUpload(true, true);
                                 }
                             });
                     builder.create().show();

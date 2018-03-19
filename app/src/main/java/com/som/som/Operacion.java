@@ -148,9 +148,15 @@ public class Operacion extends Fragment {
         EditText txtPrecio = (EditText) vistaOperacion.findViewById(R.id.etPrecio);
         String precio = txtPrecio.getText().toString();
 
-        Switch simpleSwitch = (Switch) vistaOperacion.findViewById(R.id.publica);
+        Switch reserv = (Switch) vistaOperacion.findViewById(R.id.reservada);
+        String reservada = "No";
+        if(reserv.isChecked()) {
+            reservada = "Si";
+        }
+
+        Switch visibleensistema = (Switch) vistaOperacion.findViewById(R.id.publica);
         String publica = "No";
-        if(simpleSwitch.isChecked()) {
+        if(visibleensistema.isChecked()) {
             publica = "Si";
         }
 
@@ -160,6 +166,7 @@ public class Operacion extends Fragment {
             json.put("Moneda",moneda);
             json.put("Precio",precio);
             json.put("Publica",publica);
+            json.put("Reservada",reservada);
             json.put("FechaPublicacion",ObtenerFechaPublicacion());
         } catch (JSONException e) {
             e.printStackTrace();

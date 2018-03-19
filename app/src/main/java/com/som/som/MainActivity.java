@@ -19,6 +19,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -72,6 +73,9 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
 
         final Enviar fragEnviar = Enviar.getInstance(getSupportFragmentManager(),"https://google.com.ar");
 
+        //Verifico si existe el token
+        getToken();
+
         mViewPager = (ViewPager) findViewById(R.id.container);
         //Cantidad de pantallas.
         mViewPager.setOffscreenPageLimit(6);
@@ -112,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
                         if(valido) {
                             //Seteo el texto a enviar
                             fragEnviar.dataSend = jsonOferta.toString();
-                            fragEnviar.startUpload(valido);
+                            fragEnviar.startUpload(valido,false);
                         }
                     }
 
@@ -334,7 +338,7 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
     private void startUpload() {
         if (!mUploading && mNetworkFragment != null) {
             // Execute the async upload.
-            mNetworkFragment.startUpload(valido);
+            mNetworkFragment.startUpload(valido,false);
             mUploading = true;
         }
     }
@@ -372,6 +376,23 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
             case Progress.PROCESS_INPUT_STREAM_SUCCESS:
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Salir")
+                .setMessage("¿Está seguro?")
+                .setPositiveButton("Si", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 
     public void EnviarFoto(Bitmap foto)
