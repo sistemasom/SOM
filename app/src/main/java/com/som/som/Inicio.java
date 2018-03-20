@@ -4,6 +4,7 @@ package com.som.som;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.StrictMode;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,11 +56,7 @@ public class Inicio extends Fragment {
 
         TextView tvVersion = (TextView) vistaInicio.findViewById(R.id.tvActualizar);
 
-        String token = getToken();
-
-        if(token == "" || token == null) {
-            Toast.makeText(getActivity(), "No se ha ingresado un código de autorización, debe ingresar uno para continuar.", Toast.LENGTH_LONG).show();
-        }
+        validarToken();
 
         tvVersion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,7 +112,7 @@ public class Inicio extends Fragment {
         }
     }
 
-    public String getToken()
+    public boolean validarToken()
     {
         String texto = "";
         try{
@@ -128,6 +125,18 @@ public class Inicio extends Fragment {
             Toast.makeText(getActivity(), "No se ha ingresado un código de autorización, debe ingresar uno para continuar.", Toast.LENGTH_SHORT).show();
         }
 
-        return texto;
+        //FALTA AGREGAR LA VALIDACION DEL TOKEN DISTINTO DE VACIO
+
+        FloatingActionButton btnEnviar = (FloatingActionButton) getActivity().findViewById(R.id.fab);
+        if(texto == "" || texto == null) {
+            btnEnviar.setEnabled(false);
+            Toast.makeText(getActivity(), "No se ha ingresado un código de autorización válido, debe ingresar uno para continuar. \n\n Recuerde que no se podrán enviar ofertas.", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        else
+        {
+            btnEnviar.setEnabled(true);
+            return true;
+        }
     }
 }

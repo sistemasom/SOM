@@ -217,6 +217,10 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
                             //Guardo el Token en el archivo de configuración
                             Token = inputToken.getText().toString();
                             guardarToken(Token);
+                            if(fragInicio.validarToken())
+                            {
+                                Toast.makeText(getBaseContext(), "¡Código autorizado!", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     });
 
