@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -142,7 +143,9 @@ public class Enviar extends Fragment {
                         String codigo = result.mResultValue.substring(2);
 
                         if(resultado.equals("OK")) {
-                            if(baja) {
+                            if(!baja) {
+                                TextView txtCodigo = (TextView) getActivity().findViewById(R.id.codigoOferta);
+                                txtCodigo.setText(codigo);
                                 String mensaje = "Oferta " + codigo + "\n grabada correctamente.";
                                 Toast.makeText(getActivity(), mensaje, Toast.LENGTH_SHORT).show();
                             }

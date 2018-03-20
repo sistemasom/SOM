@@ -73,9 +73,6 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
 
         final Enviar fragEnviar = Enviar.getInstance(getSupportFragmentManager(),"https://google.com.ar");
 
-        //Verifico si existe el token
-        getToken();
-
         mViewPager = (ViewPager) findViewById(R.id.container);
         //Cantidad de pantallas.
         mViewPager.setOffscreenPageLimit(6);

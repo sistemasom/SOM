@@ -24,18 +24,28 @@
         app:srcCompat="@android:drawable/ic_menu_camera" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/mensajeFotos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="60dp"
+        android:visibility="invisible"
         android:layout_marginTop="10dp"
         android:text="Presione la imagen para rotar. \nMantenga presionado para eliminar." />
+
+    <CheckBox
+        android:id="@+id/borrarFotos"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="45dp"
+        android:text="Borrar fotos existentes" />
 
     <LinearLayout
             android:id="@+id/layoutFotos"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="80dp"
             android:orientation="vertical"></LinearLayout>
 </RelativeLayout>
 </ScrollView>

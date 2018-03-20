@@ -15,9 +15,11 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -133,6 +135,12 @@ public class Fotos extends Fragment {
                 main.addView(crearFoto(foto));
 
                 idFoto++; //Incremento el ID
+
+                TextView tvFotos = (TextView) vistaFotos.findViewById(R.id.mensajeFotos);
+                tvFotos.setVisibility(View.VISIBLE);
+
+                CheckBox cbBorrarFotos = (CheckBox) vistaFotos.findViewById(R.id.borrarFotos);
+                cbBorrarFotos.setVisibility(View.VISIBLE);
             }
             catch (FileNotFoundException ex) {
             }
@@ -160,12 +168,14 @@ public class Fotos extends Fragment {
     public void obtenerFotos()
     {
         //Recorro el arraylist con las fotos
-        for(int i = 0;i < aFotos.size(); i++) {
-            Bitmap bitmap = aFotos.get(i).fullImage;
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, baos);
-            byte[] imageInByte = baos.toByteArray();
-            fotos = fotos + "Foto" + Base64.encodeToString(imageInByte, Base64.NO_WRAP);
+        if(aFotos.size() > 0) {
+            for (int i = 0; i < aFotos.size(); i++) {
+                Bitmap bitmap = aFotos.get(i).fullImage;
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 90, baos);
+                byte[] imageInByte = baos.toByteArray();
+                fotos = fotos + "Foto" + Base64.encodeToString(imageInByte, Base64.NO_WRAP);
+            }
         }
     }
 
@@ -235,7 +245,17 @@ public class Fotos extends Fragment {
     public void obtenerValores(JSONObject json) {
         fotos = ""; //Limpio el string de fotos
         obtenerFotos();
+
+        CheckBox cbBorrarFotos = (CheckBox) vistaFotos.findViewById(R.id.borrarFotos);
+        String borrarfotos = "No";
+
+        if(cbBorrarFotos.isChecked())
+        {
+            borrarfotos = "Si";
+        }
+
         try {
+            json.put("BorrarFotos",borrarfotos);
             json.put("Fotos",fotos);
         } catch (JSONException e) {
             e.printStackTrace();
