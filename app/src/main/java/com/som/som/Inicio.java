@@ -17,6 +17,9 @@ import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 public class Inicio extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     private static final String ARG_PARAM1 = "param1";
@@ -51,6 +54,12 @@ public class Inicio extends Fragment {
         vistaInicio = inflater.inflate(R.layout.fragment_inicio, container, false);
 
         TextView tvVersion = (TextView) vistaInicio.findViewById(R.id.tvActualizar);
+
+        String token = getToken();
+
+        if(token == "" || token == null) {
+            Toast.makeText(getActivity(), "No se ha ingresado un código de autorización, debe ingresar uno para continuar.", Toast.LENGTH_LONG).show();
+        }
 
         tvVersion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,5 +113,21 @@ public class Inicio extends Fragment {
         } catch (Exception e) {
             Toast.makeText(getActivity(), "No es posible conectar con el servidor. Compruebe su conexión a internet.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public String getToken()
+    {
+        String texto = "";
+        try{
+            BufferedReader fin = new BufferedReader(new InputStreamReader(getActivity().openFileInput("config.txt")));
+            texto = fin.readLine();
+            fin.close();
+        }
+        catch (Exception ex)
+        {
+            Toast.makeText(getActivity(), "No se ha ingresado un código de autorización, debe ingresar uno para continuar.", Toast.LENGTH_SHORT).show();
+        }
+
+        return texto;
     }
 }

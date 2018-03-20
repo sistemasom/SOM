@@ -190,6 +190,13 @@ public class Fotos extends Fragment {
         return Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
     }
 
+
+    /* ELIMINAR TODAS LAS FOTOS DE LA VISTA */
+    public void eliminarFotos()
+    {
+        aFotos = null;
+    }
+
     private ImageView crearFoto(final Foto foto)
     {
         final ImageView ivFoto = new ImageView(getContext());
