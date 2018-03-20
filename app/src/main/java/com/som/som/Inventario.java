@@ -159,8 +159,16 @@ public class Inventario extends Fragment {
     }
 
     private void limpiarFormulario() {
+        Spinner producto = (Spinner) getActivity().findViewById(R.id.cbTipoProd);
+        producto.setEnabled(true);
+        Spinner piso = (Spinner) getActivity().findViewById(R.id.cbPiso);
+        piso.setSelection(0);
+        Spinner unidad = (Spinner) getActivity().findViewById(R.id.cbUnidad);
+        unidad.setSelection(0);
         TextView supCub = (TextView) getActivity().findViewById(R.id.etSupCub);
         supCub.setText("");
+        TextView codigo = (TextView) getActivity().findViewById(R.id.codigoOferta);
+        codigo.setText("0");
         TextView supTot = (TextView) getActivity().findViewById(R.id.etSupTot);
         supTot.setText("");
         TextView destacable = (TextView) getActivity().findViewById(R.id.etDestacable);
