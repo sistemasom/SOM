@@ -122,7 +122,7 @@ public class Inicio extends Fragment {
         }
         catch (Exception ex)
         {
-            Toast.makeText(getActivity(), "No se ha ingresado un código de autorización, debe ingresar uno para continuar.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Error al leer la configuración.", Toast.LENGTH_SHORT).show();
         }
 
         //FALTA AGREGAR LA VALIDACION DEL TOKEN DISTINTO DE VACIO
@@ -130,7 +130,7 @@ public class Inicio extends Fragment {
         FloatingActionButton btnEnviar = (FloatingActionButton) getActivity().findViewById(R.id.fab);
         if(texto == "" || texto == null) {
             btnEnviar.setEnabled(false);
-            Toast.makeText(getActivity(), "No se ha ingresado un código de autorización válido, debe ingresar uno para continuar. \n\n Recuerde que no se podrán enviar ofertas.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "No se ha ingresado un código de autorización válido, debe ingresar uno para enviar ofertas.", Toast.LENGTH_LONG).show();
             return false;
         }
         else

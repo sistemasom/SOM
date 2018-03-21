@@ -94,14 +94,6 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
                         fragOperacion.obtenerValores(jsonOferta);
                         fragFotos.obtenerValores(jsonOferta);
 
-                        //GUID de oferta
-                        String ID = java.util.UUID.randomUUID().toString();
-                        try {
-                            jsonOferta.put("Id",ID);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
                         valido = validarEnvio();
 
                         try {

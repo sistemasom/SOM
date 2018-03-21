@@ -298,9 +298,9 @@ public class Inventario extends Fragment {
             RadioButton supHa = (RadioButton) getActivity().findViewById(R.id.rbHa);
             supHa.setChecked(false);
 
-            Switch reservada = (Switch) vistaInventario.findViewById(R.id.reservada);
+            Switch reservada = (Switch) getActivity().findViewById(R.id.reservada);
 
-            if(propie.reservada.toUpperCase() == "SI") {
+            if(propie.reservada.toUpperCase().equals("SI")) {
                 reservada.setChecked(true);
             }
 
