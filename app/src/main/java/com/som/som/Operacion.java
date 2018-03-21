@@ -134,6 +134,20 @@ public class Operacion extends Fragment {
         void EnviarJSON(JSONObject json);
     }
 
+    public boolean validarCampos()
+    {
+        boolean valido = false;
+
+        EditText txtPrecio = (EditText) vistaOperacion.findViewById(R.id.etPrecio);
+        String precio = txtPrecio.getText().toString();
+
+        if(!precio.isEmpty()) {
+            valido = true;
+        }
+
+        return valido;
+    }
+
     public void obtenerValores(JSONObject json) {
 
         Spinner spOperacion = (Spinner) vistaOperacion.findViewById(R.id.cbOperacion);

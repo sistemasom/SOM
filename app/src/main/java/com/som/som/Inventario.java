@@ -57,6 +57,7 @@ public class Inventario extends Fragment {
         String moneda;
         String importe;
         String operacion;
+        String vencida;
     }
 
     private class Propiedad
@@ -84,6 +85,7 @@ public class Inventario extends Fragment {
         String latitud;
         String longitud;
         String Pais;
+        String reservada;
     }
 
     ArrayList<itemInventario> propiedades = new ArrayList<itemInventario>();
@@ -244,6 +246,7 @@ public class Inventario extends Fragment {
             propie.longitud = resultado.getPropertyAsString(19).replace("anyType{}","");
             propie.Ref = resultado.getPropertyAsString(20).replace("anyType{}","");
             propie.Pais = resultado.getPropertyAsString(21).replace("anyType{}","");
+            propie.reservada = resultado.getPropertyAsString(22).replace("anyType{}","");
 
             TextView codigo = (TextView) getActivity().findViewById(R.id.codigoOferta);
             codigo.setText(propie.codCompleto);
@@ -294,6 +297,12 @@ public class Inventario extends Fragment {
 
             RadioButton supHa = (RadioButton) getActivity().findViewById(R.id.rbHa);
             supHa.setChecked(false);
+
+            Switch reservada = (Switch) vistaInventario.findViewById(R.id.reservada);
+
+            if(propie.reservada.toUpperCase() == "SI") {
+                reservada.setChecked(true);
+            }
 
             if(!propie.unidadMedida.toUpperCase().equals("M2"))
             {
@@ -383,9 +392,16 @@ public class Inventario extends Fragment {
                     prop.importe = oferta.getPropertyAsString(3);
                     prop.codigo = oferta.getPropertyAsString(4);
                     prop.codigoCompleto = oferta.getPropertyAsString(5);
+                    prop.vencida = oferta.getPropertyAsString(6);
                     propiedades.add(prop);
 
-                    items.add(prop.codigo + " - " + prop.operacion + " " + prop.moneda + " " + prop.importe + "\n" + prop.Calle);
+                    if(prop.vencida.contains("true")) {
+                        items.add("♦ " + prop.codigo + " - " + prop.operacion + " " + prop.moneda + " " + prop.importe + "\n" + prop.Calle);
+                    }
+                    else
+                    {
+                        items.add(prop.codigo + " - " + prop.operacion + " " + prop.moneda + " " + prop.importe + "\n" + prop.Calle);
+                    }
 
                     sinresultados.setVisibility(View.INVISIBLE);
                 }
@@ -442,6 +458,11 @@ public class Inventario extends Fragment {
             tabla.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    String vencida = propiedades.get(position).vencida;
+
+                    if(vencida.contains("true")) {
+                        Toast.makeText(getActivity(),"Esta oferta se encuentra vencida.", Toast.LENGTH_LONG).show();
+                    }
                     mostrarCampos(false,position);
                 }
             });

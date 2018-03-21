@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
 
         if(Token != "")
         {
-            if(fragUbicacion.validarCampos() && fragProducto.validarCampos())
+            if(fragUbicacion.validarCampos() && fragProducto.validarCampos() && fragOperacion.validarCampos())
             {
                 permitido = true;
             }
