@@ -14,32 +14,39 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin">
 
+    <Button
+        android:id="@+id/limpiarfotos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:visibility="invisible"
+        android:text="limpiar" />
+
     <ImageButton
         android:id="@+id/btnFoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/border"
-        android:padding="5dp"
+        android:padding="10dp"
         android:onClick="takePhoto"
         app:srcCompat="@android:drawable/ic_menu_camera" />
+
+    <CheckBox
+        android:id="@+id/borrarFotos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="55dp"
+        android:textColor="@color/letra"
+        android:text="Borrar fotos existentes" />
 
     <TextView
         android:id="@+id/mensajeFotos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
+        android:layout_marginLeft="62dp"
         android:visibility="invisible"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="35dp"
         android:text="Presione la imagen para rotar. \nMantenga presionado para eliminar." />
-
-    <CheckBox
-        android:id="@+id/borrarFotos"
-        android:visibility="invisible"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="45dp"
-        android:text="Borrar fotos existentes" />
 
     <LinearLayout
             android:id="@+id/layoutFotos"

@@ -15,6 +15,7 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -100,6 +101,14 @@ public class Fotos extends Fragment {
             }
         });
 
+        Button eliminarFotos = (Button) vistaFotos.findViewById(R.id.limpiarfotos);
+        eliminarFotos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                eliminarFotos();
+            }
+        });
+
         main = (LinearLayout) vistaFotos.findViewById(R.id.layoutFotos);
 
         return vistaFotos;
@@ -138,9 +147,6 @@ public class Fotos extends Fragment {
 
                 TextView tvFotos = (TextView) vistaFotos.findViewById(R.id.mensajeFotos);
                 tvFotos.setVisibility(View.VISIBLE);
-
-                CheckBox cbBorrarFotos = (CheckBox) vistaFotos.findViewById(R.id.borrarFotos);
-                cbBorrarFotos.setVisibility(View.VISIBLE);
             }
             catch (FileNotFoundException ex) {
             }
@@ -194,7 +200,14 @@ public class Fotos extends Fragment {
     /* ELIMINAR TODAS LAS FOTOS DE LA VISTA */
     public void eliminarFotos()
     {
-        aFotos = null;
+        LinearLayout fotos = (LinearLayout) getActivity().findViewById(R.id.layoutFotos);
+
+        fotos.removeAllViews();
+
+        TextView tvFotos = (TextView) getActivity().findViewById(R.id.mensajeFotos);
+        tvFotos.setVisibility(View.INVISIBLE);
+
+        aFotos.clear();
     }
 
     private ImageView crearFoto(final Foto foto)

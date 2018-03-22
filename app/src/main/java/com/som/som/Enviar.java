@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -143,6 +144,9 @@ public class Enviar extends Fragment {
 
                         if(resultado.equals("OK")) {
                             if(!baja) {
+                                //Borrar todas las fotos
+                                Button eliminarFotos = (Button) getActivity().findViewById(R.id.limpiarfotos);
+                                eliminarFotos.performClick();
                                 TextView txtCodigo = (TextView) getActivity().findViewById(R.id.codigoOferta);
                                 txtCodigo.setText(codigo);
                                 String mensaje = "Oferta " + codigo + "\n grabada correctamente.";

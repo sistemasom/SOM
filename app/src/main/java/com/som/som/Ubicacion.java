@@ -337,6 +337,9 @@ public class Ubicacion extends Fragment{
     {
         boolean valido = false;
 
+        Spinner spProducto = (Spinner) getActivity().findViewById(R.id.cbTipoProd);
+        String prodSel = spProducto.getSelectedItem().toString();
+
         EditText txtCalle = (EditText) vistaUbicacion.findViewById(R.id.etCalle);
         String calle = txtCalle.getText().toString();
 
@@ -352,9 +355,16 @@ public class Ubicacion extends Fragment{
         TextView tvProvincia = (TextView) vistaUbicacion.findViewById(R.id.etProvincia);
         String provincia = tvProvincia.getText().toString();
 
-        if(!calle.isEmpty() && !pais.isEmpty() && !altura.isEmpty() && !barrio.isEmpty() && !provincia.isEmpty())
+        if(prodSel.toUpperCase().contains("COUNTR"))
         {
-            valido = true;
+            if (!pais.isEmpty()&& !barrio.isEmpty() && !provincia.isEmpty()) {
+                valido = true;
+            }
+        }
+        else {
+            if (!calle.isEmpty() && !pais.isEmpty() && !altura.isEmpty() && !barrio.isEmpty() && !provincia.isEmpty()) {
+                valido = true;
+            }
         }
 
         return valido;
