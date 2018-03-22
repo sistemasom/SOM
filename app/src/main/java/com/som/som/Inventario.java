@@ -148,6 +148,7 @@ public class Inventario extends Fragment {
 
     private void mostrarCampos(boolean alta, int pos)
     {
+        Button eliminarFotos = (Button) getActivity().findViewById(R.id.limpiarfotos);
         if(alta) {
             limpiarFormulario();
         }
@@ -155,6 +156,7 @@ public class Inventario extends Fragment {
         {
             cargarFormulario(pos);
         }
+        eliminarFotos.performClick();
         ViewPager vpPager = (ViewPager) getActivity().findViewById(R.id.container);
         vpPager.setCurrentItem(2);
     }
