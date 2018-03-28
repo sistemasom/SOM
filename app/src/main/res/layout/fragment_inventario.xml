@@ -15,23 +15,33 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnInventario"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:background="@drawable/boton"
-            android:layout_marginRight="20dp"
-            android:layout_weight="1"
-            android:textColor="@color/blanco"
-            android:text="Cargar Inventario" />
-
-        <Button
             android:id="@+id/btnAlta"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_weight="1"
+            android:layout_marginRight="15dp"
             android:background="@drawable/boton"
             android:text="Alta"
             android:textColor="@color/blanco" />
+
+        <Button
+            android:id="@+id/btnVigente"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/boton"
+            android:layout_weight="1"
+            android:textColor="@color/blanco"
+            android:text="Vigente" />
+
+        <Button
+            android:id="@+id/btnPropio"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="@drawable/boton"
+            android:layout_weight="1"
+            android:textColor="@color/blanco"
+            android:text="Propio" />
     </LinearLayout>
 
     <LinearLayout

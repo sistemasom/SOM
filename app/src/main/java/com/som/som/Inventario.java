@@ -57,6 +57,7 @@ public class Inventario extends Fragment {
         String importe;
         String operacion;
         String vencida;
+        String id;
     }
 
     private class Propiedad
@@ -114,16 +115,31 @@ public class Inventario extends Fragment {
 
         vistaInventario = inflater.inflate(R.layout.fragment_inventario, container, false);
 
-        Button btnInventario =(Button) vistaInventario.findViewById(R.id.btnInventario);
+        Button btnPropio =(Button) vistaInventario.findViewById(R.id.btnPropio);
+        Button btnVigente =(Button) vistaInventario.findViewById(R.id.btnVigente);
 
-        btnInventario.setOnClickListener( new View.OnClickListener() {
-
+        btnVigente.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(),"Cargando inventario.\nAguarde un instante por favor...",Toast.LENGTH_SHORT).show();
                 new CountDownTimer(1000, 1000) {
                     public void onFinish() {
-                        cargarInventario(getToken());
+                        cargarInventario(getToken(),false);
+                    }
+
+                    public void onTick(long millisUntilFinished) {
+                    }
+                }.start();
+            }
+        });
+
+        btnPropio.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"Cargando inventario.\nAguarde un instante por favor...",Toast.LENGTH_SHORT).show();
+                new CountDownTimer(1000, 1000) {
+                    public void onFinish() {
+                        cargarInventario(getToken(),true);
                     }
 
                     public void onTick(long millisUntilFinished) {
@@ -193,19 +209,18 @@ public class Inventario extends Fragment {
     }
 
     private void cargarFormulario(int pos) {
-        final String Metodo = "BuscarPorCodigoMovil";
-        final String accionSoap = "http://tempuri.org/BuscarPorCodigoMovil";
+        final String Metodo = "BuscarPorIdMovil";
+        final String accionSoap = "http://tempuri.org/BuscarPorIdMovil";
 
         itemInventario prop = propiedades.get(pos);
 
         Toast.makeText(getContext(),prop.codigo,Toast.LENGTH_SHORT).show();
 
         try {
-
             // Modelo el request
             SoapObject request = new SoapObject(namespace, Metodo);
 
-            request.addProperty("codigo", prop.codigoCompleto);
+            request.addProperty("idPropiedad", prop.id);
 
             // Modelo el Sobre
             SoapSerializationEnvelope sobre = new SoapSerializationEnvelope(SoapEnvelope.VER11);
@@ -300,9 +315,14 @@ public class Inventario extends Fragment {
             supHa.setChecked(false);
 
             Switch reservada = (Switch) getActivity().findViewById(R.id.reservada);
+            Switch publica = (Switch) getActivity().findViewById(R.id.publica);
 
             if(propie.reservada.toUpperCase().equals("SI")) {
                 reservada.setChecked(true);
+            }
+
+            if(propie.Publica.toUpperCase().contains("TRUE")) {
+                publica.setChecked(true);
             }
 
             if(!propie.unidadMedida.toUpperCase().equals("M2"))
@@ -345,7 +365,7 @@ public class Inventario extends Fragment {
         return posicion;
     }
 
-    private void cargarInventario(final String token) {
+    private void cargarInventario(final String token, Boolean propio) {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -357,12 +377,19 @@ public class Inventario extends Fragment {
 
         ArrayList<String> items = new ArrayList<String>();
 
+        String inventarioPropio = "false";
+
+        if(propio) {
+            inventarioPropio = "true";
+        }
+
         try {
 
             // Modelo el request
             SoapObject request = new SoapObject(namespace, Metodo);
 
             request.addProperty("token", token);
+            request.addProperty("propio", inventarioPropio);
 
             // Modelo el Sobre
             SoapSerializationEnvelope sobre = new SoapSerializationEnvelope(SoapEnvelope.VER11);
@@ -394,6 +421,7 @@ public class Inventario extends Fragment {
                     prop.codigo = oferta.getPropertyAsString(4);
                     prop.codigoCompleto = oferta.getPropertyAsString(5);
                     prop.vencida = oferta.getPropertyAsString(6);
+                    prop.id = oferta.getPropertyAsString(7);
                     propiedades.add(prop);
 
                     if(prop.vencida.contains("true")) {

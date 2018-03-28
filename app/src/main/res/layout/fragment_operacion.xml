@@ -118,7 +118,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="250dp"
             android:layout_weight="1"
-            android:checked="true"
+            android:checked="false"
             android:textColor="@color/letra"
             android:text="Visible en sistema interconectado" />
 
@@ -126,6 +126,7 @@
             android:id="@+id/reservada"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:checked="false"
             android:layout_marginTop="300dp"
             android:layout_weight="1"
             android:textColor="@color/letra"
