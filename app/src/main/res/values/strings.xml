@@ -5,4 +5,68 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="categorias">
+        <item>Excelente</item>
+        <item>Muy Buena</item>
+        <item>Buena</item>
+        <item>Standard</item>
+        <item>Económica</item>
+    </string-array>
+
+    <string-array name="tipoDepto">
+        <item>Departamento</item>
+        <item>Piso</item>
+        <item>Semipiso</item>
+        <item>Dúplex</item>
+        <item>Triplex</item>
+        <item>Loft</item>
+        <item>Tipo casa</item>
+    </string-array>
+
+    <string-array name="ubPlanta">
+        <item>Frente</item>
+        <item>Contrafrente</item>
+        <item>Lateral</item>
+        <item>Interno</item>
+    </string-array>
+
+    <string-array name="cantCoch">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <string-array name="luminosidad">
+        <item>Muy luminoso</item>
+        <item>Luminoso</item>
+        <item>Poco luminoso</item>
+    </string-array>
+
+    <string-array name="estUni">
+        <item>Excelente</item>
+        <item>Muy bueno</item>
+        <item>Bueno</item>
+        <item>Regular</item>
+        <item>A refaccionar</item>
+        <item>En construcción</item>
+        <item>A estrenar</item>
+    </string-array>
+
+    <string-array name="antiguedad">
+        <item>A estrenar</item>
+        <item>1</item>
+        <item>3</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>30</item>
+        <item>50</item>
+        <item>100</item>
+    </string-array>
+
 </resources>

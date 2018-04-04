@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
     private Ubicacion fragUbicacion;
     private Fotos fragFotos;
     private Operacion fragOperacion;
+    private Atributos fragAtributos;
     private String Token;
 
     private JSONObject jsonOferta;
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
 
         mViewPager = (ViewPager) findViewById(R.id.container);
         //Cantidad de pantallas.
-        mViewPager.setOffscreenPageLimit(6);
+        mViewPager.setOffscreenPageLimit(7);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         InstanciarFragmentos();
@@ -257,6 +258,7 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
         fragUbicacion = Ubicacion.newInstance(null, null);
         fragOperacion = Operacion.newInstance(null, null);
         fragFotos = Fotos.newInstance(null,null);
+        fragAtributos = Atributos.newInstance(null,null);
     }
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
@@ -282,9 +284,12 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
                     return fragOperacion;
                 }
                 case 4: {
-                    return fragUbicacion;
+                    return fragAtributos;
                 }
                 case 5: {
+                    return fragUbicacion;
+                }
+                case 6: {
                     return fragFotos;
                 }
                 default:
@@ -294,7 +299,7 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
 
         @Override
         public int getCount() {
-            return 6;
+            return 7;
         }
 
         @Override
@@ -309,8 +314,10 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
                 case 3:
                     return "UBICACION";
                 case 4:
-                    return "OPERACION";
+                    return "ATRIBUTOS";
                 case 5:
+                    return "OPERACION";
+                case 6:
                     return "FOTOS";
             }
             return null;

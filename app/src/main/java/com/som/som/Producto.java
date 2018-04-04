@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -159,10 +160,33 @@ public class Producto extends Fragment {
         void EnviarJSON(JSONObject json);
     }
 
+    public void limpiarAtributos()
+    {
+
+        try {
+            FrameLayout atrDepto = (FrameLayout) getActivity().findViewById(R.id.atrDeptos);
+            FrameLayout atrCasas = (FrameLayout) getActivity().findViewById(R.id.atrCasas);
+            /*FrameLayout atrOficinas = (FrameLayout) getActivity().findViewById(R.id.departamentos);
+            FrameLayout atrLocales = (FrameLayout) getActivity().findViewById(R.id.departamentos);
+            FrameLayout atrTerrenos = (FrameLayout) getActivity().findViewById(R.id.departamentos);*/
+
+            atrDepto.setVisibility(View.INVISIBLE);
+            atrCasas.setVisibility(View.INVISIBLE);
+            /*atrLocales.setVisibility(View.INVISIBLE);
+            atrTerrenos.setVisibility(View.INVISIBLE);
+            atrOficinas.setVisibility(View.INVISIBLE);*/
+        } catch (Exception e) {
+        }
+
+
+    }
+
     public void cargarSubproductos(View vista, int productoSeleccionado)
     {
 
         ArrayAdapter<String> adapterSubProd;
+
+        limpiarAtributos();
 
         //Subtipos de producto, para cada tipo de producto
         final String[] subTipoDepto = new String[]
@@ -209,9 +233,13 @@ public class Producto extends Fragment {
         switch (productoSeleccionado) {
             case 0:
                 adapterSubProd = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, subTipoDepto);
+                //FrameLayout atrDepto = (FrameLayout) vista.findViewById(R.id.departamentos);
+                //atrDepto.setVisibility(View.VISIBLE);
                 break;
             case 1:
                 adapterSubProd = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, subTipoCasa);
+                //FrameLayout artCasa = (FrameLayout) vista.findViewById(R.id.casas);
+                //artCasa.setVisibility(View.VISIBLE);
                 break;
             case 2:
                 adapterSubProd = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, subTipoOficina);
