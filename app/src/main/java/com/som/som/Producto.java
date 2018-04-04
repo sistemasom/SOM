@@ -166,17 +166,16 @@ public class Producto extends Fragment {
         try {
             FrameLayout atrDepto = (FrameLayout) getActivity().findViewById(R.id.atrDeptos);
             FrameLayout atrCasas = (FrameLayout) getActivity().findViewById(R.id.atrCasas);
-            /*FrameLayout atrOficinas = (FrameLayout) getActivity().findViewById(R.id.departamentos);
-            FrameLayout atrLocales = (FrameLayout) getActivity().findViewById(R.id.departamentos);
-            FrameLayout atrTerrenos = (FrameLayout) getActivity().findViewById(R.id.departamentos);*/
+            FrameLayout atrOficinas = (FrameLayout) getActivity().findViewById(R.id.atrOficinas);
+            FrameLayout atrLocales = (FrameLayout) getActivity().findViewById(R.id.atrLocales);
+            FrameLayout atrTerrenos = (FrameLayout) getActivity().findViewById(R.id.atrTerrenos);
 
-            atrDepto.setVisibility(View.INVISIBLE);
-            atrCasas.setVisibility(View.INVISIBLE);
-            /*atrLocales.setVisibility(View.INVISIBLE);
-            atrTerrenos.setVisibility(View.INVISIBLE);
-            atrOficinas.setVisibility(View.INVISIBLE);*/
-        } catch (Exception e) {
-        }
+            atrDepto.setVisibility(View.GONE);
+            atrCasas.setVisibility(View.GONE);
+            atrOficinas.setVisibility(View.GONE);
+            atrLocales.setVisibility(View.GONE);
+            atrTerrenos.setVisibility(View.GONE);
+        } catch (Exception e) {}
 
 
     }
@@ -233,22 +232,38 @@ public class Producto extends Fragment {
         switch (productoSeleccionado) {
             case 0:
                 adapterSubProd = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, subTipoDepto);
-                //FrameLayout atrDepto = (FrameLayout) vista.findViewById(R.id.departamentos);
-                //atrDepto.setVisibility(View.VISIBLE);
+                FrameLayout atrDepto = (FrameLayout) getActivity().findViewById(R.id.atrDeptos);
+                if(atrDepto != null) {
+                    atrDepto.setVisibility(View.VISIBLE);
+                }
                 break;
             case 1:
                 adapterSubProd = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, subTipoCasa);
-                //FrameLayout artCasa = (FrameLayout) vista.findViewById(R.id.casas);
-                //artCasa.setVisibility(View.VISIBLE);
+                FrameLayout atrCasa = (FrameLayout) getActivity().findViewById(R.id.atrCasas);
+                if(atrCasa != null) {
+                    atrCasa.setVisibility(View.VISIBLE);
+                }
                 break;
             case 2:
                 adapterSubProd = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, subTipoOficina);
+                FrameLayout atrOficinas = (FrameLayout) getActivity().findViewById(R.id.atrOficinas);
+                if(atrOficinas != null) {
+                    atrOficinas.setVisibility(View.VISIBLE);
+                }
                 break;
             case 3:
                 adapterSubProd = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, subTipoLocales);
+                FrameLayout atrLocales = (FrameLayout) getActivity().findViewById(R.id.atrLocales);
+                if(atrLocales != null) {
+                    atrLocales.setVisibility(View.VISIBLE);
+                }
                 break;
             case 4:
                 adapterSubProd = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, subTipoTerrenos);
+                FrameLayout atrTerrenos = (FrameLayout) getActivity().findViewById(R.id.atrTerrenos);
+                if(atrTerrenos != null) {
+                    atrTerrenos.setVisibility(View.VISIBLE);
+                }
                 break;
             case 5:
                 adapterSubProd = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, subTipoCocheras);

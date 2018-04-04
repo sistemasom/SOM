@@ -7,6 +7,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string-array name="categorias">
+        <item>-</item>
         <item>Excelente</item>
         <item>Muy Buena</item>
         <item>Buena</item>
@@ -15,6 +16,7 @@
     </string-array>
 
     <string-array name="tipoDepto">
+        <item>-</item>
         <item>Departamento</item>
         <item>Piso</item>
         <item>Semipiso</item>
@@ -25,6 +27,7 @@
     </string-array>
 
     <string-array name="ubPlanta">
+        <item>-</item>
         <item>Frente</item>
         <item>Contrafrente</item>
         <item>Lateral</item>
@@ -41,12 +44,14 @@
     </string-array>
 
     <string-array name="luminosidad">
+        <item>-</item>
         <item>Muy luminoso</item>
         <item>Luminoso</item>
         <item>Poco luminoso</item>
     </string-array>
 
     <string-array name="estUni">
+        <item>-</item>
         <item>Excelente</item>
         <item>Muy bueno</item>
         <item>Bueno</item>
@@ -67,6 +72,12 @@
         <item>30</item>
         <item>50</item>
         <item>100</item>
+    </string-array>
+
+    <string-array name="SiNo">
+        <item>-</item>
+        <item>Si</item>
+        <item>No</item>
     </string-array>
 
 </resources>

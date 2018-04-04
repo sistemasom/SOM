@@ -13,8 +13,6 @@
         android:paddingTop="@dimen/activity_vertical_margin">
 
         <!-- DEPARTAMENTOS -->
-        <!-- DEPARTAMENTOS -->
-
         <FrameLayout
             android:id="@+id/atrDeptos"
             android:layout_width="match_parent"
@@ -210,13 +208,21 @@
                 android:layout_marginTop="490dp"
                 android:orientation="horizontal">
 
-                <Switch
-                    android:id="@+id/amuebladoDepto"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="0.50"
-                    android:textColor="@color/letra"
-                    android:text="Amueblado" />
+                    android:text="Amueblado:" />
+
+                <Spinner
+                    android:id="@+id/cbAmueDepto"
+                    android:background="@drawable/spinner"
+                    android:layout_width="150dp"
+                    android:padding="9dp"
+                    android:entries="@array/SiNo"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"/>
 
             </LinearLayout>
 
@@ -226,13 +232,21 @@
                 android:layout_marginTop="550dp"
                 android:orientation="horizontal">
 
-                <Switch
-                    android:id="@+id/aptoProfDepto"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/letra"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="0.50"
-                    android:text="Apto profesional" />
+                    android:text="Apto profesional:" />
+
+                <Spinner
+                    android:id="@+id/cbAptoProfDepto"
+                    android:background="@drawable/spinner"
+                    android:layout_width="150dp"
+                    android:padding="9dp"
+                    android:entries="@array/SiNo"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"/>
 
             </LinearLayout>
 
@@ -246,14 +260,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.50"
                     android:text="Monto expensas:" />
 
                 <EditText
                     android:id="@+id/etExpDepto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.50"
                     android:padding="9dp"
                     android:digits="0123456789"
                     android:inputType="phone"
@@ -265,6 +279,7 @@
 
         </FrameLayout>
 
+        <!-- CASAS -->
         <FrameLayout
             android:id="@+id/atrCasas"
             android:layout_width="match_parent"
@@ -276,13 +291,21 @@
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
-                <Switch
-                    android:id="@+id/cocheraCasa"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="0.50"
-                    android:textColor="@color/letra"
-                    android:text="Cochera" />
+                    android:text="Cochera:" />
+
+                <Spinner
+                    android:id="@+id/cbCochCasa"
+                    android:background="@drawable/spinner"
+                    android:layout_width="150dp"
+                    android:padding="9dp"
+                    android:entries="@array/SiNo"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"/>
             </LinearLayout>
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -458,13 +481,639 @@
                 android:layout_marginTop="490dp"
                 android:orientation="horizontal">
 
-                <Switch
-                    android:id="@+id/amuebladoCasa"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="0.50"
+                    android:text="Amueblado:" />
+
+                <Spinner
+                    android:id="@+id/cbAmuebCasa"
+                    android:background="@drawable/spinner"
+                    android:layout_width="150dp"
+                    android:padding="9dp"
+                    android:entries="@array/SiNo"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"/>
+
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="550dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.5"
+                    android:text="Monto expensas:" />
+
+                <EditText
+                    android:id="@+id/etExpCasa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:padding="9dp"
+                    android:digits="0123456789"
+                    android:inputType="phone"
                     android:textColor="@color/letra"
-                    android:text="Amueblado" />
+                    android:background="@drawable/border"
+                    android:text="" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <!-- OFICINAS -->
+        <FrameLayout
+            android:id="@+id/atrOficinas"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.50"
+                    android:text="Categoría del edificio:" />
+
+                <Spinner
+                    android:id="@+id/cbCatOfi"
+                    android:background="@drawable/spinner"
+                    android:layout_width="150dp"
+                    android:padding="9dp"
+                    android:entries="@array/categorias"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"/>
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="70dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.50"
+                    android:text="Cantidad de ascensores:" />
+
+                <Spinner
+                    android:id="@+id/cbCantAscOfi"
+                    android:background="@drawable/spinner"
+                    android:layout_width="150dp"
+                    android:padding="9dp"
+                    android:entries="@array/cantCoch"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"/>
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="130dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.50"
+                    android:text="Ubicación en planta:" />
+
+                <Spinner
+                    android:id="@+id/cbUbiPlOfi"
+                    android:background="@drawable/spinner"
+                    android:layout_width="150dp"
+                    android:entries="@array/ubPlanta"
+                    android:padding="9dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"/>
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="190dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.50"
+                    android:text="Cantidad de cocheras:" />
+
+                <Spinner
+                    android:id="@+id/cbCantCocOfi"
+                    android:background="@drawable/spinner"
+                    android:layout_width="150dp"
+                    android:entries="@array/cantCoch"
+                    android:padding="9dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"/>
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="250dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.50"
+                    android:text="Luminosidad:" />
+
+                <Spinner
+                    android:id="@+id/cbLumiOfi"
+                    android:background="@drawable/spinner"
+                    android:layout_width="150dp"
+                    android:padding="9dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/luminosidad"
+                    android:layout_centerHorizontal="true"/>
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="310dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.90"
+                    android:text="Estado de la unidad:" />
+
+                <Spinner
+                    android:id="@+id/cbEstOfi"
+                    android:background="@drawable/spinner"
+                    android:layout_width="150dp"
+                    android:padding="9dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/estUni"
+                    android:layout_centerHorizontal="true"/>
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="370dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.70"
+                    android:text="Cantidad de baños:" />
+
+                <Spinner
+                    android:id="@+id/cbCanBanOfi"
+                    android:background="@drawable/spinner"
+                    android:layout_width="150dp"
+                    android:padding="9dp"
+                    android:entries="@array/cantCoch"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"/>
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="430dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.70"
+                    android:text="Antigüedad:" />
+
+                <Spinner
+                    android:id="@+id/cbAntigOfi"
+                    android:background="@drawable/spinner"
+                    android:layout_width="150dp"
+                    android:padding="9dp"
+                    android:entries="@array/antiguedad"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"/>
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="490dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.5"
+                    android:text="Cantidad divisiones:" />
+
+                <EditText
+                    android:id="@+id/etDivOfi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:padding="9dp"
+                    android:digits="0123456789"
+                    android:inputType="phone"
+                    android:textColor="@color/letra"
+                    android:background="@drawable/border"
+                    android:text="" />
+
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="550dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.50"
+                    android:text="Baños exclusivos:" />
+
+                <Spinner
+                    android:id="@+id/cbBanExcOfi"
+                    android:background="@drawable/spinner"
+                    android:layout_width="150dp"
+                    android:padding="9dp"
+                    android:entries="@array/SiNo"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"/>
+
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="610dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.50"
+                    android:text="Office:" />
+
+                <Spinner
+                    android:id="@+id/cbOfficeOfi"
+                    android:background="@drawable/spinner"
+                    android:layout_width="150dp"
+                    android:padding="9dp"
+                    android:entries="@array/SiNo"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"/>
+
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="670dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.50"
+                    android:text="Amueblado:" />
+
+                <Spinner
+                    android:id="@+id/cbAmuebOfi"
+                    android:background="@drawable/spinner"
+                    android:layout_width="150dp"
+                    android:padding="9dp"
+                    android:entries="@array/SiNo"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"/>
+
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="730dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.50"
+                    android:text="Con equipamiento:" />
+
+                <Spinner
+                    android:id="@+id/cbEquipOfi"
+                    android:background="@drawable/spinner"
+                    android:layout_width="150dp"
+                    android:padding="9dp"
+                    android:entries="@array/SiNo"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"/>
+
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="790dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.5"
+                    android:text="Monto expensas:" />
+
+                <EditText
+                    android:id="@+id/etExpOfi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:padding="9dp"
+                    android:digits="0123456789"
+                    android:inputType="phone"
+                    android:textColor="@color/letra"
+                    android:background="@drawable/border"
+                    android:text="" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <!-- LOCALES -->
+        <FrameLayout
+            android:id="@+id/atrLocales"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.50"
+                    android:text="Luminosidad:" />
+
+                <Spinner
+                    android:id="@+id/cbLumLoc"
+                    android:background="@drawable/spinner"
+                    android:layout_width="150dp"
+                    android:padding="9dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/luminosidad"
+                    android:layout_centerHorizontal="true"/>
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="70dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.90"
+                    android:text="Estado de la unidad:" />
+
+                <Spinner
+                    android:id="@+id/cbEstLoc"
+                    android:background="@drawable/spinner"
+                    android:layout_width="150dp"
+                    android:padding="9dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/estUni"
+                    android:layout_centerHorizontal="true"/>
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="130dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.70"
+                    android:text="Cantidad de baños:" />
+
+                <Spinner
+                    android:id="@+id/cbCanBanLoc"
+                    android:background="@drawable/spinner"
+                    android:layout_width="150dp"
+                    android:padding="9dp"
+                    android:entries="@array/cantCoch"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"/>
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="190dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.70"
+                    android:text="Antigüedad:" />
+
+                <Spinner
+                    android:id="@+id/cbAntigLoc"
+                    android:background="@drawable/spinner"
+                    android:layout_width="150dp"
+                    android:padding="9dp"
+                    android:entries="@array/antiguedad"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"/>
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="250dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.50"
+                    android:text="Office:" />
+
+                <Spinner
+                    android:id="@+id/cbOfficeLoc"
+                    android:background="@drawable/spinner"
+                    android:layout_width="150dp"
+                    android:padding="9dp"
+                    android:entries="@array/SiNo"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"/>
+
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="310dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.50"
+                    android:text="Categoría:" />
+
+                <Spinner
+                    android:id="@+id/cbCatLoc"
+                    android:background="@drawable/spinner"
+                    android:layout_width="150dp"
+                    android:padding="9dp"
+                    android:entries="@array/categorias"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"/>
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="370dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.70"
+                    android:text="Ancho P.B.:" />
+
+                <EditText
+                    android:id="@+id/etAnchoPBLoc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:padding="9dp"
+                    android:digits="0123456789"
+                    android:inputType="phone"
+                    android:textColor="@color/letra"
+                    android:background="@drawable/border"
+                    android:text="" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="430dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.70"
+                    android:text="Fondo P.B.:" />
+
+                <EditText
+                    android:id="@+id/etFondoPBLoc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:padding="9dp"
+                    android:digits="0123456789"
+                    android:inputType="phone"
+                    android:textColor="@color/letra"
+                    android:background="@drawable/border"
+                    android:text="" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="490dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.70"
+                    android:text="Ancho vidriera:" />
+
+                <EditText
+                    android:id="@+id/etAnchVidLoc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:padding="9dp"
+                    android:digits="0123456789"
+                    android:inputType="phone"
+                    android:textColor="@color/letra"
+                    android:background="@drawable/border"
+                    android:text="" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="550dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.50"
+                    android:text="Lote propio:" />
+
+                <Spinner
+                    android:id="@+id/cbLoteLoc"
+                    android:background="@drawable/spinner"
+                    android:layout_width="150dp"
+                    android:padding="9dp"
+                    android:entries="@array/SiNo"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"/>
 
             </LinearLayout>
 
@@ -482,7 +1131,216 @@
                     android:text="Monto expensas:" />
 
                 <EditText
-                    android:id="@+id/etExpCasa"
+                    android:id="@+id/etExpLoc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:padding="9dp"
+                    android:digits="0123456789"
+                    android:inputType="phone"
+                    android:textColor="@color/letra"
+                    android:background="@drawable/border"
+                    android:text="" />
+
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="670dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.50"
+                    android:text="Apto todo destino:" />
+
+                <Spinner
+                    android:id="@+id/cbAptoTodoDest"
+                    android:background="@drawable/spinner"
+                    android:layout_width="150dp"
+                    android:padding="9dp"
+                    android:entries="@array/SiNo"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"/>
+
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="730dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.50"
+                    android:text="Apto gastronomía:" />
+
+                <Spinner
+                    android:id="@+id/cbAptoGastr"
+                    android:background="@drawable/spinner"
+                    android:layout_width="150dp"
+                    android:padding="9dp"
+                    android:entries="@array/SiNo"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"/>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <!-- TERRENOS -->
+        <FrameLayout
+            android:id="@+id/atrTerrenos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.5"
+                    android:text="Frente: " />
+
+                <EditText
+                    android:id="@+id/etFrenteTer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:padding="9dp"
+                    android:digits="0123456789"
+                    android:inputType="phone"
+                    android:textColor="@color/letra"
+                    android:background="@drawable/border"
+                    android:text="" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="70dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.5"
+                    android:text="Largo:" />
+
+                <EditText
+                    android:id="@+id/etLargoTer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:padding="9dp"
+                    android:digits="0123456789"
+                    android:inputType="phone"
+                    android:textColor="@color/letra"
+                    android:background="@drawable/border"
+                    android:text="" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="130dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.5"
+                    android:text="Hay demolición:" />
+
+                <Spinner
+                    android:id="@+id/cbDemolicion"
+                    android:background="@drawable/spinner"
+                    android:layout_width="150dp"
+                    android:padding="9dp"
+                    android:entries="@array/SiNo"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"/>
+
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="190dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.5"
+                    android:text="Sup. edificable:" />
+
+                <EditText
+                    android:id="@+id/etSupEdTer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:padding="9dp"
+                    android:digits="0123456789"
+                    android:inputType="phone"
+                    android:textColor="@color/letra"
+                    android:background="@drawable/border"
+                    android:text="" />
+
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="250dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:layout_marginLeft="5dp"
+                    android:text="Planos aprobados:" />
+
+                <Spinner
+                    android:id="@+id/cbPlaApro"
+                    android:background="@drawable/spinner"
+                    android:layout_width="150dp"
+                    android:padding="9dp"
+                    android:entries="@array/SiNo"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"/>
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="310dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.5"
+                    android:text="FOT:" />
+
+                <EditText
+                    android:id="@+id/etFot"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
