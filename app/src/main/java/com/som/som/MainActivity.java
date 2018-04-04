@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
                     public void onFinish() {
                         jsonOferta = fragProducto.obtenerValores();
                         fragUbicacion.obtenerValores(jsonOferta);
+                        fragAtributos.obtenerValores(jsonOferta);
                         fragOperacion.obtenerValores(jsonOferta);
                         fragFotos.obtenerValores(jsonOferta);
 

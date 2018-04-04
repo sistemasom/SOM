@@ -93,29 +93,21 @@ public class Producto extends Fragment {
 
         JSONObject json = new JSONObject();
 
-        Spinner spProducto = (Spinner) vistaProducto.findViewById(R.id.cbTipoProd);
-        String prodSel = spProducto.getSelectedItem().toString();
+        String prodSel = ((Spinner) vistaProducto.findViewById(R.id.cbTipoProd)).getSelectedItem().toString();
 
-        Spinner spSubProducto = (Spinner) vistaProducto.findViewById(R.id.cbSubTipoProd);
-        String subProdSel = spSubProducto.getSelectedItem().toString();
+        String subProdSel = ((Spinner) vistaProducto.findViewById(R.id.cbSubTipoProd)).getSelectedItem().toString();
 
-        EditText txtSupCub = (EditText) vistaProducto.findViewById(R.id.etSupCub);
-        String supCub = txtSupCub.getText().toString();
+        String supCub = ((EditText) vistaProducto.findViewById(R.id.etSupCub)).getText().toString();
 
-        EditText txtSupTot = (EditText) vistaProducto.findViewById(R.id.etSupTot);
-        String supTot = txtSupTot.getText().toString();
+        String supTot = ((EditText) vistaProducto.findViewById(R.id.etSupTot)).getText().toString();
 
-        RadioGroup radio = (RadioGroup) vistaProducto.findViewById(R.id.grupoRbSup);
-        int selectedId = radio.getCheckedRadioButtonId();
+        int selectedId = ((RadioGroup) vistaProducto.findViewById(R.id.grupoRbSup)).getCheckedRadioButtonId();
 
-        RadioButton boton = (RadioButton) vistaProducto.findViewById(selectedId);
-        String valorRB = boton.getText().toString();
+        String valorRB = ((RadioButton) vistaProducto.findViewById(selectedId)).getText().toString();
 
-        EditText txtDestacable = (EditText) vistaProducto.findViewById(R.id.etDestacable);
-        String destacable = txtDestacable.getText().toString();
+        String destacable = ((EditText) vistaProducto.findViewById(R.id.etDestacable)).getText().toString();
 
-        TextView txtCodigo = (TextView) vistaProducto.findViewById(R.id.codigoOferta);
-        String cod = txtCodigo.getText().toString();
+        String cod = ((TextView) vistaProducto.findViewById(R.id.codigoOferta)).getText().toString();
 
         try {
             json.put("Codigo",cod);

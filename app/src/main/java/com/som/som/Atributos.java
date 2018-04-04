@@ -7,7 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Atributos extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -31,6 +38,92 @@ public class Atributos extends Fragment {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    public JSONObject obtenerValores(JSONObject json) {
+
+        String producto = ((Spinner) getActivity().findViewById(R.id.cbTipoProd)).getSelectedItem().toString();
+
+        /* DEPARTAMENTOS */
+
+        if(producto.toUpperCase().contains("DEPART"))
+        {
+            String catDep = ((Spinner) vistaAtributos.findViewById(R.id.cbCategoria)).getSelectedItem().toString();
+
+            String tipUniDep = ((Spinner) vistaAtributos.findViewById(R.id.cbTipoUnidad)).getSelectedItem().toString();
+
+            String ubPlanta = ((Spinner) vistaAtributos.findViewById(R.id.cbUbiPlanta)).getSelectedItem().toString();
+
+            String cantCocDep = ((Spinner) vistaAtributos.findViewById(R.id.cbCantCoch)).getSelectedItem().toString();
+
+            String lumDep = ((Spinner) vistaAtributos.findViewById(R.id.cbLuminosidad)).getSelectedItem().toString();
+
+            String estDep = ((Spinner) vistaAtributos.findViewById(R.id.cbEstado)).getSelectedItem().toString();
+
+            String canBanDept = ((Spinner) vistaAtributos.findViewById(R.id.cbCanBan)).getSelectedItem().toString();
+
+            String antDept = ((Spinner) vistaAtributos.findViewById(R.id.cbAntigDepto)).getSelectedItem().toString();
+
+            String amueDept = ((Spinner) vistaAtributos.findViewById(R.id.cbAmueDepto)).getSelectedItem().toString();
+
+            String aptoProfDep = ((Spinner) vistaAtributos.findViewById(R.id.cbAptoProfDepto)).getSelectedItem().toString();
+
+            String expDep = ((EditText) vistaAtributos.findViewById(R.id.etExpDepto)).getText().toString();
+
+            try {
+                json.put("Categoria",catDep);
+                json.put("TipoUnidad",tipUniDep);
+                json.put("UbicacionPlanta",ubPlanta);
+                json.put("Cocheras",cantCocDep);
+                json.put("Luminosidad",lumDep);
+                json.put("Estado",estDep);
+                json.put("CantidadBanos",canBanDept);
+                json.put("Antiguedad",antDept);
+                json.put("Amueblado",amueDept);
+                json.put("AptoProfesional",aptoProfDep);
+                json.put("Expensas",expDep);
+            } catch (JSONException e) {e.printStackTrace();}
+        }
+
+        /* CASAS */
+
+        if(producto.toUpperCase().contains("CASA"))
+        {
+            String cochera = ((Spinner) vistaAtributos.findViewById(R.id.cbCochCasa)).getSelectedItem().toString();
+
+            String cantBanoCasa = ((Spinner) vistaAtributos.findViewById(R.id.cbCantBanosCasa)).getSelectedItem().toString();
+
+            String cantDorm = ((Spinner) vistaAtributos.findViewById(R.id.cbCantDorCasa)).getSelectedItem().toString();
+
+            String cbCantPlanCasa = ((Spinner) vistaAtributos.findViewById(R.id.cbCantPlanCasa)).getSelectedItem().toString();
+
+            String cbAntCasa = ((Spinner) vistaAtributos.findViewById(R.id.cbAntCasa)).getSelectedItem().toString();
+
+            String cbEstCasa = ((Spinner) vistaAtributos.findViewById(R.id.cbEstCasa)).getSelectedItem().toString();
+
+            String etFrenteCasa = ((EditText) vistaAtributos.findViewById(R.id.etFrenteCasa)).getText().toString();
+
+            String etLargoCasa = ((EditText) vistaAtributos.findViewById(R.id.etLargoCasa)).getText().toString();
+
+            String etExpCasa = ((EditText) vistaAtributos.findViewById(R.id.etExpCasa)).getText().toString();
+
+            String cbAmuebCasa = ((Spinner) vistaAtributos.findViewById(R.id.cbAmuebCasa)).getSelectedItem().toString();
+
+            try {
+                json.put("Cocheras",cochera);
+                json.put("CantidadDormitorios",cantDorm);
+                json.put("CantidadPlantas",cbCantPlanCasa);
+                json.put("Antiguedad",cbAntCasa);
+                json.put("Estado",cbEstCasa);
+                json.put("Frente",etFrenteCasa);
+                json.put("CantidadBanos",cantBanoCasa);
+                json.put("Largo",etLargoCasa);
+                json.put("Amueblado",cbAmuebCasa);
+                json.put("Expensas",etExpCasa);
+            } catch (JSONException e) {e.printStackTrace();}
+        }
+
+        return json;
     }
 
     @Override
