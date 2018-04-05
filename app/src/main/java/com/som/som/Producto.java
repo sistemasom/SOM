@@ -128,17 +128,13 @@ public class Producto extends Fragment {
     {
         boolean valido = false;
 
-        Spinner spProducto = (Spinner) vistaProducto.findViewById(R.id.cbTipoProd);
-        String prodSel = spProducto.getSelectedItem().toString();
+        String prodSel = ((Spinner) vistaProducto.findViewById(R.id.cbTipoProd)).getSelectedItem().toString();
 
-        Spinner spSubProducto = (Spinner) vistaProducto.findViewById(R.id.cbSubTipoProd);
-        String subProdSel = spSubProducto.getSelectedItem().toString();
+        String subProdSel = ((Spinner) vistaProducto.findViewById(R.id.cbSubTipoProd)).getSelectedItem().toString();
 
-        EditText txtSupCub = (EditText) vistaProducto.findViewById(R.id.etSupCub);
-        String supCub = txtSupCub.getText().toString();
+        String supCub = ((EditText) vistaProducto.findViewById(R.id.etSupCub)).getText().toString();
 
-        EditText txtSupTot = (EditText) vistaProducto.findViewById(R.id.etSupTot);
-        String supTot = txtSupTot.getText().toString();
+        String supTot = ((EditText) vistaProducto.findViewById(R.id.etSupTot)).getText().toString();
 
         if(!prodSel.isEmpty() && !subProdSel.isEmpty() && !supCub.isEmpty() && !supTot.isEmpty())
         {
