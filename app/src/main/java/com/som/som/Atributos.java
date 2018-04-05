@@ -123,6 +123,129 @@ public class Atributos extends Fragment {
             } catch (JSONException e) {e.printStackTrace();}
         }
 
+        /* OFICINAS */
+
+        if(producto.toUpperCase().contains("OFICINA"))
+        {
+            String cbCatOfi = ((Spinner) vistaAtributos.findViewById(R.id.cbCatOfi)).getSelectedItem().toString();
+
+            String cbCantAscOfi = ((Spinner) vistaAtributos.findViewById(R.id.cbCantAscOfi)).getSelectedItem().toString();
+
+            String cbUbiPlOfi = ((Spinner) vistaAtributos.findViewById(R.id.cbUbiPlOfi)).getSelectedItem().toString();
+
+            String cbCantCocOfi = ((Spinner) vistaAtributos.findViewById(R.id.cbCantCocOfi)).getSelectedItem().toString();
+
+            String cbLumiOfi = ((Spinner) vistaAtributos.findViewById(R.id.cbLumiOfi)).getSelectedItem().toString();
+
+            String cbEstOfi = ((Spinner) vistaAtributos.findViewById(R.id.cbEstOfi)).getSelectedItem().toString();
+
+            String cbCanBanOfi = ((Spinner) vistaAtributos.findViewById(R.id.cbCanBanOfi)).getSelectedItem().toString();
+
+            String cbAntigOfi = ((Spinner) vistaAtributos.findViewById(R.id.cbAntigOfi)).getSelectedItem().toString();
+
+            String etDivOfi = ((EditText) vistaAtributos.findViewById(R.id.etDivOfi)).getText().toString();
+
+            String cbBanExcOfi = ((Spinner) vistaAtributos.findViewById(R.id.cbBanExcOfi)).getSelectedItem().toString();
+
+            String cbOfficeOfi = ((Spinner) vistaAtributos.findViewById(R.id.cbOfficeOfi)).getSelectedItem().toString();
+
+            String cbAmuebOfi = ((Spinner) vistaAtributos.findViewById(R.id.cbAmuebOfi)).getSelectedItem().toString();
+
+            String cbEquipOfi = ((Spinner) vistaAtributos.findViewById(R.id.cbEquipOfi)).getSelectedItem().toString();
+
+            String etExpOfi = ((EditText) vistaAtributos.findViewById(R.id.etExpOfi)).getText().toString();
+
+            try {
+                json.put("Categoria",cbCatOfi);
+                json.put("CantidadAscensores",cbCantAscOfi);
+                json.put("UbicacionPlanta",cbUbiPlOfi);
+                json.put("Cocheras",cbCantCocOfi);
+                json.put("Luminosidad",cbLumiOfi);
+                json.put("Estado",cbEstOfi);
+                json.put("CantidadBanos",cbCanBanOfi);
+                json.put("Antiguedad",cbAntigOfi);
+                json.put("Divisiones",etDivOfi);
+                json.put("CantidadBanos",cbBanExcOfi);
+                json.put("Office",cbOfficeOfi);
+                json.put("Amueblado",cbAmuebOfi);
+                json.put("Equipamiento",cbEquipOfi);
+                json.put("Expensas",etExpOfi);
+            } catch (JSONException e) {e.printStackTrace();}
+        }
+
+        /* LOCALES */
+
+        if(producto.toUpperCase().contains("LOCAL"))
+        {
+            String cbLumLoc = ((Spinner) vistaAtributos.findViewById(R.id.cbLumLoc)).getSelectedItem().toString();
+
+            String cbEstLoc = ((Spinner) vistaAtributos.findViewById(R.id.cbEstLoc)).getSelectedItem().toString();
+
+            String cbCanBanLoc = ((Spinner) vistaAtributos.findViewById(R.id.cbCanBanLoc)).getSelectedItem().toString();
+
+            String cbAntigLoc = ((Spinner) vistaAtributos.findViewById(R.id.cbAntigLoc)).getSelectedItem().toString();
+
+            String cbOfficeLoc = ((Spinner) vistaAtributos.findViewById(R.id.cbOfficeLoc)).getSelectedItem().toString();
+
+            String cbCatLoc = ((Spinner) vistaAtributos.findViewById(R.id.cbCatLoc)).getSelectedItem().toString();
+
+            String cbLoteLoc = ((Spinner) vistaAtributos.findViewById(R.id.cbLoteLoc)).getSelectedItem().toString();
+
+            String cbAptoTodoDest = ((Spinner) vistaAtributos.findViewById(R.id.cbAptoTodoDest)).getSelectedItem().toString();
+
+            String cbAptoGastr = ((Spinner) vistaAtributos.findViewById(R.id.cbAptoGastr)).getSelectedItem().toString();
+
+            String etAnchoPBLoc = ((EditText) vistaAtributos.findViewById(R.id.etAnchoPBLoc)).getText().toString();
+
+            String etFondoPBLoc = ((EditText) vistaAtributos.findViewById(R.id.etFondoPBLoc)).getText().toString();
+
+            String etAnchVidLoc = ((EditText) vistaAtributos.findViewById(R.id.etAnchVidLoc)).getText().toString();
+
+            String etExpLoc = ((EditText) vistaAtributos.findViewById(R.id.etExpLoc)).getText().toString();
+
+            try {
+                json.put("Luminosidad",cbLumLoc);
+                json.put("Estado",cbEstLoc);
+                json.put("CantidadBanos",cbCanBanLoc);
+                json.put("Antiguedad",cbAntigLoc);
+                json.put("Office",cbOfficeLoc);
+                json.put("Categoria",cbCatLoc);
+                json.put("LotePropio",cbLoteLoc);
+                json.put("TodoDestino",cbAptoTodoDest);
+                json.put("Gastronomia",cbAptoGastr);
+                json.put("AnchoPB",etAnchoPBLoc);
+                json.put("FondoPB",etFondoPBLoc);
+                json.put("AnchoVidriera",etAnchVidLoc);
+                json.put("Expensas",etExpLoc);
+            } catch (JSONException e) {e.printStackTrace();}
+        }
+
+        /* TERRENOS */
+
+        if(producto.toUpperCase().contains("TERRENO"))
+        {
+            String cbDemolicion = ((Spinner) vistaAtributos.findViewById(R.id.cbDemolicion)).getSelectedItem().toString();
+
+            String cbPlaApro = ((Spinner) vistaAtributos.findViewById(R.id.cbPlaApro)).getSelectedItem().toString();
+
+            String etFrenteTer = ((EditText) vistaAtributos.findViewById(R.id.etFrenteTer)).getText().toString();
+
+            String etLargoTer = ((EditText) vistaAtributos.findViewById(R.id.etLargoTer)).getText().toString();
+
+            String etSupEdTer = ((EditText) vistaAtributos.findViewById(R.id.etSupEdTer)).getText().toString();
+
+            String etFot = ((EditText) vistaAtributos.findViewById(R.id.etFot)).getText().toString();
+
+            try {
+                json.put("Demolicion",cbDemolicion);
+                json.put("PlanosAprobados",cbPlaApro);
+                json.put("Frente",etFrenteTer);
+                json.put("Largo",etLargoTer);
+                json.put("SuperficieEdificable",etSupEdTer);
+                json.put("FOT",etFot);
+            } catch (JSONException e) {e.printStackTrace();}
+        }
+
         return json;
     }
 

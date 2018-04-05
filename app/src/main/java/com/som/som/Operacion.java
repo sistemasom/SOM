@@ -138,8 +138,7 @@ public class Operacion extends Fragment {
     {
         boolean valido = false;
 
-        EditText txtPrecio = (EditText) vistaOperacion.findViewById(R.id.etPrecio);
-        String precio = txtPrecio.getText().toString();
+        String precio = ((EditText) vistaOperacion.findViewById(R.id.etPrecio)).getText().toString();
 
         if(!precio.isEmpty()) {
             valido = true;
@@ -150,17 +149,13 @@ public class Operacion extends Fragment {
 
     public void obtenerValores(JSONObject json) {
 
-        Spinner spOperacion = (Spinner) vistaOperacion.findViewById(R.id.cbOperacion);
-        String operacionSel = spOperacion.getSelectedItem().toString();
+        String operacionSel = ((Spinner) vistaOperacion.findViewById(R.id.cbOperacion)).getSelectedItem().toString();
 
-        Spinner spSubOperacion = (Spinner) vistaOperacion.findViewById(R.id.cbSubOperacion);
-        String subOperacionSel = spSubOperacion.getSelectedItem().toString();
+        String subOperacionSel = ((Spinner) vistaOperacion.findViewById(R.id.cbSubOperacion)).getSelectedItem().toString();
 
-        Spinner spMoneda = (Spinner) vistaOperacion.findViewById(R.id.cbMoneda);
-        String moneda = spMoneda.getSelectedItem().toString();
+        String moneda = ((Spinner) vistaOperacion.findViewById(R.id.cbMoneda)).getSelectedItem().toString();
 
-        EditText txtPrecio = (EditText) vistaOperacion.findViewById(R.id.etPrecio);
-        String precio = txtPrecio.getText().toString();
+        String precio = ((EditText) vistaOperacion.findViewById(R.id.etPrecio)).getText().toString();
 
         Switch reserv = (Switch) vistaOperacion.findViewById(R.id.reservada);
         String reservada = "No";

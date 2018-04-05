@@ -16,6 +16,8 @@
         <FrameLayout
             android:id="@+id/atrDeptos"
             android:layout_width="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:layout_height="match_parent">
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -283,6 +285,8 @@
         <FrameLayout
             android:id="@+id/atrCasas"
             android:layout_width="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:layout_height="match_parent">
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -295,17 +299,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_weight="0.50"
-                    android:text="Cochera:" />
+                    android:layout_weight="0.5"
+                    android:text="Monto expensas:" />
 
-                <Spinner
-                    android:id="@+id/cbCochCasa"
-                    android:background="@drawable/spinner"
-                    android:layout_width="150dp"
-                    android:padding="9dp"
-                    android:entries="@array/SiNo"
+                <EditText
+                    android:id="@+id/etExpCasa"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"/>
+                    android:layout_weight="0.5"
+                    android:padding="9dp"
+                    android:digits="0123456789"
+                    android:inputType="phone"
+                    android:textColor="@color/letra"
+                    android:background="@drawable/border"
+                    android:text="" />
+
             </LinearLayout>
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -509,20 +517,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_weight="0.5"
-                    android:text="Monto expensas:" />
+                    android:layout_weight="0.50"
+                    android:text="Cochera:" />
 
-                <EditText
-                    android:id="@+id/etExpCasa"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
+                <Spinner
+                    android:id="@+id/cbCochCasa"
+                    android:background="@drawable/spinner"
+                    android:layout_width="150dp"
                     android:padding="9dp"
-                    android:digits="0123456789"
-                    android:inputType="phone"
-                    android:textColor="@color/letra"
-                    android:background="@drawable/border"
-                    android:text="" />
+                    android:entries="@array/SiNo"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"/>
 
             </LinearLayout>
 
@@ -532,6 +537,8 @@
         <FrameLayout
             android:id="@+id/atrOficinas"
             android:layout_width="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:layout_height="match_parent">
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -544,17 +551,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_weight="0.50"
-                    android:text="Categoría del edificio:" />
+                    android:layout_weight="0.5"
+                    android:text="Monto expensas:" />
 
-                <Spinner
-                    android:id="@+id/cbCatOfi"
-                    android:background="@drawable/spinner"
-                    android:layout_width="150dp"
-                    android:padding="9dp"
-                    android:entries="@array/categorias"
+                <EditText
+                    android:id="@+id/etExpOfi"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"/>
+                    android:layout_weight="0.5"
+                    android:padding="9dp"
+                    android:digits="0123456789"
+                    android:inputType="phone"
+                    android:textColor="@color/letra"
+                    android:background="@drawable/border"
+                    android:text="" />
+
             </LinearLayout>
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -851,20 +862,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_weight="0.5"
-                    android:text="Monto expensas:" />
+                    android:layout_weight="0.50"
+                    android:text="Categoría del edificio:" />
 
-                <EditText
-                    android:id="@+id/etExpOfi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
+                <Spinner
+                    android:id="@+id/cbCatOfi"
+                    android:background="@drawable/spinner"
+                    android:layout_width="150dp"
                     android:padding="9dp"
-                    android:digits="0123456789"
-                    android:inputType="phone"
-                    android:textColor="@color/letra"
-                    android:background="@drawable/border"
-                    android:text="" />
+                    android:entries="@array/categorias"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"/>
 
             </LinearLayout>
 
@@ -873,6 +881,8 @@
         <!-- LOCALES -->
         <FrameLayout
             android:id="@+id/atrLocales"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -1197,6 +1207,8 @@
         <!-- TERRENOS -->
         <FrameLayout
             android:id="@+id/atrTerrenos"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
