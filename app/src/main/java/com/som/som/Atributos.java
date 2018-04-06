@@ -165,7 +165,7 @@ public class Atributos extends Fragment {
                 json.put("CantidadBanos",cbCanBanOfi);
                 json.put("Antiguedad",cbAntigOfi);
                 json.put("Divisiones",etDivOfi);
-                json.put("CantidadBanos",cbBanExcOfi);
+                json.put("BañosExclusivos",cbBanExcOfi);
                 json.put("Office",cbOfficeOfi);
                 json.put("Amueblado",cbAmuebOfi);
                 json.put("Equipamiento",cbEquipOfi);

@@ -86,6 +86,7 @@ public class Inventario extends Fragment {
         String longitud;
         String Pais;
         String reservada;
+        String atributos;
     }
 
     ArrayList<itemInventario> propiedades = new ArrayList<itemInventario>();
@@ -263,6 +264,7 @@ public class Inventario extends Fragment {
             propie.Ref = resultado.getPropertyAsString(20).replace("anyType{}","");
             propie.Pais = resultado.getPropertyAsString(21).replace("anyType{}","");
             propie.reservada = resultado.getPropertyAsString(22).replace("anyType{}","");
+            propie.atributos = resultado.getPropertyAsString(23).replace("anyType{}","");
 
             TextView codigo = (TextView) getActivity().findViewById(R.id.codigoOferta);
             codigo.setText(propie.codCompleto);
@@ -283,30 +285,23 @@ public class Inventario extends Fragment {
             EditText ref = (EditText) getActivity().findViewById(R.id.etEntreCalles);
             ref.setText(propie.Ref);
 
-            TextView provincia = (TextView) getActivity().findViewById(R.id.etProvincia);
-            provincia.setText(propie.Provincia);
+            ((TextView) getActivity().findViewById(R.id.etProvincia)).setText(propie.Provincia);
 
-            Spinner operacion = (Spinner) getActivity().findViewById(R.id.cbOperacion);
-            operacion.setSelection(obtenerElementosSpinner(operacion,propie.Operacion),true);
+            obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbOperacion)),propie.Operacion);
 
-            Spinner suboperacion = (Spinner) getActivity().findViewById(R.id.cbSubOperacion);
-            suboperacion.setSelection(obtenerElementosSpinner(suboperacion,propie.SubtipoOp),true);
+            obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbSubOperacion)),propie.SubtipoOp);
 
-            Spinner moneda = (Spinner) getActivity().findViewById(R.id.cbMoneda);
-            moneda.setSelection(obtenerElementosSpinner(moneda,propie.Moneda),true);
+            obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbMoneda)),propie.Moneda);
 
-            Spinner piso = (Spinner) getActivity().findViewById(R.id.cbPiso);
-            piso.setSelection(obtenerElementosSpinner(piso,propie.Piso),true);
+            obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbPiso)),propie.Piso);
 
-            Spinner unidad = (Spinner) getActivity().findViewById(R.id.cbUnidad);
-            unidad.setSelection(obtenerElementosSpinner(unidad,propie.Unidad),true);
+            obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbUnidad)),propie.Unidad);
+
+            obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbSubTipoProd)),propie.SubtipoProd);
 
             final Spinner producto = (Spinner) getActivity().findViewById(R.id.cbTipoProd);
-            producto.setSelection(obtenerElementosSpinner(producto,propie.tipoProd),true);
+            obtenerElementosSpinner(producto,propie.tipoProd);
             producto.setEnabled(false);
-
-            final Spinner subprod = (Spinner) getActivity().findViewById(R.id.cbSubTipoProd);
-            subprod.setSelection(obtenerElementosSpinner(subprod,propie.SubtipoProd),true);
 
             RadioButton supm2 = (RadioButton) getActivity().findViewById(R.id.rbM2);
             supm2.setChecked(true);
@@ -345,24 +340,329 @@ public class Inventario extends Fragment {
                 String url = "http://sistema.som.com.ar/MapaApp.html?latitud=" + propie.latitud + "&longitud=" + propie.longitud;
                 mapa.loadUrl(url);
             }
+
+            //Departamentos
+            if(producto.getSelectedItem().toString().toUpperCase().contains("DEPART"))
+            {
+                obtenerAtributos(propie.atributos,"DEPART");
+            }
+
+            //Casas
+            if(producto.getSelectedItem().toString().toUpperCase().contains("CASA"))
+            {
+                obtenerAtributos(propie.atributos,"CASA");
+            }
+            //Oficinas
+            if(producto.getSelectedItem().toString().toUpperCase().contains("OFICINA"))
+            {
+                obtenerAtributos(propie.atributos,"OFICINA");
+            }
+            //Locales
+            if(producto.getSelectedItem().toString().toUpperCase().contains("LOCAL"))
+            {
+                obtenerAtributos(propie.atributos,"LOCAL");
+            }
+            //Locales
+            if(producto.getSelectedItem().toString().toUpperCase().contains("TERRENO"))
+            {
+                obtenerAtributos(propie.atributos,"TERRENO");
+            }
         }
         catch (Exception e) {
             Toast.makeText(getActivity(),"No es posible conectar con el servidor. Compruebe su conexión a internet.", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public int obtenerElementosSpinner(Spinner spinner, String cadena) {
+    public void obtenerAtributos(String atr, String tipo)
+    {
+        String[] atributos = atr.split(";");
+
+        if(atributos != null) {
+            for (String atrib : atributos) {
+
+                //Departamentos
+                if (tipo.contains("DEPART")) {
+                    String[] iAtr = atrib.split(":");
+
+                    if (iAtr[0].contains("Categoria")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbCategoria)),iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("TipoUnidad")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbTipoUnidad)),iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("UbicacionPlanta")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbUbiPlanta)),iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Cocheras")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbCantCoch)),iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Luminosidad")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbLuminosidad)),iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Estado")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbEstado)),iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("CantidadBanos")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbCanBan)),iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Antiguedad")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbAntigDepto)),iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Amueblado")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbAmueDepto)),iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("AptoProfesional")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbAptoProfDepto)),iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Expensas")) {
+                        ((EditText) getActivity().findViewById(R.id.etExpDepto)).setText(iAtr[1]);
+                    }
+                }
+
+                //Casas
+                if (tipo.contains("CASA")) {
+                    String[] iAtr = atrib.split(":");
+
+                    if (iAtr[0].contains("Cocheras")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbCochCasa)),iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("CantidadDormitorios")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbCantDorCasa)),iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("CantidadPlantas")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbCantPlanCasa)),iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Antiguedad")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbAntCasa)),iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Expensas")) {
+                        ((EditText) getActivity().findViewById(R.id.etExpCasa)).setText(iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Estado")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbEstCasa)),iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Frente")) {
+                        ((EditText) getActivity().findViewById(R.id.etFrenteCasa)).setText(iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("CantidadBanos")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbCantBanosCasa)),iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Largo")) {
+                        ((EditText) getActivity().findViewById(R.id.etLargoCasa)).setText(iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Amueblado")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbAmuebCasa)),iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Expensas")) {
+                        ((EditText) getActivity().findViewById(R.id.etExpCasa)).setText(iAtr[1]);
+                    }
+                }
+
+                //Oficina
+                if (tipo.contains("OFICI")) {
+                    String[] iAtr = atrib.split(":");
+
+                    if (iAtr[0].contains("Categoria")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbCatOfi)), iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("CantidadAscensores")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbCantAscOfi)), iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("UbicacionPlanta")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbUbiPlOfi)), iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Cocheras")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbCantCocOfi)), iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Luminosidad")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbLumiOfi)), iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Estado")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbEstOfi)), iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("CantidadBanos")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbCanBanOfi)), iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Antiguedad")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbAntigOfi)), iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("BañosExclusivos")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbBanExcOfi)), iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Divisiones")) {
+                        ((EditText) getActivity().findViewById(R.id.etDivOfi)).setText(iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Office")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbOfficeOfi)), iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Amueblado")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbAmuebOfi)), iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Equipamiento")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbEquipOfi)), iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Expensas")) {
+                        ((EditText) getActivity().findViewById(R.id.etExpOfi)).setText(iAtr[1]);
+                    }
+                }
+
+                //Locales
+                if (tipo.contains("LOCAL")) {
+                    String[] iAtr = atrib.split(":");
+
+                    if (iAtr[0].contains("Luminosidad")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbLumLoc)), iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Estado")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbEstLoc)), iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("CantidadBanos")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbCanBanLoc)), iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Antiguedad")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbAntigLoc)), iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Office")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbOfficeLoc)), iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Categoria")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbCatLoc)), iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("LotePropio")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbLoteLoc)), iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("TodoDestino")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbAptoTodoDest)), iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Gastronomia")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbAptoGastr)), iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("AnchoPB")) {
+                        ((EditText) getActivity().findViewById(R.id.etAnchoPBLoc)).setText(iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("FondoPB")) {
+                        ((EditText) getActivity().findViewById(R.id.etFondoPBLoc)).setText(iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("AnchoVidriera")) {
+                        ((EditText) getActivity().findViewById(R.id.etAnchVidLoc)).setText(iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Expensas")) {
+                        ((EditText) getActivity().findViewById(R.id.etExpLoc)).setText(iAtr[1]);
+                    }
+                }
+
+                //Terrenos
+                if (tipo.contains("TERRENO")) {
+                    String[] iAtr = atrib.split(":");
+
+                    if (iAtr[0].contains("Demolicion")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbDemolicion)), iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("PlanosAprobados")) {
+                        obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbPlaApro)), iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Frente")) {
+                        ((EditText) getActivity().findViewById(R.id.etFrenteTer)).setText(iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("Largo")) {
+                        ((EditText) getActivity().findViewById(R.id.etLargoTer)).setText(iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("SuperficieEdificable")) {
+                        ((EditText) getActivity().findViewById(R.id.etSupEdTer)).setText(iAtr[1]);
+                    }
+
+                    if (iAtr[0].contains("FOT")) {
+                        ((EditText) getActivity().findViewById(R.id.etFot)).setText(iAtr[1]);
+                    }
+                }
+            }
+        }
+    }
+
+    public void obtenerElementosSpinner(Spinner spinner, String cadena) {
         int posicion = 0;
         Adapter adapter = spinner.getAdapter();
+
+        ArrayList<String> items = new ArrayList<String>();
+
         int n = adapter.getCount();
+
+        for (int i = 0; i < n; i++) {
+            String valor = (String) adapter.getItem(i);
+            items.add(valor);
+        }
+
         for (int i = 0; i < n; i++) {
             String valor = (String) adapter.getItem(i);
             if(cadena.equals(valor))
             {
                 posicion = i;
             }
+            else {
+                if(!items.contains(cadena))
+                {
+                    items.add(cadena);
+                    posicion = n;
+                }
+            }
         }
-        return posicion;
+
+        ArrayAdapter<String> adp = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, items);
+
+        spinner.setPadding(0,0,0,0);
+
+        spinner.setAdapter(adp);
+
+        spinner.setSelection(posicion);
     }
 
     private void cargarInventario(final String token, Boolean propio) {
@@ -406,6 +706,7 @@ public class Inventario extends Fragment {
             final SoapObject resultado = (SoapObject)sobre.getResponse();
 
             ImageView sinresultados = (ImageView) vistaInventario.findViewById(R.id.sinresultados);
+            TextView mensajeInventario = (TextView) vistaInventario.findViewById(R.id.mensajeInventario);
 
             if(resultado.getPropertyCount() != 0) {
                 for (int i = 0; i < resultado.getPropertyCount(); i++) {
@@ -432,11 +733,13 @@ public class Inventario extends Fragment {
                         items.add(prop.codigo + " - " + prop.operacion + " " + prop.moneda + " " + prop.importe + "\n" + prop.Calle);
                     }
 
+                    mensajeInventario.setVisibility(View.INVISIBLE);
                     sinresultados.setVisibility(View.INVISIBLE);
                 }
             }
             else
             {
+                mensajeInventario.setVisibility(View.VISIBLE);
                 sinresultados.setVisibility(View.VISIBLE);
             }
 
