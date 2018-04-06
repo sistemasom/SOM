@@ -109,6 +109,7 @@
             android:textColor="@color/letra"
             android:ems="5"
             android:digits="0123456789"
+            android:padding="3dp"
             android:inputType="phone"
             android:background="@drawable/border"
             android:text="" />

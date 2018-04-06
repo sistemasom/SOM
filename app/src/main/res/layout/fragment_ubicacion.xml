@@ -18,7 +18,7 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:id="@+id/layoutSup"
-            android:layout_height="110dp">
+            android:layout_height="120dp">
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
@@ -39,7 +39,7 @@
                     android:layout_weight="0.75"
                     android:ems="5"
                     android:inputType="textPersonName"
-                    android:padding="3dp"
+                    android:padding="5dp"
                     android:textColor="@color/letra"
                     android:background="@drawable/border"
                     android:text="" />
@@ -65,7 +65,7 @@
                     android:layout_width="60dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:padding="3dp"
+                    android:padding="5dp"
                     android:textColor="@color/letra"
                     android:background="@drawable/border"
                     android:ems="5"
@@ -113,7 +113,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/pais"
             android:orientation="horizontal"
-            android:layout_marginTop="130dp">
+            android:layout_marginTop="135dp">
 
             <TextView
                 android:id="@+id/tvPais"
@@ -127,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.75"
                 android:ems="5"
-                android:padding="3dp"
+                android:padding="5dp"
                 android:inputType="textPersonName"
                 android:textColor="@color/letra"
                 android:background="@drawable/border"
@@ -154,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.75"
                 android:ems="5"
-                android:padding="3dp"
+                android:padding="5dp"
                 android:inputType="textPersonName"
                 android:textColor="@color/letra"
                 android:background="@drawable/border"
@@ -183,7 +183,7 @@
                 android:layout_weight="0.75"
                 android:ems="5"
                 android:inputType="textPersonName"
-                android:padding="3dp"
+                android:padding="5dp"
                 android:textColor="@color/letra"
                 android:background="@drawable/border"
                 android:text="" />
@@ -215,7 +215,7 @@
                 android:textColor="@color/letra"
                 android:background="@drawable/border"
                 android:scrollbarStyle="insideInset"
-                android:padding="3dp"
+                android:padding="5dp"
                 android:scrollbars="vertical"/>
         </LinearLayout>
 
