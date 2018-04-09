@@ -136,7 +136,7 @@ public class Producto extends Fragment {
 
         String supTot = ((EditText) vistaProducto.findViewById(R.id.etSupTot)).getText().toString();
 
-        if(!prodSel.isEmpty() && !subProdSel.isEmpty() && !supCub.isEmpty() && !supTot.isEmpty())
+        if(!prodSel.isEmpty() && !subProdSel.isEmpty() && !supCub.isEmpty() && !supTot.isEmpty() && !subProdSel.equals("-"))
         {
             valido = true;
         }
@@ -177,44 +177,44 @@ public class Producto extends Fragment {
 
         //Subtipos de producto, para cada tipo de producto
         final String[] subTipoDepto = new String[]
-                {"1 ambiente","2 ambientes","2 dormitorios c/dep.","3 ambientes","3 dormitorios","3 dormitorios c/dep.", "4 o más dormitorios"};
+                {"-","1 ambiente","2 ambientes","2 dormitorios c/dep.","3 ambientes","3 dormitorios","3 dormitorios c/dep.", "4 o más dormitorios"};
 
         final String[] subTipoCasa = new String[]
-                {"Casa","Chalet","Dúplex","En barrio privado / Country","Petit hotel","Prop. Horizontal", "Quinta"};
+                {"-","Casa","Chalet","Dúplex","En barrio privado / Country","Petit hotel","Prop. Horizontal", "Quinta"};
 
         final String[] subTipoOficina = new String[]
-                {"Planta dividida","Planta libre"};
+                {"-","Planta dividida","Planta libre"};
 
         final String[] subTipoLocales = new String[]
-                {"A la calle","Con vivienda","En esquina","En galería","En shopping"};
+                {"-","A la calle","Con vivienda","En esquina","En galería","En shopping"};
 
         final String[] subTipoTerrenos = new String[]
-                {"Fracciones industriales","Fracciones rurales","Fracciones urbanas","Lote en barrio privado / Country","Loteo","Terreno"};
+                {"-","Fracciones industriales","Fracciones rurales","Fracciones urbanas","Lote en barrio privado / Country","Loteo","Terreno"};
 
         final String[] subTipoCocheras = new String[]
-                {"Cocheras individuales"};
+                {"-","Cocheras individuales"};
 
         final String[] subTipoCountry = new String[]
-                {"Barrio privado","Club de campo","Country","Country náutico","Megaemprendimiento"};
+                {"-","Barrio privado","Club de campo","Country","Country náutico","Megaemprendimiento"};
 
         final String[] subTipoDepositos = new String[]
-                {"Depósitos","Establecimientos industriales","Galpones"};
+                {"-","Depósitos","Establecimientos industriales","Galpones"};
 
         final String[] subTipoEdificios = new String[]
-                {"Edificios en block","Estructuras","Obras"};
+                {"-","Edificios en block","Estructuras","Obras"};
 
         final String[] subTipoFondos = new String[]
-                {"","Agencia comercial","Albergue transitorio","Almacén","Autoservicio","Bar","Carnicería","Centro de copiado",
+                {"-","","Agencia comercial","Albergue transitorio","Almacén","Autoservicio","Bar","Carnicería","Centro de copiado",
                         "Centro médico","Confitería de masas y lunch","Consultorio","Droguería","Estación de servicio","Fábrica de pastas",
                         "Farmacia","Ferretería","Frutería","Garage","Geriátrico","Heladería","Lavadero de autos","Lavadero de ropa","Librería",
                         "Locutorio","Otros negocios","Panadería","Pañalera","Parada de diarios","Parrilla","Pizzería","Prode","Quiosco","Restaurante",
                         "Rotisería","Salón de fiestas","Taller mecánico","Transporte","Video club","Zapatería"};
 
         final String[] subTipoHoteles = new String[]
-                {"Bóveda/Parcela/Nicho","Hotel","Isla","Otros productos"};
+                {"-","Bóveda/Parcela/Nicho","Hotel","Isla","Otros productos"};
 
         final String[] subTipoRurales = new String[]
-                {"","Agrícola","Chacra","Cría","Criaderos","Floricultura","Forestal","Frutícola","Ganadera","Granja",
+                {"-","Agrícola","Chacra","Cría","Criaderos","Floricultura","Forestal","Frutícola","Ganadera","Granja",
                         "Haras","Industrialización","Invernada","Minería","Mixto","Tambo"};
 
         switch (productoSeleccionado) {
