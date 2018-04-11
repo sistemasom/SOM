@@ -17,6 +17,8 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class Producto extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -56,12 +58,12 @@ public class Producto extends Fragment {
 
         vistaProducto = inflater.inflate(R.layout.fragment_producto, container, false);
 
-        cargarProductos(vistaProducto);
+        cargarProductos();
 
         return vistaProducto;
     }
 
-    public void cargarProductos(final View vista) {
+    public void cargarProductos() {
 
         //Combo producto
         final String[] productos =
@@ -70,7 +72,7 @@ public class Producto extends Fragment {
                         "Fondos de comercio","Hoteles / Otros productos","Propiedades rurales"};
 
         ArrayAdapter<String> adapterProd = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, productos);
-        Spinner spProductos = (Spinner)vista.findViewById(R.id.cbTipoProd);
+        Spinner spProductos = (Spinner)vistaProducto.findViewById(R.id.cbTipoProd);
 
         adapterProd.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spProductos.setAdapter(adapterProd);
@@ -79,14 +81,14 @@ public class Producto extends Fragment {
                 new AdapterView.OnItemSelectedListener() {
                     public void onItemSelected(
                         AdapterView<?> parent, View view, int position, long id) {
-                        cargarSubproductos(vista,position);
+                        cargarSubproductos(position);
                     }
 
                     public void onNothingSelected(AdapterView<?> parent) {
                     }
                 });
 
-        cargarSubproductos(vista,0);
+        cargarSubproductos(0);
     }
 
     public JSONObject obtenerValores() {
@@ -130,13 +132,11 @@ public class Producto extends Fragment {
 
         String prodSel = ((Spinner) vistaProducto.findViewById(R.id.cbTipoProd)).getSelectedItem().toString();
 
-        String subProdSel = ((Spinner) vistaProducto.findViewById(R.id.cbSubTipoProd)).getSelectedItem().toString();
-
         String supCub = ((EditText) vistaProducto.findViewById(R.id.etSupCub)).getText().toString();
 
         String supTot = ((EditText) vistaProducto.findViewById(R.id.etSupTot)).getText().toString();
 
-        if(!prodSel.isEmpty() && !subProdSel.isEmpty() && !supCub.isEmpty() && !supTot.isEmpty() && !subProdSel.equals("-"))
+        if(!prodSel.isEmpty() && !supCub.isEmpty() && !supTot.isEmpty())
         {
             valido = true;
         }
@@ -150,7 +150,6 @@ public class Producto extends Fragment {
 
     public void limpiarAtributos()
     {
-
         try {
             FrameLayout atrDepto = (FrameLayout) getActivity().findViewById(R.id.atrDeptos);
             FrameLayout atrCasas = (FrameLayout) getActivity().findViewById(R.id.atrCasas);
@@ -164,16 +163,15 @@ public class Producto extends Fragment {
             atrLocales.setVisibility(View.GONE);
             atrTerrenos.setVisibility(View.GONE);
         } catch (Exception e) {}
-
-
     }
 
-    public void cargarSubproductos(View vista, int productoSeleccionado)
+    public void cargarSubproductos(int productoSeleccionado)
     {
-
-        ArrayAdapter<String> adapterSubProd;
+        ArrayAdapter<String> adapterSubProd = null;
 
         limpiarAtributos();
+
+        Spinner spSubProductos = (Spinner) vistaProducto.findViewById(R.id.cbSubTipoProd);
 
         //Subtipos de producto, para cada tipo de producto
         final String[] subTipoDepto = new String[]
@@ -204,81 +202,80 @@ public class Producto extends Fragment {
                 {"-","Edificios en block","Estructuras","Obras"};
 
         final String[] subTipoFondos = new String[]
-                {"-","","Agencia comercial","Albergue transitorio","Almacén","Autoservicio","Bar","Carnicería","Centro de copiado",
+                {"-","Agencia comercial","Albergue transitorio","Almacén","Autoservicio","Bar","Carnicería","Centro de copiado",
                         "Centro médico","Confitería de masas y lunch","Consultorio","Droguería","Estación de servicio","Fábrica de pastas",
                         "Farmacia","Ferretería","Frutería","Garage","Geriátrico","Heladería","Lavadero de autos","Lavadero de ropa","Librería",
                         "Locutorio","Otros negocios","Panadería","Pañalera","Parada de diarios","Parrilla","Pizzería","Prode","Quiosco","Restaurante",
                         "Rotisería","Salón de fiestas","Taller mecánico","Transporte","Video club","Zapatería"};
 
         final String[] subTipoHoteles = new String[]
-                {"-","Bóveda/Parcela/Nicho","Hotel","Isla","Otros productos"};
+                {"Bóveda/Parcela/Nicho","Hotel","Isla","Otros productos"};
 
         final String[] subTipoRurales = new String[]
-                {"-","Agrícola","Chacra","Cría","Criaderos","Floricultura","Forestal","Frutícola","Ganadera","Granja",
+                {"Agrícola","Chacra","Cría","Criaderos","Floricultura","Forestal","Frutícola","Ganadera","Granja",
                         "Haras","Industrialización","Invernada","Minería","Mixto","Tambo"};
 
         switch (productoSeleccionado) {
             case 0:
-                adapterSubProd = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, subTipoDepto);
+                adapterSubProd = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, subTipoDepto);
                 FrameLayout atrDepto = (FrameLayout) getActivity().findViewById(R.id.atrDeptos);
                 if(atrDepto != null) {
                     atrDepto.setVisibility(View.VISIBLE);
                 }
                 break;
             case 1:
-                adapterSubProd = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, subTipoCasa);
+                adapterSubProd = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, subTipoCasa);
                 FrameLayout atrCasa = (FrameLayout) getActivity().findViewById(R.id.atrCasas);
                 if(atrCasa != null) {
                     atrCasa.setVisibility(View.VISIBLE);
                 }
                 break;
             case 2:
-                adapterSubProd = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, subTipoOficina);
+                adapterSubProd = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, subTipoOficina);
                 FrameLayout atrOficinas = (FrameLayout) getActivity().findViewById(R.id.atrOficinas);
                 if(atrOficinas != null) {
                     atrOficinas.setVisibility(View.VISIBLE);
                 }
                 break;
             case 3:
-                adapterSubProd = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, subTipoLocales);
+                adapterSubProd = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, subTipoLocales);
                 FrameLayout atrLocales = (FrameLayout) getActivity().findViewById(R.id.atrLocales);
                 if(atrLocales != null) {
                     atrLocales.setVisibility(View.VISIBLE);
                 }
                 break;
             case 4:
-                adapterSubProd = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, subTipoTerrenos);
+                adapterSubProd = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, subTipoTerrenos);
                 FrameLayout atrTerrenos = (FrameLayout) getActivity().findViewById(R.id.atrTerrenos);
                 if(atrTerrenos != null) {
                     atrTerrenos.setVisibility(View.VISIBLE);
                 }
                 break;
             case 5:
-                adapterSubProd = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, subTipoCocheras);
+                adapterSubProd = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, subTipoCocheras);
                 break;
             case 6:
-                adapterSubProd = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, subTipoCountry);
+                adapterSubProd = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, subTipoCountry);
                 break;
             case 7:
-                adapterSubProd = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, subTipoDepositos);
+                adapterSubProd = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, subTipoDepositos);
                 break;
             case 8:
-                adapterSubProd = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, subTipoEdificios);
+                adapterSubProd = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, subTipoEdificios);
                 break;
             case 9:
-                adapterSubProd = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, subTipoFondos);
+                adapterSubProd = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, subTipoFondos);
                 break;
             case 10:
-                adapterSubProd = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, subTipoHoteles);
+                adapterSubProd = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, subTipoHoteles);
                 break;
             case 11:
-                adapterSubProd = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, subTipoRurales);
+                adapterSubProd = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, subTipoRurales);
                 break;
             default:
-                adapterSubProd = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, subTipoDepto);
+                adapterSubProd = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, subTipoDepto);
         }
 
-        Spinner spSubProductos = (Spinner)vista.findViewById(R.id.cbSubTipoProd);
         adapterSubProd.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spSubProductos.setAdapter(adapterSubProd);
     }

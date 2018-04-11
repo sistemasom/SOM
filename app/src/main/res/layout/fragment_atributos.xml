@@ -1357,7 +1357,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
                     android:padding="5dp"
-                    android:digits="0123456789"
+                    android:digits=".0123456789"
                     android:inputType="phone"
                     android:textColor="@color/letra"
                     android:background="@drawable/border"

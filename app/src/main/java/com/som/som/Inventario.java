@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -297,11 +298,13 @@ public class Inventario extends Fragment {
 
             obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbUnidad)),propie.Unidad);
 
+            final Spinner producto = (Spinner) getActivity().findViewById(R.id.cbTipoProd);
+            int posit = obtenerElementosSpinner(producto,propie.tipoProd);
+            producto.setEnabled(false);
+
             obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbSubTipoProd)),propie.SubtipoProd);
 
-            final Spinner producto = (Spinner) getActivity().findViewById(R.id.cbTipoProd);
-            obtenerElementosSpinner(producto,propie.tipoProd);
-            producto.setEnabled(false);
+            //obtenerSubproducto(propie.tipoProd, propie.SubtipoProd);
 
             RadioButton supm2 = (RadioButton) getActivity().findViewById(R.id.rbM2);
             supm2.setChecked(true);
@@ -369,7 +372,7 @@ public class Inventario extends Fragment {
             }
         }
         catch (Exception e) {
-            Toast.makeText(getActivity(),"No es posible conectar con el servidor. Compruebe su conexión a internet.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(),"Ha ocurrido un error, intente nuevamente.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -628,9 +631,18 @@ public class Inventario extends Fragment {
         }
     }
 
-    public void obtenerElementosSpinner(Spinner spinner, String cadena) {
+    public int obtenerElementosSpinner(Spinner spinner, String cadena) {
         int posicion = 0;
-        Adapter adapter = spinner.getAdapter();
+        Adapter adapter = null;
+
+        try
+        {
+            adapter = spinner.getAdapter();
+        }
+        catch (Exception e) {
+            int i = 0;
+        }
+
 
         ArrayList<String> items = new ArrayList<String>();
 
@@ -662,7 +674,9 @@ public class Inventario extends Fragment {
 
         spinner.setAdapter(adp);
 
-        spinner.setSelection(posicion);
+        spinner.setSelection(posicion,true);
+
+        return posicion;
     }
 
     private void cargarInventario(final String token, Boolean propio) {
