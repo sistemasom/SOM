@@ -172,7 +172,7 @@ public class Enviar extends Fragment {
 
             if (!isCancelled()) {
 
-                String myurl = "http://api2.som.com.ar/AndroidService.ashx";
+                String myurl = "http://apmovil.som.com.ar/AndroidService.ashx";
 
                 StringBuilder sb = new StringBuilder();
 

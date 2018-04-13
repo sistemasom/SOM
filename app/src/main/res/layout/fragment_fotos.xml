@@ -35,8 +35,9 @@
         android:id="@+id/borrarFotos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="55dp"
+        android:layout_marginLeft="62dp"
         android:textColor="@color/letra"
+        android:visibility="invisible"
         android:text="Borrar fotos existentes" />
 
     <TextView

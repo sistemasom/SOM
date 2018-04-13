@@ -47,7 +47,7 @@ public class Inventario extends Fragment {
     private String mParam2;
 
     final String namespace = "http://tempuri.org/";
-    final String url = "http://wss3.som.com.ar/swsincronizador.asmx";
+    final String url = "http://wsmovil.som.com.ar/swsincronizador.asmx";
 
     private class itemInventario
     {
@@ -169,8 +169,9 @@ public class Inventario extends Fragment {
         if(alta) {
             ((TextView) getActivity().findViewById(R.id.esModificacion)).setText("NO");
 
-            Spinner subprod = (Spinner) getActivity().findViewById(R.id.cbTipoProd);
-
+            Spinner prod = (Spinner) getActivity().findViewById(R.id.cbTipoProd);
+            prod.setSelection(0,true);
+            Spinner subprod = (Spinner) getActivity().findViewById(R.id.cbSubTipoProd);
             subprod.setSelection(0,true);
 
             limpiarFormulario();
@@ -388,9 +389,17 @@ public class Inventario extends Fragment {
             if(propie.reservada.toUpperCase().equals("SI")) {
                 reservada.setChecked(true);
             }
+            else
+            {
+                reservada.setChecked(false);
+            }
 
             if(propie.Publica.toUpperCase().contains("TRUE")) {
                 publica.setChecked(true);
+            }
+            else
+            {
+                publica.setChecked(false);
             }
 
             if(!propie.unidadMedida.toUpperCase().equals("M2"))
@@ -774,6 +783,8 @@ public class Inventario extends Fragment {
     }
 
     private void cargarInventario(final String token, Boolean propio) {
+
+        propiedades.clear();
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);

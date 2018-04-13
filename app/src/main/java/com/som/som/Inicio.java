@@ -27,7 +27,7 @@ public class Inicio extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     final String namespace = "http://tempuri.org/";
-    final String url = "http://wss3.som.com.ar/swsincronizador.asmx";
+    final String url = "http://wsmovil.som.com.ar/swsincronizador.asmx";
 
     View vistaInicio;
 

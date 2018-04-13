@@ -147,6 +147,9 @@ public class Fotos extends Fragment {
 
                 TextView tvFotos = (TextView) vistaFotos.findViewById(R.id.mensajeFotos);
                 tvFotos.setVisibility(View.VISIBLE);
+
+                CheckBox borrarFotos = (CheckBox) vistaFotos.findViewById(R.id.borrarFotos);
+                borrarFotos.setVisibility(View.VISIBLE);
             }
             catch (FileNotFoundException ex) {
             }
