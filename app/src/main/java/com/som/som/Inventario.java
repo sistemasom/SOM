@@ -156,7 +156,6 @@ public class Inventario extends Fragment {
 
             @Override
             public void onClick(View v) {
-
                 mostrarCampos(true,0);
             }
         });
@@ -168,6 +167,12 @@ public class Inventario extends Fragment {
     {
         Button eliminarFotos = (Button) getActivity().findViewById(R.id.limpiarfotos);
         if(alta) {
+            ((TextView) getActivity().findViewById(R.id.esModificacion)).setText("NO");
+
+            Spinner subprod = (Spinner) getActivity().findViewById(R.id.cbTipoProd);
+
+            subprod.setSelection(0,true);
+
             limpiarFormulario();
         }
         else
@@ -208,6 +213,67 @@ public class Inventario extends Fragment {
         prov.setText("CAPITAL FEDERAL");
         TextView barrio = (TextView) getActivity().findViewById(R.id.etBarrio);
         barrio.setText("");
+
+        limpiarAtributos();
+    }
+
+    private void limpiarAtributos()
+    {
+        ((Spinner) getActivity().findViewById(R.id.cbCategoria)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbTipoUnidad)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbUbiPlanta)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbCantCoch)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbLuminosidad)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbEstado)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbCanBan)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbAntigDepto)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbAmueDepto)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbAptoProfDepto)).setSelection(0,true);
+        ((EditText) getActivity().findViewById(R.id.etExpDepto)).setText("");
+        ((Spinner) getActivity().findViewById(R.id.cbCochCasa)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbCantDorCasa)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbCantPlanCasa)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbAntCasa)).setSelection(0,true);
+        ((EditText) getActivity().findViewById(R.id.etExpCasa)).setText("");
+        ((Spinner) getActivity().findViewById(R.id.cbEstCasa)).setSelection(0,true);
+        ((EditText) getActivity().findViewById(R.id.etFrenteCasa)).setText("");
+        ((Spinner) getActivity().findViewById(R.id.cbCantBanosCasa)).setSelection(0,true);
+        ((EditText) getActivity().findViewById(R.id.etLargoCasa)).setText("");
+        ((Spinner) getActivity().findViewById(R.id.cbAmuebCasa)).setSelection(0,true);
+        ((EditText) getActivity().findViewById(R.id.etExpCasa)).setText("");
+        ((Spinner) getActivity().findViewById(R.id.cbCatOfi)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbCantAscOfi)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbUbiPlOfi)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbCantCocOfi)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbLumiOfi)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbEstOfi)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbCanBanOfi)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbAntigOfi)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbBanExcOfi)).setSelection(0,true);
+        ((EditText) getActivity().findViewById(R.id.etDivOfi)).setText("");
+        ((Spinner) getActivity().findViewById(R.id.cbOfficeOfi)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbAmuebOfi)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbEquipOfi)).setSelection(0,true);
+        ((EditText) getActivity().findViewById(R.id.etExpOfi)).setText("");
+        ((Spinner) getActivity().findViewById(R.id.cbLumLoc)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbEstLoc)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbCanBanLoc)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbAntigLoc)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbOfficeLoc)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbCatLoc)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbLoteLoc)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbAptoTodoDest)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbAptoGastr)).setSelection(0,true);
+        ((EditText) getActivity().findViewById(R.id.etAnchoPBLoc)).setText("");
+        ((EditText) getActivity().findViewById(R.id.etFondoPBLoc)).setText("");
+        ((EditText) getActivity().findViewById(R.id.etAnchVidLoc)).setText("");
+        ((EditText) getActivity().findViewById(R.id.etExpLoc)).setText("");
+        ((Spinner) getActivity().findViewById(R.id.cbDemolicion)).setSelection(0,true);
+        ((Spinner) getActivity().findViewById(R.id.cbPlaApro)).setSelection(0,true);
+        ((EditText) getActivity().findViewById(R.id.etFrenteTer)).setText("");
+        ((EditText) getActivity().findViewById(R.id.etLargoTer)).setText("");
+        ((EditText) getActivity().findViewById(R.id.etSupEdTer)).setText("");
+        ((EditText) getActivity().findViewById(R.id.etFot)).setText("");
     }
 
     private void cargarFormulario(int pos) {
@@ -304,7 +370,11 @@ public class Inventario extends Fragment {
 
             obtenerElementosSpinner(((Spinner) getActivity().findViewById(R.id.cbSubTipoProd)),propie.SubtipoProd);
 
-            //obtenerSubproducto(propie.tipoProd, propie.SubtipoProd);
+            ((TextView) getActivity().findViewById(R.id.esModificacion)).setText("SI");
+
+            Utilidades util = new Utilidades();
+
+            obtenerSubproducto(util.initSubproductos(posit),propie.SubtipoProd);
 
             RadioButton supm2 = (RadioButton) getActivity().findViewById(R.id.rbM2);
             supm2.setChecked(true);
@@ -629,6 +699,30 @@ public class Inventario extends Fragment {
                 }
             }
         }
+    }
+
+    public void obtenerSubproducto(String[] array, String subtipo)
+    {
+        int n = array.length;
+
+        int posicion = 0;
+
+        for (int i = 0; i < n; i++) {
+            if(array[i].toString().contains(subtipo))
+            {
+                posicion = i;
+            }
+        }
+
+        ArrayAdapter<String> adp = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, array);
+
+        Spinner subprod = (Spinner) getActivity().findViewById(R.id.cbSubTipoProd);
+
+        subprod.setPadding(0,0,0,0);
+
+        subprod.setAdapter(adp);
+
+        subprod.setSelection(posicion,true);
     }
 
     public int obtenerElementosSpinner(Spinner spinner, String cadena) {

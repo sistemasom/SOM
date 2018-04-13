@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
     private Atributos fragAtributos;
     private String Token;
 
+    /* CONSTANTES */
+
     private JSONObject jsonOferta;
 
     public boolean valido;

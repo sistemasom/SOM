@@ -1,8 +1,11 @@
 package com.som.som;
 
+import android.widget.EditText;
+import android.widget.Spinner;
+
 import java.util.ArrayList;
 
-public class Ubicaciones {
+public class Utilidades {
 
     private ArrayList<String> sBarr = new ArrayList<String>();
 
@@ -6842,5 +6845,72 @@ public class Ubicaciones {
         };
 
         return vLocalidades;
+    }
+
+    public String[] initSubproductos(int posicion)
+    {
+        String[] subtipos = null;
+
+        switch (posicion) {
+
+            case 0:
+                subtipos = new String[]
+                    {"-", "1 ambiente", "2 ambientes", "2 dormitorios c/dep.", "3 ambientes", "3 dormitorios", "3 dormitorios c/dep.", "4 o más dormitorios"};
+                break;
+            case 1:
+                subtipos = new String[]
+                    {"-", "Casa", "Chalet", "Dúplex", "En barrio privado / Country", "Petit hotel", "Prop. Horizontal", "Quinta"};
+                break;
+            case 2:
+                subtipos = new String[]
+                    {"-", "Planta dividida", "Planta libre"};
+                break;
+            case 3:
+                subtipos = new String[]
+                    {"-", "A la calle", "Con vivienda", "En esquina", "En galería", "En shopping"};
+                break;
+            case 4:
+                subtipos = new String[]
+                    {"-", "Fracciones industriales", "Fracciones rurales", "Fracciones urbanas", "Lote en barrio privado / Country", "Loteo", "Terreno"};
+                break;
+            case 5:
+                subtipos = new String[]
+                    {"-", "Cocheras individuales"};
+                break;
+            case 6:
+                subtipos = new String[]
+                    {"-", "Barrio privado", "Club de campo", "Country", "Country náutico", "Megaemprendimiento"};
+                break;
+            case 7:
+                subtipos = new String[]
+                    {"-", "Depósitos", "Establecimientos industriales", "Galpones"};
+                break;
+            case 8:
+                subtipos = new String[]
+                    {"-", "Edificios en block", "Estructuras", "Obras"};
+                break;
+            case 9:
+                subtipos = new String[]
+                    {"-", "Agencia comercial", "Albergue transitorio", "Almacén", "Autoservicio", "Bar", "Carnicería", "Centro de copiado",
+                            "Centro médico", "Confitería de masas y lunch", "Consultorio", "Droguería", "Estación de servicio", "Fábrica de pastas",
+                            "Farmacia", "Ferretería", "Frutería", "Garage", "Geriátrico", "Heladería", "Lavadero de autos", "Lavadero de ropa", "Librería",
+                            "Locutorio", "Otros negocios", "Panadería", "Pañalera", "Parada de diarios", "Parrilla", "Pizzería", "Prode", "Quiosco", "Restaurante",
+                            "Rotisería", "Salón de fiestas", "Taller mecánico", "Transporte", "Video club", "Zapatería"};
+                break;
+            case 10:
+                subtipos = new String[]
+                    {"Bóveda/Parcela/Nicho", "Hotel", "Isla", "Otros productos"};
+                break;
+            case 11:
+                subtipos = new String[]
+                    {"Agrícola", "Chacra", "Cría", "Criaderos", "Floricultura", "Forestal", "Frutícola", "Ganadera", "Granja",
+                            "Haras", "Industrialización", "Invernada", "Minería", "Mixto", "Tambo"};
+                break;
+            default:
+                subtipos = new String[]
+                        {"-", "1 ambiente", "2 ambientes", "2 dormitorios c/dep.", "3 ambientes", "3 dormitorios", "3 dormitorios c/dep.", "4 o más dormitorios"};
+                break;
+        }
+        return subtipos;
     }
 }

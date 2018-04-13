@@ -289,7 +289,7 @@ public class Ubicacion extends Fragment{
         EditText etProvincia = (EditText) vistaUbicacion.findViewById(R.id.etProvincia);
         String prov = etProvincia.getText().toString();
 
-        Ubicaciones ubicaciones = new Ubicaciones();
+        Utilidades ubicaciones = new Utilidades();
         ArrayList<String> sBarrios = ubicaciones.initBarrios(prov);
 
         ArrayList<String> barrios = new ArrayList<String>();
