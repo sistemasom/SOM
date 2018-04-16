@@ -151,12 +151,16 @@ public class Producto extends Fragment {
     public void limpiarAtributos()
     {
         try {
+
+            FrameLayout atrNoDisp = (FrameLayout) getActivity().findViewById(R.id.atrNoDisp);
+
             FrameLayout atrDepto = (FrameLayout) getActivity().findViewById(R.id.atrDeptos);
             FrameLayout atrCasas = (FrameLayout) getActivity().findViewById(R.id.atrCasas);
             FrameLayout atrOficinas = (FrameLayout) getActivity().findViewById(R.id.atrOficinas);
             FrameLayout atrLocales = (FrameLayout) getActivity().findViewById(R.id.atrLocales);
             FrameLayout atrTerrenos = (FrameLayout) getActivity().findViewById(R.id.atrTerrenos);
 
+            atrNoDisp.setVisibility(View.VISIBLE);
             atrDepto.setVisibility(View.GONE);
             atrCasas.setVisibility(View.GONE);
             atrOficinas.setVisibility(View.GONE);
@@ -180,6 +184,7 @@ public class Producto extends Fragment {
                 adapterSubProd = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, util.initSubproductos(productoSeleccionado));
                 FrameLayout atrDepto = (FrameLayout) getActivity().findViewById(R.id.atrDeptos);
                 if(atrDepto != null) {
+                    ((FrameLayout) getActivity().findViewById(R.id.atrNoDisp)).setVisibility(View.GONE);
                     atrDepto.setVisibility(View.VISIBLE);
                 }
                 break;
@@ -187,6 +192,7 @@ public class Producto extends Fragment {
                 adapterSubProd = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, util.initSubproductos(productoSeleccionado));
                 FrameLayout atrCasa = (FrameLayout) getActivity().findViewById(R.id.atrCasas);
                 if(atrCasa != null) {
+                    ((FrameLayout) getActivity().findViewById(R.id.atrNoDisp)).setVisibility(View.GONE);
                     atrCasa.setVisibility(View.VISIBLE);
                 }
                 break;
@@ -194,6 +200,7 @@ public class Producto extends Fragment {
                 adapterSubProd = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, util.initSubproductos(productoSeleccionado));
                 FrameLayout atrOficinas = (FrameLayout) getActivity().findViewById(R.id.atrOficinas);
                 if(atrOficinas != null) {
+                    ((FrameLayout) getActivity().findViewById(R.id.atrNoDisp)).setVisibility(View.GONE);
                     atrOficinas.setVisibility(View.VISIBLE);
                 }
                 break;
@@ -201,6 +208,7 @@ public class Producto extends Fragment {
                 adapterSubProd = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, util.initSubproductos(productoSeleccionado));
                 FrameLayout atrLocales = (FrameLayout) getActivity().findViewById(R.id.atrLocales);
                 if(atrLocales != null) {
+                    ((FrameLayout) getActivity().findViewById(R.id.atrNoDisp)).setVisibility(View.GONE);
                     atrLocales.setVisibility(View.VISIBLE);
                 }
                 break;
@@ -208,6 +216,7 @@ public class Producto extends Fragment {
                 adapterSubProd = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, util.initSubproductos(productoSeleccionado));
                 FrameLayout atrTerrenos = (FrameLayout) getActivity().findViewById(R.id.atrTerrenos);
                 if(atrTerrenos != null) {
+                    ((FrameLayout) getActivity().findViewById(R.id.atrNoDisp)).setVisibility(View.GONE);
                     atrTerrenos.setVisibility(View.VISIBLE);
                 }
                 break;

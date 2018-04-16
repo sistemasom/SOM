@@ -287,10 +287,10 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
                     return fragOperacion;
                 }
                 case 4: {
-                    return fragAtributos;
+                    return fragUbicacion;
                 }
                 case 5: {
-                    return fragUbicacion;
+                    return fragAtributos;
                 }
                 case 6: {
                     return fragFotos;
