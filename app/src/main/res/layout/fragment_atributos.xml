@@ -1367,7 +1367,7 @@
             </LinearLayout>
 
         </FrameLayout>
-        
+
         <FrameLayout
             android:id="@+id/atrNoDisp"
             android:focusable="true"
