@@ -48,7 +48,8 @@
                 android:id="@+id/tvSupCub"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sup. Cubierta"
+                android:text="Superficie cubierta"
+                android:textColor="@color/obligatorio"
                 android:layout_marginLeft="5dp"
                 android:layout_weight="0.93" />
 
@@ -56,9 +57,9 @@
                 android:id="@+id/etSupCub"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.75"
                 android:background="@drawable/border"
                 android:ems="5"
+                android:imeOptions="actionDone"
                 android:padding="5dp"
                 android:paddingLeft="7dp"
                 android:textColor="@color/letra"
@@ -80,15 +81,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:text="Sup. Total"
+                android:textColor="@color/obligatorio"
+                android:text="Superficie total"
                 android:layout_weight="0.18" />
 
             <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="wrap_content"
+                android:layout_width="2dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="-5dp"
+                android:layout_marginTop="3dp"
+                android:visibility="invisible"
                 android:id="@+id/grupoRbSup"
-                android:layout_marginRight="8dp"
                 android:orientation="horizontal">
                 <RadioButton android:id="@+id/rbM2"
                     android:layout_width="wrap_content"
@@ -105,9 +107,9 @@
                 android:id="@+id/etSupTot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.12"
                 android:background="@drawable/border"
                 android:padding="5dp"
+                android:imeOptions="actionDone"
                 android:paddingLeft="7dp"
                 android:textColor="@color/letra"
                 android:ems="5"
@@ -123,6 +125,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/layoutSup"
         android:layout_marginLeft="5dp"
+        android:visibility="invisible"
         android:layout_marginTop="10dp"
         android:text="Codigo: "/>
 
@@ -131,6 +134,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/layoutSup"
+        android:visibility="invisible"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="60dp"
         android:text="0"
@@ -141,19 +145,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/layoutSup"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="35dp"
         android:padding="5dp"
-        android:text="Destacable" />
+        android:text="Información destacable" />
 
     <EditText
         android:id="@+id/etDestacable"
         android:layout_width="wrap_content"
         android:layout_height="150dp"
         android:layout_below="@id/tvDestacable"
-        android:layout_gravity="end|bottom"
-        android:layout_marginTop="15dp"
+        android:gravity="top"
+        android:layout_marginTop="5dp"
         android:background="@drawable/border"
         android:ems="20"
+        android:imeOptions="actionDone"
         android:padding="5dp"
         android:paddingLeft="10dp"
         android:textColor="@color/letra"

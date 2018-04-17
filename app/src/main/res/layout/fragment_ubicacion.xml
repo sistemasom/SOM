@@ -30,6 +30,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Calle"
+                    android:textColor="@color/obligatorio"
                     android:layout_weight="0.10" />
 
                 <EditText
@@ -39,6 +40,7 @@
                     android:layout_weight="0.75"
                     android:ems="5"
                     android:inputType="textPersonName"
+                    android:imeOptions="actionDone"
                     android:padding="5dp"
                     android:textColor="@color/letra"
                     android:background="@drawable/border"
@@ -58,6 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Altura"
+                    android:textColor="@color/obligatorio"
                     android:layout_weight="0.1" />
 
                 <EditText
@@ -119,6 +122,7 @@
                 android:id="@+id/tvPais"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/obligatorio"
                 android:text="País      " />
 
             <AutoCompleteTextView
@@ -128,6 +132,7 @@
                 android:layout_weight="0.75"
                 android:ems="5"
                 android:padding="5dp"
+                android:imeOptions="actionDone"
                 android:inputType="textPersonName"
                 android:textColor="@color/letra"
                 android:background="@drawable/border"
@@ -146,6 +151,7 @@
                 android:id="@+id/tvProvincia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/obligatorio"
                 android:text="Provincia      " />
 
             <AutoCompleteTextView
@@ -156,6 +162,7 @@
                 android:ems="5"
                 android:padding="5dp"
                 android:inputType="textPersonName"
+                android:imeOptions="actionDone"
                 android:textColor="@color/letra"
                 android:background="@drawable/border"
                 android:text="CAPITAL FEDERAL" />
@@ -174,6 +181,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Barrio / Localidad"
+                android:textColor="@color/obligatorio"
                 android:layout_weight="0.10" />
 
             <AutoCompleteTextView
@@ -183,6 +191,7 @@
                 android:layout_weight="0.75"
                 android:ems="5"
                 android:inputType="textPersonName"
+                android:imeOptions="actionDone"
                 android:padding="5dp"
                 android:textColor="@color/letra"
                 android:background="@drawable/border"
@@ -215,6 +224,7 @@
                 android:textColor="@color/letra"
                 android:background="@drawable/border"
                 android:scrollbarStyle="insideInset"
+                android:imeOptions="actionDone"
                 android:padding="5dp"
                 android:scrollbars="vertical"/>
         </LinearLayout>

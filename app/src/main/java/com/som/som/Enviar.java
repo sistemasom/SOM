@@ -1,5 +1,7 @@
 package com.som.som;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -32,6 +34,8 @@ public class Enviar extends Fragment {
     public String dataSend = "";
     private String mUrlString;
 
+    public ProgressDialog msjEnviando;
+
     public static Enviar getInstance(FragmentManager fragmentManager, String url) {
         Enviar networkFragment = (Enviar) fragmentManager
                 .findFragmentByTag(Enviar.TAG);
@@ -50,6 +54,11 @@ public class Enviar extends Fragment {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
         mUrlString = getArguments().getString(URL_KEY);
+
+        msjEnviando = new ProgressDialog(getActivity());
+        msjEnviando.setMessage("Aguarde un instante por favor...");
+        msjEnviando.setTitle("Enviando oferta");
+        msjEnviando.setProgressStyle(ProgressDialog.STYLE_SPINNER);
     }
 
     @Override
@@ -90,6 +99,16 @@ public class Enviar extends Fragment {
             mUploadTask.cancel(true);
             mUploadTask = null;
         }
+    }
+
+    public void mostrarDialogo()
+    {
+        msjEnviando.show();
+    }
+
+    private void ocultarDialogo()
+    {
+        msjEnviando.cancel();
     }
 
     private class UploadTask extends AsyncTask<String, Integer, UploadTask.Result> {
@@ -157,8 +176,10 @@ public class Enviar extends Fragment {
                                 String mensaje = "Oferta " + codigo + "\n eliminada correctamente.";
                                 Toast.makeText(getActivity(), mensaje, Toast.LENGTH_SHORT).show();
                             }
+                            ocultarDialogo();
                         }
                         else {
+                            ocultarDialogo();
                             Toast.makeText(getActivity(),"No se ha podido grabar la oferta! Intente nuevamente.",Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -221,7 +242,5 @@ public class Enviar extends Fragment {
             }
             return result;
         }
-
-
     }
 }

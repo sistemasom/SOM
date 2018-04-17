@@ -215,6 +215,11 @@ public class Inventario extends Fragment {
         TextView barrio = (TextView) getActivity().findViewById(R.id.etBarrio);
         barrio.setText("");
 
+        WebView webMapa = (WebView) getActivity().findViewById(R.id.webMapa);
+        webMapa.setWebViewClient(new WebViewClient());
+        webMapa.getSettings().setJavaScriptEnabled(true);
+        webMapa.loadUrl("");
+
         limpiarAtributos();
     }
 
@@ -851,13 +856,13 @@ public class Inventario extends Fragment {
                     {
                         items.add(prop.codigo + " - " + prop.operacion + " " + prop.moneda + " " + prop.importe + "\n" + prop.Calle);
                     }
-
-                    mensajeInventario.setVisibility(View.INVISIBLE);
-                    sinresultados.setVisibility(View.INVISIBLE);
                 }
+                mensajeInventario.setVisibility(View.INVISIBLE);
+                sinresultados.setVisibility(View.INVISIBLE);
             }
             else
             {
+                Toast.makeText(getContext(),"No se encontraron ofertas en su inventario.", Toast.LENGTH_SHORT).show();
                 mensajeInventario.setVisibility(View.VISIBLE);
                 sinresultados.setVisibility(View.VISIBLE);
             }

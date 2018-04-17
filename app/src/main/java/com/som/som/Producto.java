@@ -130,13 +130,11 @@ public class Producto extends Fragment {
     {
         boolean valido = false;
 
-        String prodSel = ((Spinner) vistaProducto.findViewById(R.id.cbTipoProd)).getSelectedItem().toString();
-
         String supCub = ((EditText) vistaProducto.findViewById(R.id.etSupCub)).getText().toString();
 
         String supTot = ((EditText) vistaProducto.findViewById(R.id.etSupTot)).getText().toString();
 
-        if(!prodSel.isEmpty() && !supCub.isEmpty() && !supTot.isEmpty())
+        if(!supCub.isEmpty() && !supTot.isEmpty())
         {
             valido = true;
         }

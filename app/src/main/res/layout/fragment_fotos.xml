@@ -31,6 +31,14 @@
         android:onClick="takePhoto"
         app:srcCompat="@android:drawable/ic_menu_camera" />
 
+    <TextView
+        android:id="@+id/msjInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="65dp"
+        android:layout_marginTop="6dp"
+        android:text="Presione el botón para acceder a la galería y elija las fotos correspondientes." />
+
     <CheckBox
         android:id="@+id/borrarFotos"
         android:layout_width="wrap_content"
@@ -54,6 +62,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="80dp"
-            android:orientation="vertical"></LinearLayout>
+            android:orientation="vertical">
+
+    </LinearLayout>
 </RelativeLayout>
 </ScrollView>

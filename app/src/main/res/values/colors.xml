@@ -7,5 +7,6 @@
     <color name="blanco">#FFFFFF</color>
     <color name="letra">#6c6c6c</color>
     <color name="link">#4664ea</color>
+    <color name="obligatorio">#be0007</color>
     <color name="transparente">#00FFFFFF</color>
 </resources>

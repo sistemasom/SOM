@@ -63,8 +63,8 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setLogo(R.drawable.icon);
-        getSupportActionBar().setTitle("   SOM");
+        getSupportActionBar().setLogo(R.drawable.titulo);
+        //getSupportActionBar().setTitle(R.drawable.titulo);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
             public void onClick(View view) {
                 //Traigo valores de la propiedad
 
-                Toast.makeText(getApplicationContext(),"Enviando oferta...",Toast.LENGTH_SHORT).show();
+                fragEnviar.mostrarDialogo();
                 new CountDownTimer(1000, 1000) {
                     public void onFinish() {
                         jsonOferta = fragProducto.obtenerValores();

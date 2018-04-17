@@ -145,11 +145,9 @@ public class Fotos extends Fragment {
 
                 idFoto++; //Incremento el ID
 
-                TextView tvFotos = (TextView) vistaFotos.findViewById(R.id.mensajeFotos);
-                tvFotos.setVisibility(View.VISIBLE);
-
-                CheckBox borrarFotos = (CheckBox) vistaFotos.findViewById(R.id.borrarFotos);
-                borrarFotos.setVisibility(View.VISIBLE);
+                ((TextView) vistaFotos.findViewById(R.id.mensajeFotos)).setVisibility(View.VISIBLE);
+                ((TextView) vistaFotos.findViewById(R.id.msjInfo)).setVisibility(View.INVISIBLE);
+                ((CheckBox) vistaFotos.findViewById(R.id.borrarFotos)).setVisibility(View.VISIBLE);
             }
             catch (FileNotFoundException ex) {
             }
@@ -207,8 +205,9 @@ public class Fotos extends Fragment {
 
         fotos.removeAllViews();
 
-        TextView tvFotos = (TextView) getActivity().findViewById(R.id.mensajeFotos);
-        tvFotos.setVisibility(View.INVISIBLE);
+        ((TextView) getActivity().findViewById(R.id.mensajeFotos)).setVisibility(View.INVISIBLE);
+        ((TextView) vistaFotos.findViewById(R.id.msjInfo)).setVisibility(View.VISIBLE);
+        ((CheckBox) vistaFotos.findViewById(R.id.borrarFotos)).setVisibility(View.INVISIBLE);
 
         aFotos.clear();
     }
