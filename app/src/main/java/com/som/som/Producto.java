@@ -68,8 +68,8 @@ public class Producto extends Fragment {
         //Combo producto
         final String[] productos =
                 new String[]{"Departamentos","Casas","Oficinas","Locales","Terrenos","Cocheras",
-                        "Countries / Barrios Privados","Depósitos / Industrias","Edificios en block",
-                        "Fondos de comercio","Hoteles / Otros productos","Propiedades rurales"};
+                        "Countries / Barrios Privados","Depósitos/Industrias","Edificios en Block",
+                        "Fondos de Comercio","Hoteles / Otros productos","Propiedades Rurales"};
 
         ArrayAdapter<String> adapterProd = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, productos);
         Spinner spProductos = (Spinner)vistaProducto.findViewById(R.id.cbTipoProd);
@@ -167,11 +167,31 @@ public class Producto extends Fragment {
         } catch (Exception e) {}
     }
 
+    public void toggleElementos(boolean ocultar)
+    {
+        ((Spinner) getActivity().findViewById(R.id.cbUnidad)).setVisibility(View.VISIBLE);
+        ((TextView) getActivity().findViewById(R.id.tvUnidad)).setVisibility(View.VISIBLE);
+        ((Spinner) getActivity().findViewById(R.id.cbPiso)).setVisibility(View.VISIBLE);
+        ((TextView) getActivity().findViewById(R.id.tvPiso)).setVisibility(View.VISIBLE);
+
+        if(ocultar)
+        {
+            ((Spinner) getActivity().findViewById(R.id.cbUnidad)).setVisibility(View.INVISIBLE);
+            ((TextView) getActivity().findViewById(R.id.tvUnidad)).setVisibility(View.INVISIBLE);
+            ((Spinner) getActivity().findViewById(R.id.cbPiso)).setVisibility(View.INVISIBLE);
+            ((TextView) getActivity().findViewById(R.id.tvPiso)).setVisibility(View.INVISIBLE);
+        }
+    }
+
     public void cargarSubproductos(int productoSeleccionado)
     {
         ArrayAdapter<String> adapterSubProd = null;
 
         limpiarAtributos();
+
+        try {
+            toggleElementos(false);
+        }catch (Exception e) {}
 
         Spinner spSubProductos = (Spinner) vistaProducto.findViewById(R.id.cbSubTipoProd);
 
@@ -213,6 +233,7 @@ public class Producto extends Fragment {
             case 4:
                 adapterSubProd = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, util.initSubproductos(productoSeleccionado));
                 FrameLayout atrTerrenos = (FrameLayout) getActivity().findViewById(R.id.atrTerrenos);
+                toggleElementos(true);
                 if(atrTerrenos != null) {
                     ((FrameLayout) getActivity().findViewById(R.id.atrNoDisp)).setVisibility(View.GONE);
                     atrTerrenos.setVisibility(View.VISIBLE);
@@ -222,6 +243,7 @@ public class Producto extends Fragment {
                 adapterSubProd = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, util.initSubproductos(productoSeleccionado));
                 break;
             case 6:
+                toggleElementos(true);
                 adapterSubProd = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, util.initSubproductos(productoSeleccionado));
                 break;
             case 7:
@@ -237,6 +259,7 @@ public class Producto extends Fragment {
                 adapterSubProd = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, util.initSubproductos(productoSeleccionado));
                 break;
             case 11:
+                toggleElementos(true);
                 adapterSubProd = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, util.initSubproductos(productoSeleccionado));
                 break;
             default:

@@ -2,6 +2,7 @@ package com.som.som;
 
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -6859,7 +6860,7 @@ public class Utilidades {
                 break;
             case 1:
                 subtipos = new String[]
-                    {"-", "Casa", "Chalet", "Dúplex", "En barrio privado / Country", "Petit hotel", "Prop. Horizontal", "Quinta"};
+                    {"-", "Casa", "Chalet", "Dúplex", "En Barrio Privado / Country", "Petit Hotel", "Prop. Horizontal", "Quinta"};
                 break;
             case 2:
                 subtipos = new String[]
@@ -6871,23 +6872,23 @@ public class Utilidades {
                 break;
             case 4:
                 subtipos = new String[]
-                    {"-", "Fracciones industriales", "Fracciones rurales", "Fracciones urbanas", "Lote en barrio privado / Country", "Loteo", "Terreno"};
+                    {"-", "Fracciones industriales", "Fracciones rurales", "Fracciones urbanas", "Lote en Country / Barrio Privado", "Loteos", "Terreno"};
                 break;
             case 5:
                 subtipos = new String[]
-                    {"-", "Cocheras individuales"};
+                    {"-", "Cocheras Individuales", "Garage"};
                 break;
             case 6:
                 subtipos = new String[]
-                    {"-", "Barrio privado", "Club de campo", "Country", "Country náutico", "Megaemprendimiento"};
+                    {"-", "Barrio Privado", "Club de Campo", "Country", "Country Náutico", "Megaemprendimiento"};
                 break;
             case 7:
                 subtipos = new String[]
-                    {"-", "Depósitos", "Establecimientos industriales", "Galpones"};
+                    {"-", "Depósitos", "Establecimientos Industriales", "Galpones"};
                 break;
             case 8:
                 subtipos = new String[]
-                    {"-", "Edificios en block", "Estructuras", "Obras"};
+                    {"-", "Edificios en Block", "Estructuras", "Obras"};
                 break;
             case 9:
                 subtipos = new String[]
@@ -6899,7 +6900,7 @@ public class Utilidades {
                 break;
             case 10:
                 subtipos = new String[]
-                    {"Bóveda/Parcela/Nicho", "Hotel", "Isla", "Otros productos"};
+                    {"Bóveda / Parcela / Nicho", "Hotel", "Isla", "Otros productos"};
                 break;
             case 11:
                 subtipos = new String[]

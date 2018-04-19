@@ -106,7 +106,7 @@ public class Enviar extends Fragment {
         msjEnviando.show();
     }
 
-    private void ocultarDialogo()
+    public void ocultarDialogo()
     {
         msjEnviando.cancel();
     }
@@ -176,15 +176,14 @@ public class Enviar extends Fragment {
                                 String mensaje = "Oferta " + codigo + "\n eliminada correctamente.";
                                 Toast.makeText(getActivity(), mensaje, Toast.LENGTH_SHORT).show();
                             }
-                            ocultarDialogo();
                         }
                         else {
-                            ocultarDialogo();
                             Toast.makeText(getActivity(),"No se ha podido grabar la oferta! Intente nuevamente.",Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
             }
+            ocultarDialogo();
         }
 
         @Override

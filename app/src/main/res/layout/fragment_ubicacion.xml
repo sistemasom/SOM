@@ -29,7 +29,7 @@
                     android:id="@+id/tvCalle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Calle"
+                    android:text="Calle / Ruta"
                     android:textColor="@color/obligatorio"
                     android:layout_weight="0.10" />
 
@@ -59,7 +59,7 @@
                     android:id="@+id/tvAltura"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Altura"
+                    android:text="Altura / KM"
                     android:textColor="@color/obligatorio"
                     android:layout_weight="0.1" />
 
@@ -188,6 +188,7 @@
                 android:id="@+id/etBarrio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
                 android:layout_weight="0.75"
                 android:ems="5"
                 android:inputType="textPersonName"

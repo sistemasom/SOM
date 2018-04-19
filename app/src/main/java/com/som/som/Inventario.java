@@ -418,12 +418,12 @@ public class Inventario extends Fragment {
             TextView longi = (TextView) getActivity().findViewById(R.id.longitud);
             longi.setText("");
 
+            WebView mapa = (WebView) getActivity().findViewById(R.id.webMapa);
+            mapa.setWebViewClient(new WebViewClient());
+            mapa.getSettings().setJavaScriptEnabled(true);
             if(propie.latitud != null && propie.latitud != "") {
                 lat.setText(propie.latitud);
                 longi.setText(propie.longitud);
-                WebView mapa = (WebView) getActivity().findViewById(R.id.webMapa);
-                mapa.setWebViewClient(new WebViewClient());
-                mapa.getSettings().setJavaScriptEnabled(true);
                 String url = "http://sistema.som.com.ar/MapaApp.html?latitud=" + propie.latitud + "&longitud=" + propie.longitud;
                 mapa.loadUrl(url);
             }

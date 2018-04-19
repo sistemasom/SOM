@@ -139,29 +139,21 @@ public class Ubicacion extends Fragment{
 
     public void obtenerValores(JSONObject json) {
 
-        Spinner spPiso = (Spinner) vistaUbicacion.findViewById(R.id.cbPiso);
-        String pisoSel = spPiso.getSelectedItem().toString();
+        String pisoSel = ((Spinner) vistaUbicacion.findViewById(R.id.cbPiso)).getSelectedItem().toString();
 
-        Spinner spUnidad = (Spinner) vistaUbicacion.findViewById(R.id.cbUnidad);
-        String unidadSel = spUnidad.getSelectedItem().toString();
+        String unidadSel = ((Spinner) vistaUbicacion.findViewById(R.id.cbUnidad)).getSelectedItem().toString();
 
-        EditText txtEntreCalles = (EditText) vistaUbicacion.findViewById(R.id.etEntreCalles);
-        String entreCalles = txtEntreCalles.getText().toString();
+        String entreCalles = ((EditText) vistaUbicacion.findViewById(R.id.etEntreCalles)).getText().toString();
 
-        EditText txtCalle = (EditText) vistaUbicacion.findViewById(R.id.etCalle);
-        String calle = txtCalle.getText().toString();
+        String calle = ((EditText) vistaUbicacion.findViewById(R.id.etCalle)).getText().toString();
 
-        EditText txtPais = (EditText) vistaUbicacion.findViewById(R.id.etPais);
-        String pais = txtPais.getText().toString();
+        String pais = ((EditText) vistaUbicacion.findViewById(R.id.etPais)).getText().toString();
 
-        EditText txtAltura = (EditText) vistaUbicacion.findViewById(R.id.etAltura);
-        String altura = txtAltura.getText().toString();
+        String altura = ((EditText) vistaUbicacion.findViewById(R.id.etAltura)).getText().toString();
 
-        TextView tvUbicacion = (TextView) vistaUbicacion.findViewById(R.id.tvUbicacion);
-        String ubicacion = tvUbicacion.getText().toString();
+        String ubicacion = ((TextView) vistaUbicacion.findViewById(R.id.tvUbicacion)).getText().toString();
 
-        TextView etBarrio = (EditText) vistaUbicacion.findViewById(R.id.etBarrio);
-        String barrio = etBarrio.getText().toString();
+        String barrio = ((EditText) vistaUbicacion.findViewById(R.id.etBarrio)).getText().toString();
 
         if(barrio.contains("C.A.B.A."))
         {
@@ -174,13 +166,33 @@ public class Ubicacion extends Fragment{
         TextView lat = (TextView) vistaUbicacion.findViewById(R.id.latitud);
         TextView longi = (TextView) vistaUbicacion.findViewById(R.id.longitud);
 
+        String tipoProd = ((Spinner) getActivity().findViewById(R.id.cbTipoProd)).getSelectedItem().toString();
+        String subtipoProd = ((Spinner) getActivity().findViewById(R.id.cbSubTipoProd)).getSelectedItem().toString();
+
+        if(tipoProd.toUpperCase().contains("BARRIOS PRIVADOS") || subtipoProd.toUpperCase().contains("BARRIO PRIVADO"))
+        {
+            barrioCerrado = true;
+        }
+
         try {
             json.put("Pais",pais);
             json.put("Piso",pisoSel);
             json.put("Unidad",unidadSel);
             json.put("Referencia",entreCalles);
-            json.put("Calle",calle);
             json.put("Provincia",provincia);
+
+            String producto = ((Spinner) getActivity().findViewById(R.id.cbTipoProd)).getSelectedItem().toString();
+
+            if(producto.toUpperCase().contains("RURALES"))
+            {
+                json.put("Ruta",calle);
+                json.put("Km",altura);
+            }
+            else
+            {
+                json.put("Calle",calle);
+                json.put("Altura",altura);
+            }
 
             if(barrioCerrado)
             {
@@ -193,7 +205,6 @@ public class Ubicacion extends Fragment{
                 json.put("Country","");
             }
 
-            json.put("Altura",altura);
             json.put("Ubicacion",ubicacion);
             json.put("latitud",lat.getText());
             json.put("longitud",longi.getText());
@@ -298,10 +309,6 @@ public class Ubicacion extends Fragment{
         {
             String[] parts = barr.split("_");
             barrios.add(parts[0]);
-
-            if(parts.length == 3) {
-                barrioCerrado = true;
-            }
         }
 
         ArrayAdapter<String> adapterBar = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, barrios);

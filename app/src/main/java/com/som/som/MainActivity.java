@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
     private Fotos fragFotos;
     private Operacion fragOperacion;
     private Atributos fragAtributos;
+    private Enviar fragEnviar;
     private String Token;
 
     /* CONSTANTES */
@@ -67,9 +68,9 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
         //getSupportActionBar().setTitle(R.drawable.titulo);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        fragEnviar = Enviar.getInstance(getSupportFragmentManager(),"https://google.com.ar");
 
-        final Enviar fragEnviar = Enviar.getInstance(getSupportFragmentManager(),"https://google.com.ar");
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         mViewPager = (ViewPager) findViewById(R.id.container);
         //Cantidad de pantallas.
@@ -154,11 +155,13 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
             }
             else
             {
+                fragEnviar.ocultarDialogo();
                 Toast.makeText(getBaseContext(),"Error al enviar. Hay campos obligatorios sin completar.",Toast.LENGTH_SHORT).show();
             }
         }
         else
         {
+            fragEnviar.ocultarDialogo();
             Toast.makeText(getBaseContext(),"Error al enviar. Debe ingresar un código de autorización para continuar.",Toast.LENGTH_SHORT).show();
         }
 
@@ -208,10 +211,10 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
                             //Guardo el Token en el archivo de configuración
                             Token = inputToken.getText().toString();
                             guardarToken(Token);
-                            if(fragInicio.validarToken())
+                            /*if(fragInicio.validarToken())
                             {
                                 Toast.makeText(getBaseContext(), "¡Código autorizado!", Toast.LENGTH_SHORT).show();
-                            }
+                            }*/
                         }
                     });
 
