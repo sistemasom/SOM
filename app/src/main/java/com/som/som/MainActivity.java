@@ -257,6 +257,7 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback,
         }
     }
 
+    
     private void InstanciarFragmentos() {
         fragInicio = Inicio.newInstance(null,null);
         fragInventario = Inventario.newInstance(null,null);
