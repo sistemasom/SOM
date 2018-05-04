@@ -100,13 +100,13 @@
             android:textColor="@color/obligatorio"
             android:text="Precio:"
             android:layout_marginLeft="5dp"
-            android:layout_weight="0.5" />
+            android:layout_weight="1" />
 
         <EditText
             android:id="@+id/etPrecio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
+            android:layout_weight="1"
             android:textColor="@color/letra"
             android:ems="5"
             android:digits="0123456789"
@@ -118,21 +118,19 @@
     </LinearLayout>
         <Switch
             android:id="@+id/publica"
-            android:layout_width="250dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="250dp"
-            android:layout_weight="1"
             android:checked="false"
             android:textColor="@color/letra"
             android:text="Visible en sistema interconectado" />
 
         <Switch
             android:id="@+id/reservada"
-            android:layout_width="250dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:checked="false"
             android:layout_marginTop="300dp"
-            android:layout_weight="1"
             android:textColor="@color/letra"
             android:text="Reservada" />
 
